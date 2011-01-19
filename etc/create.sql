@@ -1,7 +1,7 @@
 --# create.sql -- SQL to build the initial tables for the OpenNMS Project
 --#
 --# Modifications:
---#
+--# 2009 Mar 27: Added Users, Groups tables
 --# 2009 Jan 28: Added Acks tables - david@opennms.org
 --# 2007 Apr 10: Added statistics report tables - dj@opennms.org
 --# 2006 Apr 17: Added pathOutage table
@@ -68,6 +68,11 @@ drop table statisticsReportData cascade;
 drop table resourceReference cascade;
 drop table statisticsReport cascade;
 drop table acks cascade;
+drop table users cascade;
+drop table groups cascade;
+drop table group_user cascade;
+drop table category_user cascade;
+drop table category_group cascade;
 
 drop sequence catNxtId;
 drop sequence nodeNxtId;
@@ -1178,17 +1183,17 @@ CREATE UNIQUE INDEX category_idx ON categories(categoryName);
 --# are no categories in the category table
 --##################################################################
 --# criteria: SELECT count(*) = 0 from categories
-insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Routers', null);
+insert into categories values (nextVal('catNxtId'), 'Routers', null);
 --# criteria: SELECT count(*) = 0 from categories
-insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Switches', null);
+insert into categories values (nextVal('catNxtId'), 'Switches', null);
 --# criteria: SELECT count(*) = 0 from categories
-insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Servers', null);
+insert into categories values (nextVal('catNxtId'), 'Servers', null);
 --# criteria: SELECT count(*) = 0 from categories
-insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Production', null);
+insert into categories values (nextVal('catNxtId'), 'Production', null);
 --# criteria: SELECT count(*) = 0 from categories
-insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Test', null);
+insert into categories values (nextVal('catNxtId'), 'Test', null);
 --# criteria: SELECT count(*) = 0 from categories
-insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Development', null);
+insert into categories values (nextVal('catNxtId'), 'Development', null);
 
 --########################################################################
 --# category_node table - Many-to-Many mapping table of categories to nodes
@@ -1858,7 +1863,7 @@ create index inventory_status_idx on inventory(status);
 
 create table map (
     mapId	   		 integer default nextval('opennmsNxtId') not null,
-    mapName	   		 varchar(40) not null,
+    mapName	   		 varchar(63) not null,
     mapBackGround	 varchar(256),
     mapOwner   		 varchar(64) not null,
     mapGroup   		 varchar(64),
@@ -2069,6 +2074,25 @@ CREATE TABLE acks (
 create index ack_time_idx on acks(ackTime);
 create index ack_user_idx on acks(ackUser);
 
+--########################################################################
+--#
+--#  categories to groups mapping table -- This table used for maintaining a many-to-many
+--#     relationship between categories and groups
+--# 
+--#  categoryId       : References foreign key in the groups table
+--#  groupId          : References foreign key in the users table
+--########################################################################
+
+create table category_group (
+    categoryId  integer not null,
+    groupId     varchar(16) not null,
+
+    constraint categoryid_fkey2 foreign key (categoryId) references categories ON DELETE CASCADE
+);
+
+CREATE INDEX catid_idx3 on category_group(categoryId);
+CREATE INDEX catgroup_idx on category_group(groupId);
+CREATE UNIQUE INDEX catgroup_unique_idx on category_group(categoryId, groupId);
 
 --# Begin Quartz persistence tables
 
