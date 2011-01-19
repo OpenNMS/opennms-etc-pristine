@@ -6,7 +6,7 @@
     <bean class="org.opennms.netmgt.correlation.drools.DroolsCorrelationEngineBuilder">
     	<property name="eventIpcManager" ref="eventIpcManager" />
     	<property name="correlationEngineRegistrar" ref="correlator" />
-    	<property name="configurationResource" value="file:/tmp/opennms-1.5.96/target/rpm/BUILD/opennms-1.5.96-6/source/target//tmp/opennms-1.5.96/target/rpm/tmp/opennms-1.5.96-root/etc/drools-engine.xml"/>
+    	<property name="configurationResource" value="file:/tmp/opennms-1.5.97/target/rpm/BUILD/opennms-1.5.97-1/source/target//tmp/opennms-1.5.97/target/rpm/tmp/opennms-1.5.97-root/etc/drools-engine.xml"/>
     </bean>
         
 </beans>
