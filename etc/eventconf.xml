@@ -9,57 +9,75 @@
 			<doNotOverride>script</doNotOverride>
 		</security>
 	</global>
-        <event-file>/opt/OpenNMS/etc/events/3Com.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/ADIC-v2.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Alteon.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/APC.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/APC.Best.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/APC.Exide.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/BackupExec.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/BEA.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/BlackBerryServer.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Brocade.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Cisco2.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Cisco.5300dchan.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Cisco.events.xml</event-file>
+		<event-file>/opt/opennms/etc/events/ia.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/3Com.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/ADIC-v2.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Alteon.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Altiga.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/APC.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/APC.Best.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/APC.Exide.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/BackupExec.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/BEA.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/BGP4.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/BlackBerryServer.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Brocade.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Cisco2.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Cisco.5300dchan.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Cisco.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Cisco.airespace.xml</event-file>
 	<!-- CIM.events.xml has been deprecated by CPQHPIM.events.xml -->
-        <event-file>/opt/OpenNMS/etc/events/CPQHPIM.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Clarent.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Clarinet.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Cricket.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/DellOpenManage.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Fore.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/FoundryNetworks.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/FujitsuSiemens.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Groupwise.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/HP.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/IBM.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/IEEE802dot11.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Intel.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Linksys.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/MGE-UPS.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Microsoft.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Mylex.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/NetApp.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Netbotz.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Netgear.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Nokia.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/NORTEL.Contivity.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Novell.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Oracle.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Patrol.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Quintum.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Redline.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Sensaphone.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Snort.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/SonicWall.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Symbol.events.xml</event-file>
-<!--        <event-file>/opt/OpenNMS/etc/events/Symbol-WS5000.events.xml</event-file> -->
-        <event-file>/opt/OpenNMS/etc/events/SystemEdge.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Uptime.events.xml</event-file>
-        <event-file>/opt/OpenNMS/etc/events/Xerox.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Colubris.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/CPQHPIM.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Clarent.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Clarinet.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Cricket.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Dell-DRAC2.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/DellOpenManage.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/F5.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Fore.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/FoundryNetworks.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/FujitsuSiemens.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Groupwise.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/HP.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/IBM.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/IBM-UMS.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/IBMRSA2.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/IEEE802dot11.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Intel.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Liebert.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Liebert.600SM.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Linksys.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/MGE-UPS.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Microsoft.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Mylex.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/NetApp.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Netbotz.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Netgear.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Netscreen.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Nokia.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/NORTEL.Contivity.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Novell.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Oracle.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Patrol.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Pixelmetrix.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Quintum.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Redline.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/RFC1628.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Rightfax.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Sensaphone.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Snort.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/SonicWall.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Symbol.events.xml</event-file>
+<!--        <event-file>/opt/opennms/etc/events/Symbol-WS5000.events.xml</event-file> -->
+        <event-file>/opt/opennms/etc/events/SystemEdge.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/UPS-MIB.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Uptime.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Xerox-V2.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Xerox.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Syslogd.events.xml</event-file>
 
-        <event-file>/opt/OpenNMS/etc/events/Standard.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Standard.events.xml</event-file>
         <event>
                 <uei>MATCH-ANY-UEI</uei>
                 <event-label>OpenNMS defined event: MATCH-ANY-UEI</event-label>
@@ -129,6 +147,20 @@
 		<severity>Warning</severity>
 	</event>
 	<event>
+		<uei>uei.opennms.org/internal/capsd/rescanCompleted</uei>
+		<event-label>OpenNMS-defined internal event: capsd rescanCompleted</event-label>
+		<descr>
+			&lt;p&gt;A services scan has been completed.&lt;/p&gt;
+			&lt;p&gt;The list of services on this node has been
+			updated.&lt;/p&gt;
+		</descr>
+		<logmsg dest='logndisplay'>
+			&lt;p&gt;A services scan has been completed on this
+			node.&lt;/p&gt;
+		</logmsg>
+		<severity>Normal</severity>
+	</event>
+	<event>
 		<uei>uei.opennms.org/internal/capsd/interfaceSupportsSNMP</uei>
 		<event-label>OpenNMS-defined internal event: capsd interfaceSupportsSNMP</event-label>
 		<descr>
@@ -156,7 +188,7 @@
 			%interface%.&lt;/p&gt;
 		</logmsg>
 		<severity>Minor</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="true"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/internal/capsd/updateServer</uei>
@@ -267,6 +299,57 @@
 		</logmsg>
 		<severity>Normal</severity>
 	</event>
+<!-- New Importer Service Events -->
+    <event>
+      <uei>uei.opennms.org/internal/importer/reloadImport</uei>
+      <event-label>OpenNMS-defined internal event: importer reloadImport</event-label>
+      <descr>
+        &lt;p&gt;This event will cause the importer to run the model-import process.
+        The parameters include foreignSource, url, and deleteThreshold that override
+        configuration properties as well as XML and default values.&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;A request had been made to run the model-import process with the
+        parms: %parm[all]%.&lt;/p&gt;
+      </logmsg>
+      <severity>Normal</severity>
+    </event>
+    <event>
+      <uei>uei.opennms.org/internal/importer/importStarted</uei>
+      <event-label>OpenNMS-defined internal event: importer process has started</event-label>
+      <descr>
+        &lt;p&gt;This event indicates the model-importer process has started&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;This event indicates the model-importer process has started&lt;/p&gt;
+      </logmsg>
+      <severity>Normal</severity>
+    </event>
+    <event>
+      <uei>uei.opennms.org/internal/importer/importSuccessful</uei>
+      <event-label>OpenNMS-defined internal event: importer process successfully completed</event-label>
+      <descr>
+        &lt;p&gt;This event indicates the model-importer process has completed successfully. There 
+        is 1 parameter called importStats: %parm [importStats]%&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;This event indicates the model-importer process has completed successfully&lt;/p&gt;
+      </logmsg>
+      <severity>Normal</severity>
+    </event>
+    <event>
+      <uei>uei.opennms.org/internal/importer/importFailed</uei>
+      <event-label>OpenNMS-defined internal event: importer process failed.</event-label>
+      <descr>
+        &lt;p&gt;This event indicates the model-importer process has failed.  There is 1 parameter 
+        called failureMessage: %parm [failureMessage]%&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;This event indicates the model-importer process has failed with reason: %parm [failureMessage]%&lt;/p&gt;
+      </logmsg>
+      <severity>Warning</severity>
+    </event>
+<!-- New Importer Service Events -->
         <event>
                 <uei>uei.opennms.org/nodes/restartPollingInterface</uei>
                 <event-label>OpeNMS-defined node event: restartPollingInterface</event-label>
@@ -486,7 +569,7 @@
 		<severity>Warning</severity>
 	</event>
 	<event>
-		<uei>uei.opennms.org/internal/serviceUnmanaged</uei>
+		<uei>uei.opennms.org/nodes/serviceUnmanaged</uei>
 		<event-label>OpenNMS-defined internal event: serviceUnmanaged</event-label>
 		<descr>
 			&lt;p&gt;The service %service% on interface %interface% is
@@ -496,7 +579,7 @@
 			The service %service% on interface %interface% is being
 			forcibly unmanaged.
 		</logmsg>
-		<severity>Minor</severity>
+		<severity>Warning</severity>
 	</event>
 	<event>
 		<uei>uei.opennms.org/internal/unknownServiceStatus</uei>
@@ -522,7 +605,7 @@
 			%service% data collection on interface %interface% failed.
 		</logmsg>
 		<severity>Minor</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="true" />
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/dataCollectionSucceeded</uei>
@@ -536,7 +619,7 @@
 			failed and has been restored.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clearUei="uei.opennms.org/nodes/dataCollectionFailed"/>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clearUei="uei.opennms.org/nodes/dataCollectionFailed" auto-clean="true"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/deleteService</uei>
@@ -611,7 +694,7 @@
 			Interface %interface% is down.
 		</logmsg>
 		<severity>Minor</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="1" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="1" auto-clean="false"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/interfaceIPHostNameChanged</uei>
@@ -680,7 +763,7 @@
 			Interface %interface% is up.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="2" clear-uei="uei.opennms.org/nodes/interfaceDown" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="2" clear-uei="uei.opennms.org/nodes/interfaceDown" auto-clean="false"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/nodeAdded</uei>
@@ -729,10 +812,27 @@
 			impacted until this outage is resolved.&lt;/p&gt;
 		</descr>
 		<logmsg dest='logndisplay'>
-			Node %parm[nodelabel]% is down.
+			Node %parm[nodelabel]% is down. %parm[eventReason]%
 		</logmsg>
 		<severity>Major</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="false" />
+	</event>
+	<event>
+                <uei>uei.opennms.org/nodes/pathOutage</uei>
+                <event-label>OpenNMS-defined node event: pathOutage</event-label>
+                <descr>
+                        &lt;p&gt;The state of node %parm[nodelabel]% is unknown
+                        because the critical path to the node is down.&lt;/p&gt;
+                        &lt;p&gt;This event is generated when node outage processing
+                        determines that the critical path IP address/service for
+                        this node is not responding..&lt;/p&gt;
+                </descr>
+                <logmsg dest='logndisplay'>
+                        %parm[nodelabel]% path outage. Critical path =
+                        %parm[criticalPathIp]% %parm[criticalPathServiceName]%
+                </logmsg>
+                <severity>Major</severity>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="false" />
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/nodeGainedInterface</uei>
@@ -838,7 +938,7 @@
 			%service% outage identified on interface %interface% with reason code: %parm[eventReason]%.
 		</logmsg>
 		<severity>Minor</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/nodeRegainedService</uei>
@@ -857,7 +957,7 @@
 			cleared. Service is restored.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeLostService" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeLostService" auto-clean="false"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/nodeUp</uei>
@@ -873,7 +973,7 @@
 			Node %parm[nodelabel]% is up.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeDown"/>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeDown" auto-clean="false" />
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/primarySnmpInterfaceChanged</uei>
@@ -1081,18 +1181,29 @@
 		<severity>Warning</severity>
 	</event>
 	<event>
-		<uei>uei.opennms.org/nodes/assetInfoChanged</uei>
-		<event-label>OpenNMS-defined node event: assetInfoChanged</event-label>
-		<descr>
-			&lt;p&gt;The Asset info for node %nodeid% (%nodelabel%)
-			has been changed via the webUI.&lt;/p&gt;
-		</descr>
-		<logmsg dest='logndisplay'>
-			&lt;p&gt;The Asset info for node %nodeid% (%nodelabel%)
-			has been changed via the webUI.&lt;/p&gt;
-		</logmsg>
-		<severity>Normal</severity>
+	  <uei>uei.opennms.org/threshold/highThresholdRearmed</uei>
+	  <event-label>OpenNMS-defined threshold event: highThresholdRearmed</event-label>
+	  <descr>
+	    &lt;p&gt;High threshold has been rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p&gt; &lt;p&gt;By default, OpenNMS watches some key parameters on devices in your network and will alert you with an event if
+	    certain conditions arise. For example, if the CPU utilization on your Cisco router maintains an inordinately high percentage of utilization for an extended period, an event will be generated. These thresholds are determined and configured based on vendor
+	    recommendations, tempered with real-world experience in working deployments.&lt;/p&gt; &lt;p&gt;This specific event indicates that a high threshold was exceeded but then dropped below the rearm threshold..&lt;/p&gt;
+	  </descr>
+	  <logmsg dest='logndisplay'>High threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+	  <severity>Normal</severity>
 	</event>
+    <event>
+        <uei>uei.opennms.org/nodes/assetInfoChanged</uei>
+        <event-label>OpenNMS-defined node event: assetInfoChanged</event-label>
+        <descr>
+                &lt;p&gt;The Asset info for node %nodeid% (%nodelabel%)
+                has been changed via the webUI.&lt;/p&gt;
+        </descr>
+        <logmsg dest='logndisplay'>
+                &lt;p&gt;The Asset info for node %nodeid% (%nodelabel%)
+                has been changed via the webUI.&lt;/p&gt;
+        </logmsg>
+        <severity>Normal</severity>
+    </event>
 	<event>
 		<uei>uei.opennms.org/services/passiveServiceStatus</uei>
 		<event-label>OpenNMS-defined service event: passiveServiceStatus</event-label>
@@ -1103,8 +1214,21 @@
 			&lt;p&gt;Status information for service %service% has been updated.&lt;/p&gt;
 		</logmsg>
 		<severity>Normal</severity>
-		<alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1"/>
+<!--		
+		<alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
+-->
 	</event>
+  <event>
+    <uei>uei.opennms.org/internal/demandPollService</uei>
+    <event-label>OpenNMS-defined node event: DemandPoll</event-label>
+    <descr>
+      &lt;p&gt;The Demand Poll requested on %nodeid% (%nodelabel%)
+    </descr>
+    <logmsg dest='logndisplay'>
+      &lt;p&gt;The Demand Poll requested on %nodeid% (%nodelabel%).&lt;/p&gt;
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
 	<event>
 		<mask>
 			<maskelement>
@@ -1145,5 +1269,140 @@
 		</logmsg>
 		<severity>Normal</severity>
 	</event>
-	<event-file>/opt/OpenNMS/etc/events/default.events.xml</event-file>
+
+  <!-- Remote Location Monitor Events -->
+  <event>
+    <descr>
+      &lt;p&gt;A %service% outage was identified on interface
+	  %interface% from remote location monitor %parm[locationMonitorId]%.
+	  &lt;/p&gt;
+    </descr>
+    <uei>uei.opennms.org/remote/nodes/nodeLostService</uei>
+    <event-label>A remote location monitor detected a node lost service</event-label>
+    <logmsg dest='logndisplay'>
+      %service% outage identified on interface %interface% from remote location
+      monitor %parm[locationMonitorId]% with reason code: %parm[eventReason]%.
+    </logmsg>
+    <severity>Minor</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
+  </event>
+  
+  <event>
+    <descr>
+      &lt;p&gt;The %service% service on interface %interface% was
+	  previously down as viewed by remote location monitor
+	  %parm[locationMonitorId]% and has been restored.&lt;/p&gt;
+	  &lt;p&gt;This event is generated when a service which had
+	  previously failed polling attempts is again responding to
+	  polls by OpenNMS. &lt;/p&gt;
+    </descr>
+    <uei>uei.opennms.org/remote/nodes/nodeRegainedService</uei>
+    <event-label>A remote location monitor detected a node regained service</event-label>
+    <logmsg dest='logndisplay'>
+      The %service% outage on interface %interface% as viewed by
+      remote location monitor %parm[locationMonitorId]% has been
+	  cleared.
+    </logmsg>
+    <severity>Normal</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/remote/nodes/nodeLostService" auto-clean="false"/>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent by the remote location monitor server side API when
+      a remote location monitor is created. 
+    </descr>
+    <uei>uei.opennms.org/remote/locationMontiorRegistered</uei>
+    <event-label>A remote location monitor has registered</event-label>
+    <logmsg dest='logndisplay'>
+      A remote location monitor has registered.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent when a registered remote location monitor begins
+      monitoring services defined in its configuration.
+    </descr>
+    <uei>uei.opennms.org/remote/locationMonitorStarted</uei>
+    <event-label>A remote location monitor has started polling</event-label>
+    <logmsg dest='logndisplay'>
+      A remote location monitor has started polling.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent when a registered remote location monitor is configured with
+      a polling package containing no services to poll. (experimental)
+      
+      The idea here is that a webui administrator can pause a remote location monitor
+      and the remote location monitor's configuration is changed to an empty
+      polling package.
+    </descr>
+    <uei>uei.opennms.org/remote/locationMonitorPaused</uei>
+    <event-label>A remote location monitor has been paused</event-label>
+    <logmsg dest='logndisplay'>
+      A remote location monitor has been paused.
+    </logmsg>
+    <severity>Minor</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent when a registered remote location monitor is
+      shutdown by the remote system.
+    </descr>
+    <uei>uei.opennms.org/remote/locationMonitorStopped</uei>
+    <event-label>A remote location monitor has been shutdown.</event-label>
+    <logmsg dest='logndisplay'>
+      A remote location monitor has been shutdown.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent when a registered remote location fails to report
+      status and check for configuration changes at the required interval.
+    </descr>
+    <uei>uei.opennms.org/remote/locationMonitorDisconnected</uei>
+    <event-label>A remote location monitor has disconnected</event-label>
+    <logmsg dest='logndisplay'>
+      A remote location monitor has disconnected.
+    </logmsg>
+    <alarm-data reduction-key="%uei%" alarm-type="1" auto-clean="false"/>
+    <severity>Warning</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent when a disconnected remote location monitor reconnects
+      and reports status changes and checks for configuration changes.
+    </descr>
+    <uei>uei.opennms.org/remote/locationMonitorReconnected</uei>
+    <event-label>A disconnected remote location monitor has reconnected</event-label>
+    <logmsg dest='logndisplay'>
+      A disconnected remote location monitor has reconnected.
+    </logmsg>
+    <severity>Normal</severity>
+    <alarm-data reduction-key="%uei%" alarm-type="2" clearUei="uei.opennms.org/remote/locationMonitorDisconnected" auto-clean="false"/>
+  </event>
+  
+  <event>
+    <descr>
+      This event is sent when a remote location monitor's configuration has been
+      changed and was detected by the monitor.
+    </descr>
+    <uei>uei.opennms.org/remote/configurationChangeDetected</uei>
+    <event-label>A remote location monitor's configuration has been changed</event-label>
+    <logmsg dest='logndisplay'>
+      A remote location monitor's configuration has been changed.
+    </logmsg>
+    <severity>Normal</severity>
+   </event> 
+    
+	<event-file>/opt/opennms/etc/events/default.events.xml</event-file>
 </events>

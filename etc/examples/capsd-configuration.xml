@@ -229,7 +229,7 @@
     </smb-config>
     <ip-management policy="managed">
         <range begin="192.168.0.0" end="192.168.0.255" />
-        <include-url>file:/opt/OpenNMS/etc/include</include-url>
+        <include-url>file:/opt/opennms/etc/include</include-url>
     </ip-management>
     <ip-management policy="unmanaged">
         <specific>0.0.0.0</specific>

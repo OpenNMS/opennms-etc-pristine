@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <jmx-datacollection-config
-    rrdRepository = "/var/opennms/rrd/snmp/">
+    rrdRepository = "/opt/opennms/share/rrd/snmp/">
     <jmx-collection name="jboss"
         maxVarsPerPdu = "50">
         <rrd step = "300">

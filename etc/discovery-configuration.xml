@@ -7,6 +7,6 @@
 		<end>192.168.0.254</end>
 	</include-range>
 
-	<include-url>file:/opt/OpenNMS/etc/include</include-url>
+	<include-url>file:/opt/opennms/etc/include</include-url>
 
 </discovery-configuration>

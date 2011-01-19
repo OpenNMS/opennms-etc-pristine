@@ -12,7 +12,7 @@
 		<filter>IPADDR IPLIKE *.*.*.*</filter>
 		<specific>0.0.0.0</specific>
 		<include-range begin="1.1.1.1" end="254.254.254.254"/>
-		<include-url>file:/opt/OpenNMS/etc/include</include-url>
+		<include-url>file:/opt/opennms/etc/include</include-url>
                 <rrd step = "300">
                         <rra>RRA:AVERAGE:0.5:1:2016</rra>
                         <rra>RRA:AVERAGE:0.5:12:4464</rra>
@@ -37,7 +37,7 @@
                 <service name="ICMP" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="2"/>
 			<parameter key="timeout" value="3000"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="icmp"/>
 		</service>
 		<service name="DNS" interval="300000" user-defined="false" status="on">
@@ -45,21 +45,21 @@
 			<parameter key="timeout" value="5000"/>
 			<parameter key="port" value="53"/>
 			<parameter key="lookup" value="localhost"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="dns"/>
 		</service>
 		<service name="NTP" interval="300000" user-defined="false" status="off">
 			<parameter key="retry" value="2"/>
 			<parameter key="timeout" value="5000"/>
 			<parameter key="port" value="123"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="ntp"/>
 		</service>
 		<service name="SMTP" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="1"/>
 			<parameter key="timeout" value="3000"/>
 			<parameter key="port" value="25"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="smtp"/>
 		</service>
 		<service name="FTP" interval="300000" user-defined="false" status="on">
@@ -80,7 +80,7 @@
                         <parameter key="timeout" value="3000"/>
                         <parameter key="port" value="80"/>
                         <parameter key="url" value="/"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="http"/>
                 </service>
 		<service name="HTTP-MGMT" interval="300000" user-defined="false" status="on">
@@ -94,7 +94,7 @@
                         <parameter key="timeout" value="3000"/>
                         <parameter key="port" value="8080"/>
                         <parameter key="url" value="/"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="http-8080"/>
                 </service>
                 <service name="HTTP-8000" interval="300000" user-defined="false" status="on">
@@ -102,7 +102,7 @@
                         <parameter key="timeout" value="3000"/>
                         <parameter key="port" value="8000"/>
                         <parameter key="url" value="/"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="http-8000"/>
                 </service>
                 <service name="HTTPS" interval="300000" user-defined="false" status="on">
@@ -152,13 +152,13 @@
 			<parameter key="banner" value="SSH"/>
 			<parameter key="port" value="22"/>
 			<parameter key="timeout" value="3000"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="ssh"/>
 		</service>
 		<service name="DHCP" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="2"/>
 			<parameter key="timeout" value="3000"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="dhcp"/>
 		</service>
 		<service name="IMAP" interval="300000" user-defined="false" status="on">
@@ -170,7 +170,7 @@
 			<parameter key="retry" value="1"/>
 			<parameter key="port" value="110"/>
 			<parameter key="timeout" value="3000"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="pop3"/>
 		</service>
 		<service name="RadiusAuth" interval="300000" user-defined="false" status="on">
@@ -179,7 +179,7 @@
              		<parameter key="user" value="TEST"/>
              		<parameter key="password" value="test"/>
              		<parameter key="secret" value="opennms"/>
-             		<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+             		<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
              		<parameter key="ds-name" value="radiusauth"/>
 		</service>
 		<service name="JBoss4" interval="300000" user-defined="false" status="on">
@@ -193,7 +193,7 @@
                              <jboss-home>/server/default/deploy/http-invoker/META-INF/jboss-service.xml
                              The default port is 8080
                         -->
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="jboss"/>
 		</service>
 		<service name="JBoss32" interval="300000" user-defined="false" status="on">
@@ -207,14 +207,14 @@
                              <jboss-home>/server/default/deploy/http-invoker/META-INF/jboss-service.xml
                              The default port is 8080
                         -->
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="jboss"/>
 		</service>
 		<service name="JVM" interval="300000" user-defined="false" status="on">
 			<parameter key="port" value="9003"/>
 			<parameter key="retry" value="2"/>
 			<parameter key="timeout" value="3000"/>
-			<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="jmx"/>
 			<parameter key="friendly-name" value="jvm"/>
 		</service>
@@ -224,7 +224,7 @@
              		<parameter key="port" value="5666"/>
              		<parameter key="command" value="_NRPE_CHECK"/>
              		<parameter key="padding" value="2"/>
-             		<parameter key="rrd-repository" value="/var/opennms/rrd/response"/>
+             		<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
              		<parameter key="ds-name" value="nrpe"/>
 		</service>
 		<!--
