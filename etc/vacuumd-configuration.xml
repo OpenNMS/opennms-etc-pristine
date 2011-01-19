@@ -30,7 +30,7 @@
     <automation name="cleanUp" interval="30000" action-name="deletePastClearedAlarms" active="true" />
     <automation name="GC" interval="300000" action-name="garbageCollect" active="true" />
     <automation name="unclear" interval="30000" trigger-name="selectClearedAlarms" action-name="resetSeverity" active="true" />
-    <automation name="escalation" interval="30000" trigger-name="selectSuspectAlarms" action-name="escalateAlarm" action-event="eventEscalated" active="true" />
+    <automation name="escalation" interval="30000" trigger-name="selectSuspectAlarms" action-name="escalateAlarm" action-event="eventEscalated" active="false" />
     <automation name="purgeStatisticsReports" interval="3600000" action-name="deletePurgeableStatisticsReports" active="true" />
   </automations>
   
@@ -168,7 +168,7 @@
     </auto-event>
   </auto-events>
 
-  <!-- Note: action events that have org.apache.maven.project.MavenProject@265b7e53 tokens require the for-each-result attribute to be set to true -->
+  <!-- Note: action events that have org.apache.maven.project.MavenProject@265b7e54 tokens require the for-each-result attribute to be set to true -->
   <action-events>
     <action-event name="eventEscalated" for-each-result="true" >
       <assignment type="field" name="uei" value="uei.opennms.org/vacuumd/alarmEscalated" />

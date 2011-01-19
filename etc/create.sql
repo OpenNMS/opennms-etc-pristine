@@ -319,6 +319,8 @@ create table node (
 
 create index node_id_type_idx on node(nodeID, nodeType);
 create index node_label_idx on node(nodeLabel);
+create index node_dpname_idx on node(dpName);
+create unique index node_foreign_unique_idx on node(foreignSource, foreignId);
 
 --#########################################################################
 --# snmpInterface Table - Augments the ipInterface table with information
@@ -407,8 +409,9 @@ create index snmpinterface_ipaddr_idx on snmpinterface(ipaddr);
 --#                     'A' - Alias
 --#                     'D' - Deleted
 --#                     'U' - Unmanaged
---#			'F' - Forced Unmanaged (via the user interface)
+--#                     'F' - Forced Unmanaged (via the user interface)
 --#                     'N' - Not polled as part of any package
+--#                     'X' - Remotely Monitored only
 --#  ipStatus        : If interface supports SNMP this field will
 --#                    hold a numeric representation of interface's
 --#                    operational status (same as 'snmpIfOperStatus'
@@ -489,6 +492,7 @@ create table service (
 --#                'F' - Forced unmanaged (via user interface)
 --#                'N' - Not polled as part of any of the packages that the
 --#                      interface belongs to
+--#                'X' - service is remotely monitored only
 --#  source    : Flag indicating how the service was detected.
 --#                'P' - Plugin
 --#                'F' - Forced (via CapsdPluginBehavior.conf)
@@ -997,6 +1001,7 @@ CREATE INDEX alarm_clearkey_idx ON alarms(clearKey);
 CREATE INDEX alarm_reduction2_idx ON alarms(alarmID, eventUei, dpName, nodeID, serviceID, reductionKey);
 CREATE INDEX alarm_app_dn ON alarms(applicationDN);
 CREATE INDEX alarm_oss_primary_key ON alarms(ossPrimaryKey);
+CREATE INDEX alarm_eventid_idx ON alarms(lastEventID);
 
 --########################################################################
 --#
@@ -1175,7 +1180,7 @@ create table category_node (
 
 CREATE INDEX catid_idx on category_node(categoryId);
 CREATE INDEX catnode_idx on category_node(nodeId);
-
+CREATE UNIQUE INDEX catenode_unique_idx on category_node(categoryId, nodeId);
 
 --########################################################################
 --# pathOutage Table - Contains the critical path IP address and service
