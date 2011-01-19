@@ -18,6 +18,9 @@ pushd $ME/work >/dev/null 2>&1
 	if [ -d "$ME/work/opt/opennms/etc/" ]; then
 		rsync -avr --delete $ME/work/opt/opennms/etc/ $ME/etc/
 	fi
+	if [ -d "$ME/work/opt/OpenNMS/etc/" ]; then
+		rsync -avr --delete $ME/work/opt/OpenNMS/etc/ $ME/etc/
+	fi
 
 popd >/dev/null 2>&1
 
