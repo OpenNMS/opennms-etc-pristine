@@ -14,6 +14,18 @@
       <storageStrategy class="org.opennms.netmgt.dao.support.FrameRelayStorageStrategy"/>
     </resourceType>
 
+    <resourceType name="bgpPeerEntry" label="BGP Peer"
+                  resourceLabel="ASN ${bgpPeerRemoteAs}, Peer ${bgpPeerRemoteAddr}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <resourceType name="cbgpPeerAddrFamilyPrefixEntry" label="Cisco BGP Peer / Address Family"
+                  resourceLabel="Peer ${subIndex(0,4)}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
     <resourceType name="ciscoEnvMonTemperatureStatusIndex" label="Cisco Temperature"
                   resourceLabel="${cvmTempStatusDescr} (index ${index})">
       <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
@@ -28,6 +40,18 @@
     
     <resourceType name="ciscoMemoryPoolType" label="Cisco Memory Pool"
                   resourceLabel="${cscoMemoryPoolName} (index ${index})">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <resourceType name="ciscoSlbInstance" label="Cisco SLB Instance"
+                  resourceLabel="Cisco SLB (Slot ${index})">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <resourceType name="cesServerFarmRserverEntry" label="Cisco SLB Server Farm / Real Server"
+                  resourceLabel="Cisco SLB Entity ${subIndex(0, 1)}, Server Farm ${string(subIndex(1, n))}, Real Server ${string(subIndex(n, n))}, port ${subIndex(n)}">
       <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
@@ -177,6 +201,11 @@
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
 
+     <resourceType name="xmpFilesys" label="Filesystems" resourceLabel="${mountpoint}">
+        <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+        <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+     </resourceType>
+
     <resourceType name="temperatureProbeIndex" label="Temperature Probe" resourceLabel="${temperatureProbeLocationName}">
       <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
@@ -256,6 +285,12 @@
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
 
+     <!-- Resource Type for XMP processes -->
+     <resourceType name="procStats" label="Process Stats" resourceLabel="${index}" >
+        <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+        <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+     </resourceType>
+
     <resourceType name="msdpPeerEntry" label="MSDP Peer"
         resourceLabel="Remote ${msdpPeerRemoteAddr}:${msdpPeerRemotePort} (Local ${msdpPeerLocalAddr}:${msdpPeerLocalPort})">
       <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
@@ -302,6 +337,16 @@
 
     <resourceType name="aixFilesystem" label="AIX Filesystem"
                   resourceLabel="${aixFsName} (${aixFsMountPoint})">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <resourceType name="pipePosition" label="Allot NetEnforcer Pipe Position" resourceLabel="${pipeName}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+    
+    <resourceType name="vcPipePosition" label="Allot NetEnforcer VC Position" resourceLabel="${vcName}">
       <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
@@ -448,6 +493,14 @@
         <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="1" alias="cpuPercentBusy" type="integer" />
         <!-- Memory in KBytes -->
         <mibObj oid=".1.3.6.1.2.1.25.2.2"     instance="0" alias="memorySize"     type="integer" />
+      </group>
+
+      <!-- Stats from the IETF BGP4-MIB -->
+      <group name="ietf-bgp4-peer-stats" ifType="all">
+        <mibObj oid=".1.3.6.1.2.1.15.3.1.7"  instance="bgpPeerEntry" alias="bgpPeerRemoteAddr" type="string" />
+        <mibObj oid=".1.3.6.1.2.1.15.3.1.9"  instance="bgpPeerEntry" alias="bgpPeerRemoteAs" type="string" />
+        <mibObj oid=".1.3.6.1.2.1.15.3.1.10" instance="bgpPeerEntry" alias="bgpPeerInUpdates" type="counter" />
+        <mibObj oid=".1.3.6.1.2.1.15.3.1.11" instance="bgpPeerEntry" alias="bgpPeerOutUpdates" type="counter" />
       </group>
 
       <!-- Stats from the IETF IPMROUTE-STD-MIB -->
@@ -671,6 +724,11 @@
         <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.13" instance="swFCPortIndex" alias="swFCPortTxFrames" type="counter" />
         <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.14" instance="swFCPortIndex" alias="swFCPortRxFrames" type="counter" />
         <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.36" instance="swFCPortIndex" alias="swFCPortName"     type="string" />
+      </group>
+
+      <group name="cisco-bgp-peer-addr-family-prefix-stats" ifType="all">
+        <!-- NB This gauge is a Counter32 that exhibits gauge semantics -->
+        <mibObj oid=".1.3.6.1.4.1.9.9.187.1.2.4.1.1" instance="cbgpPeerAddrFamilyPrefixEntry" alias="cbgpPeerAcceptedPfx" type="gauge" />
       </group>
 
       <group name="cisco-cike" ifType="ignore">
@@ -936,6 +994,46 @@
         <mibObj oid=".1.3.6.1.4.1.9.9.263.1.2.1.1.17" instance="ifIndex" alias="cisV3IsExcluded" type="counter" />
         <mibObj oid=".1.3.6.1.4.1.9.9.263.1.2.1.1.18" instance="ifIndex" alias="cisV3ToIncluded" type="counter" />
         <mibObj oid=".1.3.6.1.4.1.9.9.263.1.2.1.1.19" instance="ifIndex" alias="cisV3ToExcluded" type="counter" />
+      </group>
+
+      <!-- Stats from the CISCO-SLB-MIB-->
+      <group name="cisco-slb-stats" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.9.9.161.1.1.1.1.7"  instance="ciscoSlbInstance" alias="cSlbCreatedHCConns" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.161.1.1.1.1.9"  instance="ciscoSlbInstance" alias="cSlbEstabHCConns" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.161.1.1.1.1.11" instance="ciscoSlbInstance" alias="cSlbDestroydHCConns" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.161.1.1.1.1.13" instance="ciscoSlbInstance" alias="cSlbReassgdHCConns" type="counter" />
+      </group>
+
+      <!-- Stats from the CISCO-EHANCED-SLB-MIB-->
+      <group name="cisco-enhanced-slb-farm-rserver-stats" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.2"  instance="cesServerFarmRserverEntry" alias="cSlbFarmRsAdminWt" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.3"  instance="cesServerFarmRserverEntry" alias="cSlbFarmRsOperWt" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.4"  instance="cesServerFarmRserverEntry" alias="cSlbFarmRsMaxConns" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.5"  instance="cesServerFarmRserverEntry" alias="cSlbFarmRsMinConns" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.8"  instance="cesServerFarmRserverEntry" alias="cSlbFarmRsStateDesc" type="string" />
+        <!-- NB The following connection counters are Counter64 -->
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.11" instance="cesServerFarmRserverEntry" alias="cSlbFarmRsTotalConn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.12" instance="cesServerFarmRserverEntry" alias="cSlbFarmRsFailConn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.13" instance="cesServerFarmRserverEntry" alias="cSlbFarmRsDropConn" type="counter" />
+        <!-- NB The following is a Counter64 following Gauge semantics -->
+        <mibObj oid=".1.3.6.1.4.1.9.9.470.1.1.3.1.14" instance="cesServerFarmRserverEntry" alias="cSlbFarmRsCurrConn" type="gauge" />
+      </group>
+
+      <group name="cisco-cids-health-scalars" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.1"  instance="0" alias="cidsHlthPktLoss" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.2"  instance="0" alias="cidsHlthPktDenyRate" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.3"  instance="0" alias="cidsHlthAlarmsGend" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.4"  instance="0" alias="cidsHlthFragmentsIn" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.5"  instance="0" alias="cidsHlthDatagramsIn" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.6"  instance="0" alias="cidsHlthTcpEmbryo" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.7"  instance="0" alias="cidsHlthTCPEstab" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.8"  instance="0" alias="cidsHlthTcpClosing" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.9"  instance="0" alias="cidsHlthTcpStreams" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.10" instance="0" alias="cidsHlthActiveNodes" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.11" instance="0" alias="cidsHlthTcpDualIpPt" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.12" instance="0" alias="cidsHlthUdpDualIpPt" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.13" instance="0" alias="cidsHlthIpDualIp" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.9.9.383.1.4.14" instance="0" alias="cidsHlthMemCritical" type="Gauge32" />
       </group>
 
       <group name="ipunity-as-call-scalars" ifType="ignore" >
@@ -1608,6 +1706,12 @@
         <mibObj oid=".1.3.6.1.4.1.2021.11.60" instance="0" alias="SysRawContext"    type="counter" />
       </group>
 
+      <group name="ucd-sysstat-raw-more" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.2021.11.61" instance="0" alias="CpuRawSoftIRQ" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2021.11.62" instance="0" alias="RawBlksSwapIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2021.11.63" instance="0" alias="RawBlksSwapIn" type="counter" />
+      </group>
+
       <group name="ucd-diskio" ifType="all">
         <mibObj oid=".1.3.6.1.4.1.2021.13.15.1.1.2" instance="diskIOIndex" alias="diskIODevice"   type="string" />
         <mibObj oid=".1.3.6.1.4.1.2021.13.15.1.1.3" instance="diskIOIndex" alias="diskIONRead"    type="counter" />
@@ -2191,6 +2295,36 @@
         <mibObj oid=".1.3.6.1.4.1.12356.1.10" instance="0" alias="fnSysSesCount" type="Gauge32" />
       </group>
 
+      <!-- Allot NetEnforcer MIBs -->
+      <group  name="netenforcer-allot-ne" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.2603.1.1.1.1" instance="0" alias="neByteCountIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.1.1.2" instance="0" alias="neByteCountOut" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.1.1.4" instance="0" alias="neLiveConnections" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.1.1.5" instance="0" alias="neNewConnections" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.1.1.6" instance="0" alias="nePacketsIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.1.1.7" instance="0" alias="nePacketsOut" type="counter" />
+      </group>
+      <group  name="netenforcer-allot-pipe" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.1" instance="pipePosition" alias="pipePosition" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.3" instance="pipePosition" alias="pipeName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.4" instance="pipePosition" alias="pipeByteCountIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.5" instance="pipePosition" alias="pipeByteCountOut" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.7" instance="pipePosition" alias="pipeLiveConnections" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.8" instance="pipePosition" alias="pipeNewConnections" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.9" instance="pipePosition" alias="pipePacketsIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.2.1.1.1.10" instance="pipePosition" alias="pipePacketsOut" type="counter" />
+      </group>
+      <group  name="netenforcer-allot-vc" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.1" instance="vcPipePosition" alias="vcPipePosition" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.5" instance="vcPipePosition" alias="vcName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.6" instance="vcPipePosition" alias="vcByteCountIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.7" instance="vcPipePosition" alias="vcByteCountOut" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.9" instance="vcPipePosition" alias="vcLiveConnections" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.10" instance="vcPipePosition" alias="vcNewConnections" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.11" instance="vcPipePosition" alias="vcPacketsIn" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.2603.1.3.1.1.1.12" instance="vcPipePosition" alias="vcPacketsOut" type="counter" />
+      </group>
+
     </groups>
 
     <systems>
@@ -2204,7 +2338,7 @@
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess base">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1</sysoidMask>
+        <sysoidMask>.1.3.6.1.4.1.12394.4.1.</sysoidMask>
         <collect>
           <includeGroup>alvarion-bad-all-frames</includeGroup>
           <includeGroup>alvarion-interfacesRB</includeGroup>
@@ -2212,70 +2346,70 @@
       </systemDef>
       
       <systemDef name="Alvarion BreezeAccess SU">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.2</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.2</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU6-1D">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.11</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.11</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU6-BD">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.12</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.12</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU24-BD">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.13</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.13</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU-BD">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.14</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.14</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU54-BD">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.15</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.15</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU3-1D">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.16</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.16</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess SU3-4D">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.17</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.17</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess RB-B14">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.31</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.31</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
       </systemDef>
 
       <systemDef name="Alvarion BreezeAccess RB-B28">
-        <sysoidMask>.1.3.6.1.4.1.12394.4.1.32</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.12394.4.1.32</sysoid>
         <collect>
           <includeGroup>alvarion-snr-lqi</includeGroup>
         </collect>
@@ -2306,6 +2440,8 @@
 	  <includeGroup>ucd-loadavg</includeGroup>
 	  <includeGroup>ucd-memory</includeGroup>
 	  <includeGroup>ucd-sysstat</includeGroup>
+	  <includeGroup>ucd-sysstat-raw</includeGroup>
+	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
 	  <includeGroup>asterisk-scalars</includeGroup>
 	  <includeGroup>asterisk-chantype</includeGroup>
 	</collect>
@@ -2463,6 +2599,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.645</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2470,6 +2607,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.646</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2477,6 +2615,15 @@
         <sysoid>.1.3.6.1.4.1.9.1.647</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS 4240">
+        <sysoid>.1.3.6.1.4.1.9.1.648</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2484,6 +2631,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.649</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2491,6 +2639,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.650</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2498,6 +2647,15 @@
         <sysoid>.1.3.6.1.4.1.9.1.651</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS 4255">
+        <sysoid>.1.3.6.1.4.1.9.1.652</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2505,6 +2663,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.653</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2512,6 +2671,23 @@
         <sysoid>.1.3.6.1.4.1.9.1.654</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS Security Service Module SSM-20">
+        <sysoid>.1.3.6.1.4.1.9.1.655</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS Security Service Module SSM-10">
+        <sysoid>.1.3.6.1.4.1.9.1.662</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2519,6 +2695,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.741</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2526,6 +2703,23 @@
         <sysoid>.1.3.6.1.4.1.9.1.742</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS 4260">
+        <sysoid>.1.3.6.1.4.1.9.1.743</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS virtual sensor">
+        <sysoid>.1.3.6.1.4.1.9.1.806</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2533,6 +2727,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.807</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2540,6 +2735,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.808</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2547,6 +2743,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.809</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2554,6 +2751,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.810</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2561,6 +2759,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.811</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2568,6 +2767,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.812</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2575,6 +2775,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.813</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2582,6 +2783,7 @@
         <sysoid>.1.3.6.1.4.1.9.1.814</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2589,6 +2791,39 @@
         <sysoid>.1.3.6.1.4.1.9.1.815</sysoid>
         <collect>
           <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS Security Service Module SSM-20 virtual sensor">
+        <sysoid>.1.3.6.1.4.1.9.1.816</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS Security Service Module SSM-10 virtual sensor">
+        <sysoid>.1.3.6.1.4.1.9.1.817</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS 4270 Sensor">
+        <sysoid>.1.3.6.1.4.1.9.1.830</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco IPS 4270 Virtual Sensor">
+        <sysoid>.1.3.6.1.4.1.9.1.831</sysoid>
+        <collect>
+          <includeGroup>cisco-pix</includeGroup>
+          <includeGroup>cisco-cids-health-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -2736,6 +2971,8 @@
           <includeGroup>rfc1315-frame-relay</includeGroup>
           <includeGroup>cisco-frame-relay</includeGroup>
           <includeGroup>mib2-X-interfaces</includeGroup>
+          <includeGroup>ietf-bgp4-peer-stats</includeGroup>
+          <includeGroup>cisco-bgp-peer-addr-family-prefix-stats</includeGroup>
         </collect>
       </systemDef>
 
@@ -2743,6 +2980,22 @@
         <sysoid>.1.3.6.1.4.1.9.1.583</sysoid>
         <collect>
           <includeGroup>cisco-ccm</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco ACE Load Balancer 10K9">
+        <sysoid>.1.3.6.1.4.1.9.1.730</sysoid>
+        <collect>
+          <includeGroup>cisco-slb-stats</includeGroup>
+          <includeGroup>cisco-enhanced-slb-farm-rserver-stats</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Cisco ACE Load Balancer 4710K9">
+        <sysoid>.1.3.6.1.4.1.9.1.824</sysoid>
+        <collect>
+          <includeGroup>cisco-slb-stats</includeGroup>
+          <includeGroup>cisco-enhanced-slb-farm-rserver-stats</includeGroup>
         </collect>
       </systemDef>
 
@@ -2754,7 +3007,7 @@
       </systemDef>
 
       <systemDef name="Concord Net Health">
-        <sysoidMask>.1.3.6.1.4.1.546</sysoidMask>
+        <sysoidMask>.1.3.6.1.4.1.546.</sysoidMask>
         <collect>
           <includeGroup>mib2-host-resources-system</includeGroup>
           <includeGroup>mib2-host-resources-memory</includeGroup>
@@ -2793,7 +3046,7 @@
       </systemDef>
 
       <systemDef name="HP Printers">
-        <sysoidMask>.1.3.6.1.4.1.11.2.3.9.1</sysoidMask>
+        <sysoid>.1.3.6.1.4.1.11.2.3.9.1</sysoid>
         <collect>
           <includeGroup>printer-usage</includeGroup>
           <includeGroup>printer-mib-supplies</includeGroup>
@@ -2801,7 +3054,7 @@
       </systemDef>
 
       <systemDef name="HP ProCurve">
-        <sysoidMask>.1.3.6.1.4.1.11.2.3.7.11</sysoidMask>
+        <sysoidMask>.1.3.6.1.4.1.11.2.3.7.11.</sysoidMask>
         <collect>
           <includeGroup>hp-procurve</includeGroup>
         </collect>
@@ -2854,6 +3107,7 @@
         <collect>
           <includeGroup>juniper-router</includeGroup>
           <includeGroup>mib2-X-interfaces</includeGroup>
+          <includeGroup>ietf-bgp4-peer-stats</includeGroup>
         </collect>
       </systemDef>
 
@@ -2868,7 +3122,7 @@
       </systemDef>
 
       <systemDef name="Kyocera Mita Network Printer">
-        <sysoidMask>.1.3.6.1.4.1.1347.4</sysoidMask>
+        <sysoidMask>.1.3.6.1.4.1.1347.4.</sysoidMask>
         <collect>
           <includeGroup>printer-usage</includeGroup>
           <includeGroup>printer-mib</includeGroup>
@@ -2949,6 +3203,8 @@
           <includeGroup>ucd-loadavg</includeGroup>
           <includeGroup>ucd-memory</includeGroup>
           <includeGroup>ucd-sysstat</includeGroup>
+	  <includeGroup>ucd-sysstat-raw</includeGroup>
+	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
         </collect>
       </systemDef>
 
@@ -2965,6 +3221,8 @@
           <includeGroup>ucd-loadavg</includeGroup>
           <includeGroup>ucd-memory</includeGroup>
           <includeGroup>ucd-sysstat</includeGroup>
+	  <includeGroup>ucd-sysstat-raw</includeGroup>
+	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
         </collect>
       </systemDef>
 
@@ -2972,6 +3230,15 @@
         <sysoidMask>.1.3.6.1.4.1.5528.</sysoidMask>
         <collect>
           <includeGroup>netbotz</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Allot NetEnforcer">
+        <sysoid>.1.3.6.1.4.1.2603</sysoid>
+        <collect>
+          <includeGroup>netenforcer-allot-ne</includeGroup>
+          <includeGroup>netenforcer-allot-pipe</includeGroup>
+          <includeGroup>netenforcer-allot-vc</includeGroup>
         </collect>
       </systemDef>
 
@@ -3000,7 +3267,7 @@
       </systemDef>
 
       <systemDef name="Netscaler">
-        <sysoidMask>.1.3.6.1.4.1.5951.1</sysoidMask>
+        <sysoidMask>.1.3.6.1.4.1.5951.1.</sysoidMask>
         <collect>
           <includeGroup>NetScaler-General</includeGroup>
         </collect>
@@ -3056,7 +3323,7 @@
       </systemDef>
 
       <systemDef name="Fortinet Fortigate">
-        <sysoidMask>.1.3.6.1.4.1.12356</sysoidMask>
+        <sysoidMask>.1.3.6.1.4.1.12356.</sysoidMask>
         <collect>
           <includeGroup>fortinet-sys-stat</includeGroup>
         </collect>
