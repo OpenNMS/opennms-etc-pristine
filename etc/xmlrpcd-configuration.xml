@@ -2,10 +2,10 @@
 
 <xmlrpcd-configuration max-event-queue-size="5000">
         <external-servers retries="3" elapse-time="15000">
-                <xmlrpc-server hostname="10.1.8.10" port="18000"/>
-                <xmlrpc-server hostname="10.1.8.10" port="8000"/>
+                <xmlrpc-server url="http://localhost:8000" timeout="0" />
+                <serverSubscription>baseEvents</serverSubscription>
         </external-servers>
-        <subscription>
+        <subscription name="baseEvents">
                 <subscribed-event uei="uei.opennms.org/nodes/nodeLostService"/>
                 <subscribed-event uei="uei.opennms.org/nodes/nodeRegainedService"/>
                 <subscribed-event uei="uei.opennms.org/nodes/nodeUp"/>
@@ -15,5 +15,5 @@
                 <subscribed-event uei="uei.opennms.org/internal/capsd/updateServer"/>
                 <subscribed-event uei="uei.opennms.org/internal/capsd/updateService"/>
                 <subscribed-event uei="uei.opennms.org/internal/capsd/xmlrpcNotification"/>
-        </subscription>
+	</subscription>
 </xmlrpcd-configuration>
