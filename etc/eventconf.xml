@@ -58,6 +58,7 @@
         <event-file>/opt/OpenNMS/etc/events/Symbol.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/SystemEdge.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Uptime.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Xerox-V2.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Xerox.events.xml</event-file>
 
         <event-file>/opt/OpenNMS/etc/events/Standard.events.xml</event-file>
