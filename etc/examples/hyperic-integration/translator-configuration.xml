@@ -2,8 +2,6 @@
 <event-translator-configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.opennms.org/xsd/translator-configuration http://www.opennms.org/xsd/config/translator-configuration.xsd ">
   <translation>
-    <!-- This translation is predifined for integration with Hyperic-HQ server and the OpenNMS integrations found in
-         the $OPENNMS_HOME/contrib/hyperic-integration directory -->
     <event-translation-spec uei="uei.opennms.org/external/hyperic/alert">
       <mappings>
         <mapping>
