@@ -13,6 +13,8 @@
         <event-file>/opt/OpenNMS/etc/events/ADIC-v2.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Alteon.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/APC.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/APC.Best.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/APC.Exide.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/BackupExec.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/BEA.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/BlackBerryServer.events.xml</event-file>
@@ -33,6 +35,7 @@
         <event-file>/opt/OpenNMS/etc/events/IBM.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/IEEE802dot11.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Intel.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Linksys.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/MGE-UPS.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Microsoft.events.xml</event-file>
 	<event-file>/opt/OpenNMS/etc/events/Mylex.events.xml</event-file>
@@ -48,6 +51,7 @@
         <event-file>/opt/OpenNMS/etc/events/Snort.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/SonicWall.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Symbol.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Uptime.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Xerox.events.xml</event-file>
 
         <event-file>/opt/OpenNMS/etc/events/Standard.events.xml</event-file>
@@ -405,6 +409,22 @@
 		</descr>
 		<logmsg dest='logndisplay'>
 			&lt;p&gt;The ScriptD configuration files have changed.&lt;/p&gt;
+		</logmsg>
+		<severity>Major</severity>
+	</event>
+	<event>
+		<uei>uei.opennms.org/internal/configureSNMP</uei>
+		<event-label>OpenNMS-defined internal event: configureSNMP</event-label>
+		<descr>
+			&lt;p&gt;SNMP definition for IP address
+                        %parm[firstIPAddress]%-%parm[lastIPAddress]% has been
+                        updated with community string
+                        &quot;%parm[communityString]%&quot;&lt;/p&gt;
+		</descr>
+		<logmsg dest='logonly'>
+			&lt;p&gt;SNMP community string
+                        &quot;%parm[communityString]%&quot; has been defined
+                        for IP %parm[firstIPAddress]%-%parm[lastIPAddress]%.&lt;/p&gt;
 		</logmsg>
 		<severity>Major</severity>
 	</event>
