@@ -12,6 +12,8 @@
 		<event-file>/opt/opennms/etc/events/ia.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/3Com.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/ADIC-v2.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Adtran.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Adtran.Atlas.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Alteon.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Altiga.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/APC.events.xml</event-file>
@@ -55,12 +57,14 @@
         <event-file>/opt/opennms/etc/events/Netbotz.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Netgear.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Netscreen.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/NetSNMP.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Nokia.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/NORTEL.Contivity.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Novell.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Oracle.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Patrol.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Pixelmetrix.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Primecluster.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Quintum.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Redline.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/RFC1628.events.xml</event-file>
@@ -70,12 +74,17 @@
         <event-file>/opt/opennms/etc/events/SonicWall.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Symbol.events.xml</event-file>
 <!--        <event-file>/opt/opennms/etc/events/Symbol-WS5000.events.xml</event-file> -->
+        <event-file>/opt/opennms/etc/events/Syslogd.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/SystemEdge.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/TrippLite.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/TUT.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/UPS-MIB.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Uptime.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Veraz.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/VMWare.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/Waverider.3000.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Xerox-V2.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Xerox.events.xml</event-file>
-        <event-file>/opt/opennms/etc/events/Syslogd.events.xml</event-file>
 
         <event-file>/opt/opennms/etc/events/Standard.events.xml</event-file>
         <event>
@@ -501,6 +510,18 @@
 		</logmsg>
 		<severity>Minor</severity>
 	</event>
+    <event>
+      <uei>uei.opennms.org/internal/reloadVacuumdConfig</uei>
+      <event-label>OpenNMS-defined internal event: reloadVacuumdConfig</event-label>
+      <descr>
+        &lt;p&gt;The administrator has changed the Vacuumd
+        configuration. Vacuumd will load the new configuration.&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;The Vacuumd configuration files have changed.&lt;/p&gt;
+      </logmsg>
+      <severity>Minor</severity>
+    </event>
 	<event>
 		<uei>uei.opennms.org/internal/configureSNMP</uei>
 		<event-label>OpenNMS-defined internal event: configureSNMP</event-label>
@@ -615,11 +636,11 @@
 			previously failed and has been restored.&lt;/p&gt;
 		</descr>
 		<logmsg dest='logndisplay'>
-			%service% data collection on interface %interface% prevously
+			%service% data collection on interface %interface% previously
 			failed and has been restored.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clearUei="uei.opennms.org/nodes/dataCollectionFailed" auto-clean="true"/>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clear-uei="uei.opennms.org/nodes/dataCollectionFailed" clear-key="uei.opennms.org/nodes/dataCollectionFailed:%dpname%:%nodeid%" auto-clean="true"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/deleteService</uei>
@@ -763,7 +784,7 @@
 			Interface %interface% is up.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="2" clear-uei="uei.opennms.org/nodes/interfaceDown" auto-clean="false"/>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="2" clear-uei="uei.opennms.org/nodes/interfaceDown" clear-key="uei.opennms.org/nodes/interfaceDown:%dpname%:%nodeid%:%interface%" auto-clean="false"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/nodeAdded</uei>
@@ -957,7 +978,7 @@
 			cleared. Service is restored.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeLostService" auto-clean="false"/>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeLostService" clear-key="uei.opennms.org/nodes/nodeLostService:%dpname%:%nodeid%:%interface%:%service%" auto-clean="false"/>
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/nodeUp</uei>
@@ -973,7 +994,7 @@
 			Node %parm[nodelabel]% is up.
 		</logmsg>
 		<severity>Normal</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeDown" auto-clean="false" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clear-uei="uei.opennms.org/nodes/nodeDown" clear-key="uei.opennms.org/nodes/nodeDown:%dpname%:%nodeid%" auto-clean="false" />
 	</event>
 	<event>
 		<uei>uei.opennms.org/nodes/primarySnmpInterfaceChanged</uei>
@@ -1163,7 +1184,7 @@
 			previously failed and has been restored.&lt;/p&gt;
 		</descr>
 		<logmsg dest='logndisplay'>
-			%service% thresholding on interface %interface% prevously
+			%service% thresholding on interface %interface% previously
 			failed and has been restored.
 		</logmsg>
 		<severity>Normal</severity>
@@ -1192,6 +1213,30 @@
 	  <severity>Normal</severity>
 	</event>
     <event>
+      <uei>uei.opennms.org/threshold/relativeChangeExceeded</uei>
+      <event-label>OpenNMS-defined threshold event: relativeChangeExceeded</event-label>
+      <descr>
+        &lt;p&gt;Relative change exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        Relative change exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%
+      </logmsg>
+      <severity>Warning</severity>
+    </event>
+    <event>
+      <uei>uei.opennms.org/alarms/alarmEscalated</uei>
+      <event-label>OpenNMS-defined internal event: alarmEscalated</event-label>
+      <descr>
+        &lt;p&gt;Alarm #&lt;a href="/opennms/alarm/detail.jsp?id=%parm[alarmId]%"&gt;%parm[alarmId]%&lt;/a&gt;
+        was determined to require an escalation of its severity.&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;Alarm #&lt;a href="/opennms/alarm/detail.jsp?id=%parm[alarmId]%"&gt;%parm[alarmId]%&lt;/a&gt;
+        for node:%nodelabel%; interface:%interface%; service:%service%; was escalated.&lt;/p&gt;
+      </logmsg>
+      <severity>Minor</severity>
+    </event>
+    <event>    
         <uei>uei.opennms.org/nodes/assetInfoChanged</uei>
         <event-label>OpenNMS-defined node event: assetInfoChanged</event-label>
         <descr>
@@ -1304,7 +1349,7 @@
 	  cleared.
     </logmsg>
     <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/remote/nodes/nodeLostService" auto-clean="false"/>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-uei="uei.opennms.org/remote/nodes/nodeLostService" clear-key="uei.opennms.org/remote/nodes/nodeLostService:%dpname%:%nodeid%:%interface%:%service%" auto-clean="false"/>
   </event>
   
   <event>
@@ -1312,10 +1357,10 @@
       This event is sent by the remote location monitor server side API when
       a remote location monitor is created. 
     </descr>
-    <uei>uei.opennms.org/remote/locationMontiorRegistered</uei>
+    <uei>uei.opennms.org/remote/locationMonitorRegistered</uei>
     <event-label>A remote location monitor has registered</event-label>
     <logmsg dest='logndisplay'>
-      A remote location monitor has registered.
+      A remote location monitor has registered and been given the id: %parm[locationMonitorId]%.
     </logmsg>
     <severity>Normal</severity>
   </event>
@@ -1328,7 +1373,7 @@
     <uei>uei.opennms.org/remote/locationMonitorStarted</uei>
     <event-label>A remote location monitor has started polling</event-label>
     <logmsg dest='logndisplay'>
-      A remote location monitor has started polling.
+      The remote location monitor: %parm[locationMonitorId]% has started polling.
     </logmsg>
     <severity>Normal</severity>
   </event>
@@ -1345,7 +1390,7 @@
     <uei>uei.opennms.org/remote/locationMonitorPaused</uei>
     <event-label>A remote location monitor has been paused</event-label>
     <logmsg dest='logndisplay'>
-      A remote location monitor has been paused.
+      The remote location monitor: %parm[locationMonitorId]% has been paused.
     </logmsg>
     <severity>Minor</severity>
   </event>
@@ -1358,7 +1403,7 @@
     <uei>uei.opennms.org/remote/locationMonitorStopped</uei>
     <event-label>A remote location monitor has been shutdown.</event-label>
     <logmsg dest='logndisplay'>
-      A remote location monitor has been shutdown.
+      The remote location monitor: %parm[locationMonitorId]% has been shutdown.
     </logmsg>
     <severity>Normal</severity>
   </event>
@@ -1371,9 +1416,9 @@
     <uei>uei.opennms.org/remote/locationMonitorDisconnected</uei>
     <event-label>A remote location monitor has disconnected</event-label>
     <logmsg dest='logndisplay'>
-      A remote location monitor has disconnected.
+      The remote location monitor: %parm[locationMonitorId]% has disconnected.
     </logmsg>
-    <alarm-data reduction-key="%uei%" alarm-type="1" auto-clean="false"/>
+    <alarm-data reduction-key="%uei%:%parm[locationMonitorId]%" alarm-type="1" auto-clean="false"/>
     <severity>Warning</severity>
   </event>
   
@@ -1385,10 +1430,10 @@
     <uei>uei.opennms.org/remote/locationMonitorReconnected</uei>
     <event-label>A disconnected remote location monitor has reconnected</event-label>
     <logmsg dest='logndisplay'>
-      A disconnected remote location monitor has reconnected.
+      The disconnected remote location monitor: %parm[locationMonitorId]% has reconnected.
     </logmsg>
     <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%" alarm-type="2" clearUei="uei.opennms.org/remote/locationMonitorDisconnected" auto-clean="false"/>
+    <alarm-data reduction-key="%uei%:%parm[locationMonitorId]%" alarm-type="2" clear-uei="uei.opennms.org/remote/locationMonitorDisconnected" clear-key="uei.opennms.org/remote/locationMonitorDisconnected:%parm[locationMonitorId]%" auto-clean="false"/>
   </event>
   
   <event>
@@ -1399,10 +1444,135 @@
     <uei>uei.opennms.org/remote/configurationChangeDetected</uei>
     <event-label>A remote location monitor's configuration has been changed</event-label>
     <logmsg dest='logndisplay'>
-      A remote location monitor's configuration has been changed.
+      The remote location monitor: %parm[locationMonitorId]% configuration has been changed.
     </logmsg>
     <severity>Normal</severity>
-   </event> 
-    
-	<event-file>/opt/opennms/etc/events/default.events.xml</event-file>
+  </event> 
+
+  <event>
+    <descr>
+      This event is sent when a widespread outage is detected.  Typically used in correlation rules
+      that detected a threshold # of monitors have detected the same outage.
+    </descr>
+    <uei>uei.opennms.org/correlation/remote/wideSpreadOutage</uei>
+    <event-label>A widespread outage has been detected</event-label>
+    <logmsg dest='logndisplay'>
+      A wide spread outage of the service: %service% has been correlated from multiple location monitors.
+    </logmsg>
+    <severity>Major</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
+  </event>
+  <event>
+    <descr>
+      This event is sent when a widespread outage has been cleared.  Typically used in correlation rules
+      that have detected that a wide spread outage has been cleared.
+    </descr>
+    <uei>uei.opennms.org/correlation/remote/wideSpreadOutageResolved</uei>
+    <event-label>A widespread outage has been resolved</event-label>
+    <logmsg dest='logndisplay'>
+      A wide spread outage of the service: %service% has been resolved.
+    </logmsg>
+    <severity>Normal</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" auto-clean="false" />
+  </event> 
+  <event>
+    <descr>
+      This event is sent when a correlation rule has detected that a service is flapping.
+    </descr>
+    <uei>uei.opennms.org/correlation/serviceFlapping</uei>
+    <event-label>A service has been detected to be in a flapping state</event-label>
+    <logmsg dest='logndisplay'>
+      The service: %service% has been correlated to indicate a flapping state.
+    </logmsg>
+    <severity>Minor</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
+  </event>
+   <event>
+    <descr>
+      This event is sent by the WebUI or the user when scheduled outage configuration has changed and shoule be reloaded
+    </descr>
+    <uei>uei.opennms.org/internal/schedOutagesChanged</uei>
+    <event-label>OpenNMS-defined internal event: scehduled outage configuration changed</event-label>
+    <logmsg dest='logndisplay'>
+      The scheduled outage configuration has been changed and should be reloaded
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+    <event>
+    <descr>
+      This event is sent by the WebUI or the user when threshold  configuration has changed and should be reloaded
+    </descr>
+    <uei>uei.opennms.org/internal/thresholdConfigChange</uei>
+    <event-label>OpenNMS-defined internal event: threshold configuration changed</event-label>
+    <logmsg dest='logndisplay'>
+      The thresholds configuration has been changed and should be reloaded
+    </logmsg>
+    <severity>Normal</severity>
+  </event> 
+  <event>
+    <descr>
+      This event is sent by the WebUI or the user when event configuration has changed and should be reloaded
+    </descr>
+    <uei>uei.opennms.org/internal/eventsConfigChange</uei>
+    <event-label>OpenNMS-defined internal event: event configuration changed</event-label>
+    <logmsg dest='logndisplay'>
+      The events configuration has been changed and should be reloaded
+    </logmsg>
+    <severity>Normal</severity>
+  </event> 
+  
+  <event>
+    <descr>
+      This event is generated to invoke the asynchronous Trouble Ticket API in OpenNMS
+      for creating a new trouble ticket.
+    </descr>
+    <uei>uei.opennms.org/troubleTicket/create</uei>
+    <event-label>A request has been made to create a trouble ticket</event-label>
+    <logmsg dest='logndisplay'>
+      A request has been generated to create a trouble ticket.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is generated to invoke the asynchronous Trouble Ticket API in OpenNMS
+      for updating an existing trouble ticket.
+    </descr>
+    <uei>uei.opennms.org/troubleTicket/update</uei>
+    <event-label>A request has been made to update a trouble ticket</event-label>
+    <logmsg dest='logndisplay'>
+      A request has been generated to update a trouble ticket.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is generated to invoke the asynchronous Trouble Ticket API in OpenNMS
+      for closing an existing trouble ticket.
+    </descr>
+    <uei>uei.opennms.org/troubleTicket/close</uei>
+    <event-label>A request has been made to close a trouble ticket</event-label>
+    <logmsg dest='logndisplay'>
+      A request has been generated to close a trouble ticket.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+
+  <event>
+    <descr>
+      This event is generated to invoke the asynchronous Trouble Ticket API in OpenNMS
+      for canceling an existing trouble ticket.
+    </descr>
+    <uei>uei.opennms.org/troubleTicket/cancel</uei>
+    <event-label>A request has been made to cancel a trouble ticket</event-label>
+    <logmsg dest='logndisplay'>
+      A request has been generated to cancel a trouble ticket.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event-file>/opt/opennms/etc/events/default.events.xml</event-file>
+  
 </events>

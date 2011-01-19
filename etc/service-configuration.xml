@@ -162,6 +162,14 @@ maintained
 		<invoke at="stop" pass="0" method="stop"/>
 	</service>
 	<service>
+		<name>OpenNMS:Name=Ticketer</name>
+		<class-name>org.opennms.netmgt.ticketd.jmx.TroubleTicketer</class-name>
+		<invoke at="start" pass="0" method="init"/>
+		<invoke at="start" pass="1" method="start"/>
+		<invoke at="status" pass="0" method="status"/>
+		<invoke at="stop" pass="0" method="stop"/>
+	</service>
+	<service>
 		<name>OpenNMS:Name=Collectd</name>
 		<class-name>org.opennms.netmgt.collectd.jmx.Collectd</class-name>
 		<invoke at="start" pass="0" method="init"/>
@@ -227,8 +235,14 @@ maintained
                 <invoke at="status" pass="0" method="status"/>
                 <invoke at="stop" pass="0" method="stop"/>
         </service>
-<!--  If you enable the importer don't forget to disable discovery and capsd -->
-<!--
+        <service>
+                <name>OpenNMS:Name=Statsd</name>
+                <class-name>org.opennms.netmgt.statsd.jmx.Statsd</class-name>
+                <invoke at="start" pass="0" method="init"/>
+                <invoke at="start" pass="1" method="start"/>
+                <invoke at="status" pass="0" method="status"/>
+                <invoke at="stop" pass="0" method="stop"/>
+        </service>
         <service>
                 <name>OpenNMS:Name=Importer</name>
                 <class-name>org.opennms.netmgt.importer.jmx.ImporterService</class-name>
@@ -237,8 +251,7 @@ maintained
                 <invoke at="status" pass="0" method="status"/>
                 <invoke at="stop" pass="0" method="stop"/>
         </service>
--->
-<!--
+<!-- To unable maps (topology discovery) uncommenet this service
     <service>
         <name>OpenNMS:Name=Linkd</name>
         <class-name>org.opennms.netmgt.linkd.jmx.Linkd</class-name>
@@ -247,6 +260,16 @@ maintained
                 <invoke at="status" pass="0" method="status"/>
                 <invoke at="stop" pass="0" method="stop"/>
     </service>
+-->
+<!-- Only uncomment this service if proper rules correlation files have been implemented
+  <service>
+    <name>OpenNMS:Name=Correlator</name>
+    <class-name>org.opennms.netmgt.correlation.jmx.Correlator</class-name>
+    <invoke at="start" pass="0" method="init"/>
+    <invoke at="start" pass="1" method="start"/>
+    <invoke at="status" pass="0" method="status"/>
+    <invoke at="stop" pass="0" method="stop"/>
+  </service>
 -->
 
 </service-configuration>

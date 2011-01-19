@@ -1,5 +1,12 @@
 --# create.sql -- SQL to build the initial tables for the OpenNMS Project
 --#
+--# Modifications:
+--#
+--# 2007 Apr 10: Added statistics report tables - dj@opennms.org
+--# 2006 Apr 17: Added pathOutage table
+--# 2005 Mar 11: Added alarms table
+--# 2004 Aug 30: See create.sql.changes
+--#
 --# Copyright (C) 2005-2006 The OpenNMS Group, Inc., Inc.  All rights reserved.
 --# Parts Copyright (C) 1999-2001 Oculan Corp.  All rights reserved.
 --#
@@ -22,14 +29,6 @@
 --#      http://www.opennms.org/
 --#      http://www.sortova.com/
 --#
---# Modified: 2006-04-17
---# Note: Added pathOutage table
---#
---# Modified: 2005-03-11
---# Note: Added alarms table
---#
---# Modified: 2004-08-30
---# Note: See create.sql.changes
 
 drop table category_node cascade;
 drop table categories cascade;
@@ -63,6 +62,10 @@ drop table element cascade;
 drop table map cascade;
 drop table location_monitors cascade;
 drop table location_specific_status_changes cascade;
+drop table vlan cascade;
+drop table statisticsReportData cascade;
+drop table resourceReference cascade;
+drop table statisticsReport cascade;
 
 drop sequence catNxtId;
 drop sequence nodeNxtId;
@@ -170,6 +173,11 @@ create sequence demandPollNxtId minvalue 1;
 --#          sequence, column, table
 --# install: pollResultNxtId id   pollResults
 create sequence pollResultNxtId minvalue 1;
+
+--# Sequence for the mapID column in the map table
+--#          sequence,   column, table
+--# install: mapNxtId mapid map
+create sequence mapNxtId minvalue 1;
 
 
 --########################################################################
@@ -661,6 +669,7 @@ create index events_display_idx on events(eventDisplay);
 create index events_ackuser_idx on events(eventAckUser);
 create index events_acktime_idx on events(eventAckTime);
 create index events_alarmid_idx on events(alarmID);
+create index events_nodeid_display_ackuser on events(nodeid, eventdisplay, eventackuser);
 
 --########################################################################
 --#
@@ -702,7 +711,7 @@ create table outages (
 	constraint fk_eventID2 foreign key (svcRegainedEventID) references events (eventID) ON DELETE CASCADE,
 	constraint fk_nodeID4 foreign key (nodeID) references node (nodeID) ON DELETE CASCADE,
 	constraint fk_serviceID2 foreign key (serviceID) references service (serviceID) ON DELETE CASCADE,
-	CONSTRAINT ifServices_fkey1 FOREIGN KEY (nodeId, ipAddr, serviceId) REFERENCES ifServices (nodeId, ipAddr, serviceId) ON DELETE CASCADE,
+	CONSTRAINT ifServices_fkey1 FOREIGN KEY (nodeId, ipAddr, serviceId) REFERENCES ifServices (nodeId, ipAddr, serviceId) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT ifServices_fkey2 FOREIGN KEY (ifServiceId) REFERENCES ifServices (id) ON DELETE CASCADE
 );
 
@@ -956,6 +965,8 @@ create table alarms (
 	lastEventID             INTEGER, CONSTRAINT fk_eventIDak2 FOREIGN KEY (lastEventID)  REFERENCES events (eventID) ON DELETE CASCADE,
 	firstEventTime          TIMESTAMP WITHOUT TIME ZONE,
 	lastEventTime           TIMESTAMP WITHOUT TIME ZONE,
+	firstAutomationTime     TIMESTAMP WITHOUT TIME ZONE,
+	lastAutomationTime      TIMESTAMP WITHOUT TIME ZONE,
 	description             VARCHAR(4000),
 	logMsg                  VARCHAR(256),
 	operInstruct            VARCHAR(1024),
@@ -973,17 +984,40 @@ create table alarms (
 	applicationDN           VARCHAR(512),
 	ossPrimaryKey           VARCHAR(512),
 	x733AlarmType           VARCHAR(31),
-	x733ProbableCause       INTEGER,
-	qosAlarmState           VARCHAR(31)
+	x733ProbableCause       INTEGER default 0 not null,
+	qosAlarmState           VARCHAR(31),
+    clearKey				VARCHAR(256)
 	
 );
 
 CREATE INDEX alarm_uei_idx ON alarms(eventUei);
 CREATE INDEX alarm_nodeid_idx ON alarms(nodeID);
 CREATE UNIQUE INDEX alarm_reductionkey_idx ON alarms(reductionKey);
+CREATE INDEX alarm_clearkey_idx ON alarms(clearKey);
 CREATE INDEX alarm_reduction2_idx ON alarms(alarmID, eventUei, dpName, nodeID, serviceID, reductionKey);
 CREATE INDEX alarm_app_dn ON alarms(applicationDN);
 CREATE INDEX alarm_oss_primary_key ON alarms(ossPrimaryKey);
+
+--########################################################################
+--#
+--# Use this table to add additional custom data about an alarm... somewhat
+--# usefull with automations and will be viewable/editable in the alarm
+--# details WebUI page.
+--#
+--# This table contains the following fields:
+--# alarmID     : The id created from the alarmsNxtId sequence.
+--# attribute   : The custom attribute name
+--# attributeValue : The custom attribute value
+--########################################################################
+
+CREATE TABLE alarm_attributes (
+    alarmID         INTEGER, CONSTRAINT fk_alarmID1 FOREIGN KEY (alarmID) REFERENCES alarms (alarmID) ON DELETE CASCADE,
+    attributeName   VARCHAR(63),
+    attributeValue  VARCHAR(255)
+);
+
+CREATE INDEX alarm_attributes_idx ON alarm_attributes(alarmID);
+CREATE UNIQUE INDEX alarm_attributes_aan_idx ON alarm_attributes(alarmID, attributeName);
 
 --# This constraint not understood by installer
 --#        CONSTRAINT pk_usersNotified PRIMARY KEY (userID,notifyID) );
@@ -1104,6 +1138,23 @@ create table categories (
 );
 
 CREATE UNIQUE INDEX category_idx ON categories(categoryName);
+
+--##################################################################
+--# The following command adds an initial set of categories if there
+--# are no categories in the category table
+--##################################################################
+--# criteria: SELECT count(*) = 0 from categories
+insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Routers', null);
+--# criteria: SELECT count(*) = 0 from categories
+insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Switches', null);
+--# criteria: SELECT count(*) = 0 from categories
+insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Servers', null);
+--# criteria: SELECT count(*) = 0 from categories
+insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Production', null);
+--# criteria: SELECT count(*) = 0 from categories
+insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Test', null);
+--# criteria: SELECT count(*) = 0 from categories
+insert into categories (categoryId, categoryName, categoryDescription) values (nextVal('catNxtId'), 'Development', null);
 
 --########################################################################
 --# category_node table - Many-to-Many mapping table of categories to nodes
@@ -1228,7 +1279,7 @@ create index pollresults_service on pollResults(nodeId, ipAddr, ifIndex, service
 
 CREATE TABLE location_monitors (
     id INTEGER,
-    status VARCHAR(13) NOT NULL,
+    status VARCHAR(31) NOT NULL,
     lastCheckInTime timestamp without time zone,
     definitionName VARCHAR(31) NOT NULL,
     
@@ -1277,6 +1328,12 @@ CREATE TABLE location_specific_status_changes (
     CONSTRAINT ifservices_fkey1 FOREIGN KEY (ifServiceId) REFERENCES ifservices (id) ON DELETE CASCADE
 );
 
+create index location_specific_status_changes_ifserviceid on location_specific_status_changes(ifserviceid);
+create index location_specific_status_changes_locationmonitorid on location_specific_status_changes(locationmonitorid);
+create index location_specific_status_changes_locationmonitorid_ifserviceid on location_specific_status_changes(locationmonitorid, ifserviceid);
+create index location_specific_status_changes_locationmonitorid_loc_if_time on location_specific_status_changes(locationmonitorid, ifserviceid, statustime);
+create index location_specific_status_changes_statustime on location_specific_status_changes(statustime);
+
 
 
 --########################################################################
@@ -1324,22 +1381,29 @@ CREATE UNIQUE INDEX appid_ifserviceid_idex on application_service_map(appid,ifse
 --# The following command adds the initial loopback poller entry to
 --# the 'distPoller' table.
 --##################################################################
+--# criteria: SELECT count(*) = 0 from distPoller where dpName = 'localhost'
 insert into distPoller (dpName, dpIP, dpComment, dpDiscLimit, dpLastNodePull, dpLastEventPull, dpLastPackagePush, dpAdminState, dpRunState) values ('localhost', '127.0.0.1', 'This is the default poller.', 0.10, null, null, null, 1, 1);
 
 --########################################################################
 --#
 --# next are Italian Adventures 2 specific tables
 --# author rssntn67@yahoo.it
+--#
 --# 10/08/04
 --# creato il file e le tabelle
 --# rev. rssntn67@yahoo.it
+--#
 --# 18/08/04 
 --# eliminato createtime dalle tabelle
 --# sufficiente il createtime della tabella node
+--#
 --# 11/07/05
 --# modificata la tabella stpnode aggiunto campo vlanname
 --# definita primary key
 --# per la tabella atinterface, 
+--# Modified: 2007-01-09
+--# Note: Added vlan table, Modified Stpnode Table
+--#
 --#
 --########################################################################
 
@@ -1370,6 +1434,7 @@ insert into distPoller (dpName, dpIP, dpComment, dpDiscLimit, dpLastNodePull, dp
 --########################################################################
 
 create table atinterface (
+    id			integer default nextval('opennmsNxtId') not null,
 	nodeid		integer not null,
 	ipAddr		varchar(16) not null,
 	atPhysAddr	varchar(12) not null,
@@ -1386,6 +1451,51 @@ create table atinterface (
 create index atinterface_nodeid_idx on atinterface USING HASH(nodeid) ;
 create index atinterface_node_ipaddr_idx on atinterface(nodeid,ipaddr);
 create index atinterface_atphysaddr_idx on atinterface(atphysaddr);
+
+--########################################################################
+--#
+--# vlan table  --   This table maintains a record of generic vlan table
+--#					
+--# This table provides the following information:
+--#
+--#  nodeid   	              : Unique integer identifier of the node
+--#  vlanid                   : The vlan identifier to be referred to in a unique fashion.
+--#  vlanname                 : the name the vlan 
+--#  vlantype           	  : Indicates what type of vlan is this:
+--#						        '1' ethernet
+--#						        '2' FDDI
+--#						        '3' TokenRing
+--#                             '4' FDDINet
+--#                             '5' TRNet
+--#                             '6' Deprecated
+--#  vlanstatus               : An indication of what is the Vlan Status: 
+--#						        '1' operational
+--#						        '2' suspendid
+--#						        '3' mtuTooBigForDevice
+--#						        '4' mtuTooBigForTrunk
+--#  status            : Flag indicating the status of the entry.
+--#                      'A' - Active
+--#                      'N' - Not Active
+--#                      'D' - Deleted
+--#                      'K' - Unknown
+--#  lastPollTime             : The last time when this information was retrived
+--#
+--########################################################################
+
+create table vlan (
+    nodeid		 integer not null,
+    vlanid	     integer not null,
+    vlanname     varchar(64) not null,
+    vlantype     integer,
+    vlanstatus   integer,
+    status		 char(1) not null,
+    lastPollTime timestamp not null,
+    constraint pk_vlan primary key (nodeid,vlanid),
+	constraint fk_ia_nodeID8 foreign key (nodeid) references node on delete cascade
+);
+
+create index vlan_vlanname_idx on vlan(vlanname);
+
 
 --########################################################################
 --#
@@ -1450,9 +1560,6 @@ create table stpnode (
 	constraint fk_ia_nodeID2 foreign key (nodeid) references node on delete cascade
 );
 
-
-#not required because primary key creates the same index
-#create index stpnode_nodeIdBaseVlan_idx on stpnode(nodeid,basevlan);
 create index stpnode_nodeid_idx on stpnode(nodeid);
 create index stpnode_baseBridgeAddress_idx on stpnode(baseBridgeAddress);
 create index stpnode_stpdesignatedroot_idx on stpnode(stpdesignatedroot);
@@ -1521,10 +1628,6 @@ create table stpinterface (
 	constraint fk_ia_nodeID3 foreign key (nodeid) references node on delete cascade
 );
 
-
-
-#not required because primary key creates the same index
-#create index stpinterface_node_bridgeport_stpvlan on stpinterface(nodeid,bridgeport,stpvlan);
 create index stpinterface_node_ifindex_idx on stpinterface(nodeid,ifindex);
 create index stpinterface_node_idx on stpinterface(nodeid);
 create index stpinterface_stpvlan_idx on stpinterface(stpvlan);
@@ -1612,9 +1715,6 @@ create table iprouteinterface (
 	constraint fk_ia_nodeID4 foreign key (nodeid) references node on delete cascade
 );
 
-
-#not required because primary key creates the same index
-#create index iprouteinterface_node_routedest_idx on iprouteinterface(nodeid,routedest);
 create index iprouteinterface_nodeid_idx on iprouteinterface(nodeid);
 create index iprouteinterface_node_ifdex_idx on iprouteinterface(nodeid,routeifindex);
 create index iprouteinterface_rnh_idx on iprouteinterface(routenexthop);
@@ -1654,10 +1754,7 @@ create table datalinkinterface (
 	constraint fk_ia_nodeID6 foreign key (nodeparentid) references node (nodeid)
 );
 
-
 create index dlint_node_idx on datalinkinterface(nodeid);
-#not required because primary key creates the same index
-#create index dlint_node_ifindex_idx on datalinkinterface(nodeid,ifindex);
 create index dlint_nodeparent_idx on datalinkinterface(nodeparentid);
 create index dlint_nodeparent_paifindex_idx on datalinkinterface(nodeparentid,parentifindex);
 
@@ -1778,11 +1875,6 @@ create index element_mapid_elementid on element(mapId,elementId);
 
 --#alter table element add constraint elementid check (elementid <> 0);
 
---# Sequence for the eventID column in the events table
---#          sequence,   column, table
---# install: mapNxtId mapid map
-create sequence mapNxtId minvalue 1;
-
 --########################################################################
 --#
 --# reportLocator table     -- This table contains a record of availability
@@ -1814,6 +1906,98 @@ create table reportLocator (
 --#          sequence,   column, table
 --# install: reportNxtId reportId reportLocator
 create sequence reportNxtId minvalue 1;
+
+
+--########################################################################
+--#
+--# statisticsReport table -- This table contains a record of statistics
+--#                           reports
+--#					
+--# This table provides the following information:
+--#
+--#  id                	: Unique integer identifier for the report
+--#  startDate          : The beginning date for the report (data starting
+--#                       at this time stamp is included)
+--#  endDate            : The end date for the report (data up to,
+--#                       but not including this time stamp is included)
+--#  name               : Report name this references a report definition
+--#                       in statsd-configuration.xml
+--#  description        : User-friendly description for this report
+--#  jobStartedDate     : The date when this report run started
+--#  jobCompletedDate   : The date when this report run completed
+--#  purgeDate          : The date at which this report can be purged
+--#
+--########################################################################
+
+create table statisticsReport (
+	id					integer default nextval('opennmsNxtId') not null,
+	startDate			timestamp without time zone not null,
+	endDate				timestamp without time zone not null,
+	name				varchar(63) not null,
+	description			varchar(255) not null,
+	jobStartedDate		timestamp without time zone not null,
+	jobCompletedDate	timestamp without time zone not null,
+	purgeDate			timestamp without time zone not null,
+
+	constraint pk_statisticsReport_id primary key (id)
+);
+
+create index statisticsReport_startDate on statisticsReport(startDate);
+create index statisticsReport_name on statisticsReport(name);
+create index statisticsReport_purgeDate on statisticsReport(purgeDate);
+
+
+--########################################################################
+--#
+--# resourceReference table -- This table is a lookup table for string
+--#                            resourceIds. This will help keep the relatively
+--#                            long (tens of characters) string resource IDs
+--#                            out of the statistics table.
+--#					
+--# This table provides the following information:
+--#
+--#  id                	: Unique integer identifier for the resource
+--#  resourceId         : String resource ID for this resource
+--#
+--########################################################################
+
+create table resourceReference (
+	id					integer default nextval('opennmsNxtId') not null,
+	resourceId			varchar(255) not null,
+
+	constraint pk_resourceReference_id primary key (id)
+);
+
+create unique index resourceReference_resourceId on resourceReference (resourceId);
+
+
+--########################################################################
+--#
+--# statisticsReportData table -- This table contains individual data points
+--#                               (aggregated or not) for statistics reports.
+--#					
+--# This table provides the following information:
+--#
+--#  id                	: Unique integer identifier for the data
+--#  reportId           : Integer ID for the report that created this data
+--#  resourceId         : Integer ID for this resource related to this data
+--#  value              : Float containing the value for this data point
+--#
+--########################################################################
+
+create table statisticsReportData (
+	id					integer default nextval('opennmsNxtId') not null,
+	reportId			integer not null,
+	resourceId			integer not null,
+	value				float8 not null,
+	
+	constraint pk_statsData_id primary key (id),
+	constraint fk_statsData_reportId foreign key (reportId) references statisticsReport (id) on delete cascade,
+	constraint fk_statsData_resourceId foreign key (resourceId) references resourceReference (id) on delete cascade
+);
+
+create unique index statsData_unique on statisticsReportData(reportId, resourceId);
+
 
 --# Begin Quartz persistence tables
 
