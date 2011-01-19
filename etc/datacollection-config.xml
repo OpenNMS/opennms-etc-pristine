@@ -459,6 +459,17 @@
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
 
+    <!-- AKCP sensorProbe MIB instances -->
+    <resourceType name="hhmsSensorArrayTemp" label="AKCP ${spTempDescr}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+    <resourceType name="hhmsSensorArrayHumid" label="AKCP ${spHumidityDescr}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+
     <groups>
       <group name="cisco-frame-relay" ifType="all">
         <mibObj oid=".1.3.6.1.4.1.9.9.49.1.2.2.1.1" instance="frCircuitIfIndex" alias="frIfName"     type="string" />
@@ -742,6 +753,17 @@
         <mibObj oid=".1.3.6.1.4.1.2.6.191.6.2.1.6" instance="aixFilesystem" alias="aixFsFree" type="Gauge32" />
         <mibObj oid=".1.3.6.1.4.1.2.6.191.6.2.1.7" instance="aixFilesystem" alias="aixFsNumINodes" type="Gauge32" />
         <mibObj oid=".1.3.6.1.4.1.2.6.191.6.2.1.8" instance="aixFilesystem" alias="aixFsUsedInodes" type="Gauge32" />
+      </group>
+
+      <!-- AKCP sensorProbe Series MIBs -->
+      <!-- NB these devices' agents support only SNMPv1 -->
+      <group name = "akcp-sensor-temperature" ifType = "all">
+        <mibObj oid=".1.3.6.1.4.1.3854.1.2.2.1.16.1.1.1" instance="hhmsSensorArrayTemp" alias="spTempDescr"  type="string" />
+        <mibObj oid=".1.3.6.1.4.1.3854.1.2.2.1.16.1.1.3" instance="hhmsSensorArrayTemp" alias="spTempDegree" type="gauge" />
+      </group>
+      <group name = "akcp-sensor-humidity" ifType = "all">
+        <mibObj oid=".1.3.6.1.4.1.3854.1.2.2.1.17.1.1.1.1" instance="hhmsSensorArrayHumid" alias="spHumidityDescr"   type="integer"/>
+        <mibObj oid=".1.3.6.1.4.1.3854.1.2.2.1.17.1.1.1.3" instance="hhmsSensorArrayHumid" alias="spHumidityPercent" type="gauge"/>
       </group>
 
       <!-- Alvarion mibs -->
@@ -2646,6 +2668,14 @@
         </collect>
       </systemDef>
 
+      <systemDef name = "AKCP sensorProbe">
+        <sysoid>.1.3.6.1.4.1.3854.1</sysoid>
+        <collect>
+          <includeGroup>akcp-sensor-temperature</includeGroup>
+          <includeGroup>akcp-sensor-humidity</includeGroup>
+        </collect>
+      </systemDef>
+
       <systemDef name="Alvarion BreezeAccess base">
         <sysoidMask>.1.3.6.1.4.1.12394.4.1.</sysoidMask>
         <collect>
@@ -3602,6 +3632,54 @@
       <systemDef name="Net-SNMP">
         <sysoidMask>.1.3.6.1.4.1.8072.3.</sysoidMask>
         <collect>
+          <includeGroup>mib2-host-resources-system</includeGroup>
+          <includeGroup>mib2-host-resources-memory</includeGroup>
+          <includeGroup>mib2-X-interfaces</includeGroup>
+          <includeGroup>net-snmp-disk</includeGroup>
+	  <includeGroup>net-snmp-disk-more</includeGroup>
+	  <includeGroup>net-snmp-disk-highlow</includeGroup>
+          <includeGroup>openmanage-coolingdevices</includeGroup>
+          <includeGroup>openmanage-temperatureprobe</includeGroup>
+          <includeGroup>openmanage-powerusage</includeGroup>
+          <includeGroup>ucd-loadavg</includeGroup>
+          <includeGroup>ucd-memory</includeGroup>
+          <includeGroup>ucd-sysstat</includeGroup>
+	  <includeGroup>ucd-sysstat-raw</includeGroup>
+	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Net-SNMP 5.5 with sysObjectID bug on i386">
+        <sysoid>.1.3</sysoid>
+        <collect>
+          <includeGroup>mib2-interfaces</includeGroup>
+          <includeGroup>mib2-tcp</includeGroup>
+          <includeGroup>mib2-icmp</includeGroup>
+          <includeGroup>mib2-powerethernet</includeGroup>
+          <includeGroup>mib2-host-resources-system</includeGroup>
+          <includeGroup>mib2-host-resources-memory</includeGroup>
+          <includeGroup>mib2-X-interfaces</includeGroup>
+          <includeGroup>net-snmp-disk</includeGroup>
+	  <includeGroup>net-snmp-disk-more</includeGroup>
+	  <includeGroup>net-snmp-disk-highlow</includeGroup>
+          <includeGroup>openmanage-coolingdevices</includeGroup>
+          <includeGroup>openmanage-temperatureprobe</includeGroup>
+          <includeGroup>openmanage-powerusage</includeGroup>
+          <includeGroup>ucd-loadavg</includeGroup>
+          <includeGroup>ucd-memory</includeGroup>
+          <includeGroup>ucd-sysstat</includeGroup>
+	  <includeGroup>ucd-sysstat-raw</includeGroup>
+	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Net-SNMP 5.5 with sysObjectID bug on x86_64">
+        <sysoid>.0.1</sysoid>
+        <collect>
+          <includeGroup>mib2-interfaces</includeGroup>
+          <includeGroup>mib2-tcp</includeGroup>
+          <includeGroup>mib2-icmp</includeGroup>
+          <includeGroup>mib2-powerethernet</includeGroup>
           <includeGroup>mib2-host-resources-system</includeGroup>
           <includeGroup>mib2-host-resources-memory</includeGroup>
           <includeGroup>mib2-X-interfaces</includeGroup>
