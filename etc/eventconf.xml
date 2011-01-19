@@ -30,6 +30,7 @@
         <event-file>/opt/OpenNMS/etc/events/DellOpenManage.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Fore.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/FoundryNetworks.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/FujitsuSiemens.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Groupwise.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/HP.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/IBM.events.xml</event-file>
@@ -41,6 +42,7 @@
 	<event-file>/opt/OpenNMS/etc/events/Mylex.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/NetApp.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Netbotz.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Netgear.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Nokia.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/NORTEL.Contivity.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Novell.events.xml</event-file>
@@ -52,6 +54,7 @@
         <event-file>/opt/OpenNMS/etc/events/Snort.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/SonicWall.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Symbol.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/SystemEdge.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Uptime.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Xerox.events.xml</event-file>
 
