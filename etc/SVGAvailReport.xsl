@@ -866,16 +866,9 @@ xmlns:svg="http://www.w3.org/2000/svg">
 							<xsl:with-param name="warning" select="$warning"/>
 							<xsl:with-param name="normal" select="$normal"/>
 
-							<!-- JS tweaks for Tarus -->
 							<xsl:with-param name="y-offset-hor">
-								<xsl:choose>
-									<xsl:when test="$graphtype='lastMoTop20offenders'">
-										<xsl:value-of select="30 + (21 - $position) * 15" />
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:value-of select="30 + $position * 15" />
-									</xsl:otherwise>
-								</xsl:choose>
+								<!--xsl:value-of select="30 + position() * 15" /-->
+								<xsl:value-of select="30 + $position * 15" />
 							</xsl:with-param>
 							<xsl:with-param name="x-offset-hor" select="25"/>
 							<xsl:with-param name="x-offset-ver">
@@ -1021,7 +1014,7 @@ xmlns:svg="http://www.w3.org/2000/svg">
      </svg:circle>
     </xsl:when>
     <!-- critical value -->
-    <xsl:when test="$warning >= number(@pctValue)">
+    <xsl:when test="$warning >= @pctValue">
      <!-- add red circle for critical data  -->
      <svg:circle>
      <xsl:attribute name="fill">red</xsl:attribute>
@@ -1047,7 +1040,7 @@ xmlns:svg="http://www.w3.org/2000/svg">
      </svg:text>
     </xsl:when>
     <!-- warning value -->
-    <xsl:when test="$normal >= number(@pctValue)">
+    <xsl:when test="$normal >= @pctValue">
      <!-- add yellow cricle for warning data  -->
      <svg:circle>
      <xsl:attribute name="fill">yellow</xsl:attribute>

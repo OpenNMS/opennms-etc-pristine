@@ -1,75 +1,85 @@
-1.2.8 to 1.2.9
+1.2.X to 1.3.0
 ----------------------------------------------------------------------
-- Added graphs_per_line and extlink config options to KSC reports.
-- Backported hoption and toption for GP Monitor and Plugin.
-- Added C3PO to handle database connections.
-- Patches from Johan Edstrom <johan.edstrom@sca.com> to make vulscand
-  functional with current versions of Nessus.  Bug #1522.
-
-1.2.7 to 1.2.8
-----------------------------------------------------------------------
-- Added an "invert" parameter to IcmpMonitor.
-- Added %assetcomment% and %assetdescr% as fields that can be used 
-  in notifications.
-- Added a date to the availability reports to choose which day to
-  run.
-- Backported NSClient and NRPE to stable. Bug 1465. Thx joed.
-
-1.2.6 to 1.2.7
-----------------------------------------------------------------------
-- If the ifIndex of an interface on a device changes, it is possible
-  that an interface with an IP address that is set for collection
-  could be set to not collect. This has been fixed.
-- If using the new SNMPv1 and SNMPv2 services, the problem listed
-  below for 1.2.6 where interfaces set for C get set to N during
-  a rescan would occur. This has been fixed.
-
-1.2.5 to 1.2.6
-----------------------------------------------------------------------
-- Added a new .jsp for the List Nodes page that doesn't include
-  interfaces.
-- Added a "force version" parameter to collectd.
-- When choosing to select SNMP data collection for a node, once the
-  changes are applied the web page will go back to the node instead
-  of the main Admin page. This improves performance on large systems.
-- Fixed an issue where interfaces marked for collection were getting
-  set to "N" on a rescan.
-- Upgraded MX4J to 3.0.1 (the same version in head) to fix bug #1330.
-- Added asset info to the node page and some SNMP-Informant collections.
-- Changed OpenNMS so that manage/unmange interfaces deletes active
-  outages and does not require a reboot when unmanaging a service.
-- Fixed an issue with the Scheduled Outages GUI and Java 5.
-- Fixed an issue with data collection when the primary interface is
-  on a NIC with other virtual IPs.
-- Merged Calendar format reports from 1.3 line.
-
-1.2.4 to 1.2.5
-----------------------------------------------------------------------
-- Made changes to SNMP data collection to improve both speed and
-  startup time.
-- Corrected a deadlock condition to fix getConnection hangs and 
-  outage resolution issues.
-- Added group duty schedules. Bug 1147. Thx Bill
-- Updated Novell Events.
-- Added Netscreen Events.
-- Added AirDefense events and updated Symbol events.
-- Removed the first two varbinds from an SNMP v2 Trap. Bug 733
-- Fixed a number of documentation mistakes pointed out by Austin Tuan.
-  Thank you very much, Austin!  Bug 1303.
-- Fixes to build.xml to make it easier to specify compiler options for
-  explicitly setting the target architecture for the JNI code and the
-  PostgreSQL module (build.jni.compiler.arg and build.postgresql.compiler.arg,
-  respectively).  Thanks to Jonathan Sartin who submitted a patch.  Bug 1331.
-- Fix for building on FreeBSD.  Should now be able to do it by creating
-  a build.properties file (see the release notes for details).  Thanks
-  to Dennis Berger and Brent Verner for supplying patches.  Bug 1315.
-- Fix some small bugs in JavaMailer.  Fixed the default recipient address
-  by placing square brackets around the IP address to make it a valid
-  domain-literal per RFC 2822.  Also fix a logging bug where the subject
-  was logged twice instead of logging the subject and the message contents.
-- Performance enhancement for the Scheduled outages editing page. Bug 1340.
-  Thanks, Craig M.!
-- Added Symbol WS5000 events and updated eventconf.xml  
+- Added stylesheets to the alarm and event lists, and added a
+  specific UEI filter to events.
+- Added a viewer page for Alarms.
+- Add CentOS 4 support to the RPM spec file.  Bug #1222.  Thanks
+  Ted Kaczmarek <tedkaz@optonline.net>.
+- Fix the arguments to "find" in runjava.  It should now work properly on
+  Mandrake Linux.  Bug #1205.  Thanks Chris Goheen <cg@sonic.net> for
+  reporting this.
+- Remove the Java dependency from the RPM package.  Of the Java packages
+  out there, there is no common package name or virtual package name.
+  We'll let 'runjava' do the dependency checking.  Bug #1144.  Thanks
+  Ted Kaczmarek <tedkaz@optonline.net> for pointing out that we should
+  try to use virtual packages.
+- Remove the excludes for the compilation of JSP code from Java source to
+  class files.  Anything ending in '.jsp' is now compiled.  The following
+  two cleanups below made this possible.
+- Reorganize the filesystem layout of the webapp to fit the Sun JSP code
+  conventions.  Nothing in the actual files was changed, except for
+  pathnames that pointed at files which ave moved.  Reference:
+  http://java.sun.com/developer/technicalArticles/javaserverpages/\
+	code_convention/
+- Remove the eventconf editor from the webapp as it didn't compile.
+  Opened up enhancement bug #1212 suggesting that this be resurrected
+  and fixed at some point.
+- Add enhanced oncall-schedules to users.xsd and UserManager
+- Modify java code and build to use new castor-0.9.6 rather than the older
+  version.  New version depends on commons-logging.jar. 
+- Added commons-logging.jar to build in lib.
+- Chage the build to castorbuilder.properties is passed correctly.  properties
+  target of task fails to properly set it.
+- Revised build-castor.xml to make use of macros also made cleanImports run
+  only if an xsd was processed
+- Revised build-sablecc.xml so cleanImports runs only if the .java files are 
+  generated.
+- Modified Eclipse project to exclude installer.properties and MANIFEST.MF when
+  building as these need to pass thru ant token filters.
+- Rearrange ant libraries to add more control over the ant classpath
+  in preparation for modifying castor xsd source generation.  This included
+  fixing eclipse builders and tool launchers.
+- Changed default EclipseBuilder to 31M5GenSource that generates sablecc and
+  castor code directly using ant without an intervening script.  May require
+  Eclipse 3.1M5.  You can reenable the old one (GenerateSouce) under
+   Project -> Properties -> Builders
+- Added roles to users.xml and extend notifd to send notifications to 
+  users scheduled for that role.
+- Use RPM "virtual packages" for the Java dependency.  Bug 1144.  Thanks
+  Ted Kaczmarek <tedkaz@optonline.net>.
+- Add "jsp.compile" target (and other associated targets) that compile
+  JSP files into Java source code and compile the resulting code into
+  Java classes.  Useful for testing if a change to a JSP caused anything
+  to break.  Will also allow us to unit test them in the future.
+- Moved servlet.jar from lib to devlib.  We shouldn't be distributing
+  this with binary builds.  Bug 1146. 
+- Include group dutySchedules from Bill Ayres. Bug 1147.
+- De-singletonized Eventd for jUnit test framework
+- Added support the new notion of Alarms vs. Events
+- Enhanced Vacuumd with support of Automations.  Automations process
+  triggers and actions that are defined as SQL statements using the
+  Schedule class.
+- Changed JavaMailer to only send mime mult-part message if a file
+  attachment is required.
+- Added pause code to Schedule class
+- Created OpenNMSTestCase base class for JUnit testing.
+- Added support for SNMPv3 using SNMP4J API.  Currently, only
+  discovery (capsd) and monitoring (poller) support v3.
+- Enhanced snmp-config.xml with new attributes to support SNMPv3
+  as well as a new <ip-match> tag that behaves just as the IPLIKE
+  so users have more flexibility specifying SNMP settings. 
+- Modified SNMP plugins and monitors to rely more heavily on snmp-config.xml.
+- Clearified the behavior of the SnmpPeerFactory constructor that takes
+  the SNMP version argument to be one of "requested version" vs. "required".
+- Moved capsd plugins to a separate package from capsd.
+- fix namespaces issue with marshalled reports
+- Added a zoom function to the performance results page.  Click on the graph 
+  that you would like to interact with.  Then click drag for the time fram to 
+  examine. This is still in the experimental phase, it works well FireFox and 
+  IE, not with Konquerer or Safari
+- Merged feature-xmlrpc-branch.  This includes enhancements made to the XML-RPC
+  API as well as a new HttpMonitor that allows for virtual host, url, and page
+  content matching; litterals as well as reqular expressions.
 - Fixed issue where xmpp notifications were only being sent to one user in goup
   notifications - Bug 1329.
 - Added xmpp group (chat room) notifications - Bug 1246

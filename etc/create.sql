@@ -22,6 +22,9 @@
 --#      http://www.opennms.org/
 --#      http://www.sortova.com/
 --#
+--# Modified: 2005-03-11
+--# Note: Added alarms table
+--#
 --# Modified: 2004-08-30
 --# Note: See create.sql.changes
 
@@ -32,6 +35,7 @@ drop table outages cascade;
 drop table ifServices cascade;
 drop table snmpInterface cascade;
 drop table ipInterface cascade;
+drop table alarms cascade;
 drop table node cascade;
 drop table service cascade;
 drop table distPoller cascade;
@@ -43,6 +47,7 @@ drop table serviceMap cascade;
 drop sequence nodeNxtId;
 drop sequence serviceNxtId;
 drop sequence eventsNxtId;
+drop sequence alarmsNxtId;
 drop sequence outageNxtId;
 drop sequence notifyNxtId;
 drop sequence vulnNxtId;
@@ -285,7 +290,7 @@ create table snmpInterface (
 	snmpIfDescr		varchar(256),
 	snmpIfType		integer,
 	snmpIfName		varchar(32),
-	snmpIfSpeed		bigint,
+	snmpIfSpeed		integer,
 	snmpIfAdminStatus	integer,
 	snmpIfOperStatus	integer,
 	snmpIfAlias		varchar(256),
@@ -457,6 +462,8 @@ create index ifservices_nodeid_serviceid_idx on ifservices(nodeID, serviceID);
 --#  eventAckUser	: The user who acknowledged this event.  If
 --#			  null, then this event has not been acknowledged.
 --#  eventAckTime	: The time this event was acknowledged.
+--#  alarmID : If this event is configured for alarmReduction, the alarmId
+--#            of the reduced event will set in this column
 --#
 --##################################################################
 
@@ -494,6 +501,7 @@ create table events (
 	eventDisplay		char(1) not null,
 	eventAckUser		varchar(256),
 	eventAckTime		timestamp without time zone,
+	alarmID			integer,
 
 	constraint pk_eventID primary key (eventID),
 	constraint fk_nodeID6 foreign key (nodeID) references node ON DELETE CASCADE
@@ -509,6 +517,7 @@ create index events_log_idx on events(eventLog);
 create index events_display_idx on events(eventDisplay);
 create index events_ackuser_idx on events(eventAckUser);
 create index events_acktime_idx on events(eventAckTime);
+create index events_alarmid_idx on events(alarmID);
 
 --########################################################################
 --#
@@ -736,6 +745,78 @@ create table usersNotified (
 
 create index userid_notifyid_idx on usersNotified(userID, notifyID);
 
+--########################################################################
+--#
+--# This table contains the following fields:
+--# alarmID     : The id created from the alarmsNxtId sequence.
+--# eventUei    : A reference to the eventUei that created this alarm.
+--# nodeID      : A reference to the node represented by this alarm.
+--# ipAddr      : IP Address of node's interface
+--# serviceID   : A reference to the service represented by the alarm.
+--# reductionKey: Used with nodeID and serviceID to match an event and
+--#               increment the counter column.  Set by configuring the
+--#               optional alarm-data elment in the eventConf.xml file.
+--# alarmType   : Customizable column designed for use in automations and
+--#               can be set in the eventConf.xml file by configuring the
+--#               optional alarm-data element.
+--# counter     : Incremented by the AlarmWriter instead of inserting
+--#               a new row when matched node, service, and reductionKey
+--# severity    : Severity of the Alarm... Initially set by the event
+--#               can be changed with SQL update.
+--# lastEventID : A reference to the event table with the ID of the last
+--#               matching event (typically node, service, reductionkey)
+--# firstEventTime: timestamp of the first event matching this alarm
+--# lastEventTime: timestamp of the last event matching this alarm
+--# description : description from the event
+--# logMsg      : the logmsg from the event
+--# operInstruct: the operator instructions from the event
+--# tticketID   : helpdesk integration field
+--# tticketState: helpdesk integration field
+--# mouseOverTest: flyOverText for the webUI
+--# suppressedUntil: used to suppress display an alarm until
+--#                : timestamp time is reached
+--# suppressedUser : user that suppressed alarm
+--# suppressedTime : time the alarm was suppressed
+--# alarmAckUser : user that acknowledged the alarm
+--# alarmAckTime : time user Ack'd the alarm
+--# clearUei	   : Populated if alarm is a resolving alarm and can used
+--#             : to clear problem alarms.
+--########################################################################
+
+create table alarms (
+	alarmID				INTEGER, CONSTRAINT pk_alarmID PRIMARY KEY (alarmID),
+	eventUei				VARCHAR(256) NOT NULL,
+	dpName				VARCHAR(12) NOT NULL,
+	nodeID				INTEGER,
+	ipaddr				VARCHAR(16),
+	serviceID			INTEGER,
+	reductionKey			VARCHAR(256),
+	alarmType			INTEGER,
+    counter              INTEGER NOT NULL,
+	severity				INTEGER NOT NULL,
+	lastEventID			INTEGER, CONSTRAINT fk_eventIDak2 FOREIGN KEY (lastEventID)  REFERENCES events (eventID) ON DELETE CASCADE,
+	firstEventTime		TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+	lastEventTime		TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+	description			VARCHAR(4000),
+	logMsg				VARCHAR(256),
+	operInstruct			VARCHAR(1024),
+	tticketID			VARCHAR(128),
+	tticketState			INTEGER,
+	mouseOverText		VARCHAR(64),
+	suppressedUntil		TIMESTAMP WITHOUT TIME ZONE,
+	suppressedUser		VARCHAR(256),
+	suppressedTime		TIMESTAMP WITHOUT TIME ZONE,
+	alarmAckUser			VARCHAR(256),
+	alarmAckTime			TIMESTAMP WITHOUT TIME ZONE,
+	clearUei				VARCHAR(256)
+);
+
+CREATE INDEX alarm_uei_idx ON alarms(eventUei);
+CREATE INDEX alarm_nodeid_idx ON alarms(nodeID);
+CREATE UNIQUE INDEX alarm_reductionkey_idx ON alarms(reductionKey);
+CREATE INDEX alarm_reduction2_idx ON alarms(alarmID, eventUei, dpName, nodeID, serviceID, reductionKey);
+
+
 --# This constraint not understood by installer
 --#        CONSTRAINT pk_usersNotified PRIMARY KEY (userID,notifyID) );
 --#
@@ -851,6 +932,11 @@ create sequence serviceNxtId minvalue 1;
 --#          sequence,   column, table
 --# install: eventsNxtId eventID events
 create sequence eventsNxtId minvalue 1;
+
+--# Sequence for the alarmId column in the alarms table
+--#          sequence,   column, table
+--# install: alarmsNxtId alarmId alarms
+create sequence alarmsNxtId minvalue 1;
 
 --# Sequence for the outageID column in the outages table
 --#          sequence,   column,  table

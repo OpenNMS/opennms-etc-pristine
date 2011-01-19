@@ -27,6 +27,14 @@ maintained
 			<name>ProcessorName</name>
 			<value type="javax.management.ObjectName">:Name=XSLTProcessor</value>
 		</attribute>
+		<attribute>
+			<name>AuthenticationMethod</name>
+			<value type="java.lang.String">basic</value>
+		</attribute>
+		<invoke pass="0" method="addAuthorization">
+			<argument type="java.lang.String">admin</argument>
+			<argument type="java.lang.String">admin</argument>
+		</invoke>
 		<invoke pass="0" method="start"/>
 	</service>
 
@@ -41,6 +49,14 @@ maintained
 			<name>Host</name>
 			<value type="java.lang.String">127.0.0.1</value>
 		</attribute>
+		<attribute>
+			<name>AuthenticationMethod</name>
+			<value type="java.lang.String">basic</value>
+		</attribute>
+		<invoke pass="0" method="addAuthorization">
+			<argument type="java.lang.String">manager</argument>
+			<argument type="java.lang.String">manager</argument>
+		</invoke>
 		<invoke pass="0" method="start"/>
 	</service>
 
@@ -48,12 +64,6 @@ maintained
 		<name>OpenNMS:Name=FastExit</name>
 		<class-name>org.opennms.netmgt.vmmgr.Manager</class-name>
 		<invoke at="stop" pass="1" method="doSystemExit"/>
-	</service>
-	
-	<service>
-		<name>OpenNMS:Name=TestLoadLibraries</name>
-		<class-name>org.opennms.netmgt.vmmgr.Manager</class-name>
-		<invoke pass="0" method="doTestLoadLibraries"/>
 	</service>
 
 	<service>
@@ -168,7 +178,22 @@ maintained
                 <invoke at="status" pass="0" method="status"/>
                 <invoke at="stop" pass="0" method="stop"/>
         </service>
+        <service>
+                <name>OpenNMS:Name=Provisioner</name>
+                <class-name>org.opennms.netmgt.xmlrpcd.jmx.Provisioner</class-name>
+                <invoke pass="0" method="init"/>
+                <invoke pass="1" method="start"/>
+                <invoke at="status" pass="0" method="status"/>
+                <invoke at="stop" pass="0" method="stop"/>
+        </service>
 -->
-
+        <service>
+                <name>OpenNMS:Name=PassiveStatusd</name>
+                <class-name>org.opennms.netmgt.passive.jmx.PassiveStatusd</class-name>
+                <invoke pass="0" method="init"/>
+                <invoke pass="1" method="start"/>
+                <invoke at="status" pass="0" method="status"/>
+                <invoke at="stop" pass="0" method="stop"/>
+        </service>
 </service-configuration>
 
