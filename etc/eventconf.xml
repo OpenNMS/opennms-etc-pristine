@@ -42,6 +42,7 @@
         <event-file>/opt/OpenNMS/etc/events/NetApp.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Netbotz.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Nokia.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/NORTEL.Contivity.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Novell.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Oracle.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Patrol.events.xml</event-file>
