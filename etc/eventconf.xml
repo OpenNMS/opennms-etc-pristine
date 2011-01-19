@@ -11,6 +11,7 @@
 	</global>
         <event-file>/opt/OpenNMS/etc/events/3Com.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/ADIC-v2.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/AirDefense.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Alteon.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/APC.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/APC.Best.events.xml</event-file>
@@ -39,10 +40,11 @@
         <event-file>/opt/OpenNMS/etc/events/Linksys.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/MGE-UPS.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Microsoft.events.xml</event-file>
-	<event-file>/opt/OpenNMS/etc/events/Mylex.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Mylex.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/NetApp.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Netbotz.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Netgear.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Netscreen.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Nokia.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/NORTEL.Contivity.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Novell.events.xml</event-file>
