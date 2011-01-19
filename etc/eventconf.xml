@@ -253,7 +253,7 @@
         &lt;p&gt;This event indicates the model-importer process has started&lt;/p&gt;
       </descr>
       <logmsg dest='logndisplay'>
-        &lt;p&gt;This event indicates the model-importer process has started&lt;/p&gt;
+        &lt;p&gt;This event indicates the model-importer process has started from resource: %parm[importResource]% &lt;/p&gt;
       </logmsg>
       <severity>Normal</severity>
     </event>
@@ -265,21 +265,27 @@
         is 1 parameter called importStats: %parm [importStats]%&lt;/p&gt;
       </descr>
       <logmsg dest='logndisplay'>
-        &lt;p&gt;This event indicates the model-importer process has completed successfully&lt;/p&gt;
+        &lt;p&gt;This event indicates the model-importer process has completed successfully from resource: %parm[importResource]%&lt;/p&gt;
       </logmsg>
       <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%parm[importResource]%" 
+                  alarm-type="2" 
+                  clear-uei="uei.opennms.org/internal/importer/importFailed" 
+                  clear-key="uei.opennms.org/internal/importer/importFailed:%parm[importResource]%" 
+                  auto-clean="true"/>
     </event>
     <event>
       <uei>uei.opennms.org/internal/importer/importFailed</uei>
       <event-label>OpenNMS-defined internal event: importer process failed.</event-label>
       <descr>
         &lt;p&gt;This event indicates the model-importer process has failed.  There is 1 parameter 
-        called failureMessage: %parm [failureMessage]%&lt;/p&gt;
+        called failureMessage: %parm[failureMessage]%&lt;/p&gt;
       </descr>
       <logmsg dest='logndisplay'>
-        &lt;p&gt;This event indicates the model-importer process has failed with reason: %parm [failureMessage]%&lt;/p&gt;
+        &lt;p&gt;This event indicates the model-importer process has failed from resource: %parm[importResource]% with reason: %parm[failureMessage]%&lt;/p&gt;
       </logmsg>
       <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%parm[importResource]%" alarm-type="1" auto-clean="false" />
     </event>
 <!-- New Importer Service Events -->
         <event>
@@ -1577,6 +1583,7 @@
   
   <event-file>events/ia.events.xml</event-file>
   <event-file>events/3Com.events.xml</event-file>
+  <event-file>events/AdaptecRaid.events.xml</event-file>
   <event-file>events/ADIC-v2.events.xml</event-file>
   <event-file>events/Adtran.events.xml</event-file>
   <event-file>events/Adtran.Atlas.events.xml</event-file>
@@ -1586,11 +1593,13 @@
   <event-file>events/APC.events.xml</event-file>
   <event-file>events/APC.Best.events.xml</event-file>
   <event-file>events/APC.Exide.events.xml</event-file>
+  <event-file>events/Audiocodes.events.xml</event-file>
   <event-file>events/BackupExec.events.xml</event-file>
   <event-file>events/BEA.events.xml</event-file>
   <event-file>events/BGP4.events.xml</event-file>
   <event-file>events/BlackBerryServer.events.xml</event-file>
   <event-file>events/Brocade.events.xml</event-file>
+  <event-file>events/CA.ArcServe.events.xml</event-file>
   <event-file>events/Cisco2.events.xml</event-file>
   <event-file>events/Cisco.5300dchan.events.xml</event-file>
   <event-file>events/Cisco.events.xml</event-file>
@@ -1601,6 +1610,8 @@
   <event-file>events/Clarent.events.xml</event-file>
   <event-file>events/Clarinet.events.xml</event-file>
   <event-file>events/Cricket.events.xml</event-file>
+  <event-file>events/Crossbeam.events.xml</event-file>
+  <event-file>events/Dell.events.xml</event-file>
   <event-file>events/DellArrayManager.events.xml</event-file>
   <event-file>events/Dell-DRAC2.events.xml</event-file>
   <event-file>events/DellOpenManage.events.xml</event-file>
@@ -1619,8 +1630,10 @@
   <event-file>events/IBMRSA2.events.xml</event-file>
   <event-file>events/IEEE802dot11.events.xml</event-file>
   <event-file>events/Intel.events.xml</event-file>
+  <event-file>events/IronPort.events.xml</event-file>
   <event-file>events/ISS.events.xml</event-file>
   <event-file>events/IPUnity-SES-MIB.events.xml</event-file>
+  <event-file>events/Juniper.events.xml</event-file>
   <event-file>events/K5Systems.events.xml</event-file>
   <event-file>events/Liebert.events.xml</event-file>
   <event-file>events/Liebert.600SM.events.xml</event-file>

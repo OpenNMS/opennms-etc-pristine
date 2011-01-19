@@ -4,8 +4,15 @@
   xsi:schemaLocation="http://xmlns.opennms.org/xsd/config/opennms-datasources 
                       http://www.opennms.org/xsd/config/opennms-datasources.xsd ">
   <jdbc-data-source name="opennms" 
+                    database-name="opennms" 
                     class-name="org.postgresql.Driver" 
                     url="jdbc:postgresql://localhost:5432/opennms"
                     user-name="opennms"
                     password="opennms" />
+  <jdbc-data-source name="opennms-admin" 
+                    database-name="postgres" 
+                    class-name="org.postgresql.Driver" 
+                    url="jdbc:postgresql://localhost:5432/postgres"
+                    user-name="postgres"
+                    password="" />
 </datasource-configuration>
