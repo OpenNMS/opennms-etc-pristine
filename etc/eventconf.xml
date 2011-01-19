@@ -795,6 +795,18 @@
     <severity>Warning</severity>
   </event>
   <event>
+    <uei>uei.opennms.org/nodes/nodeUpdated</uei>
+    <event-label>OpenNMS-defined node event: nodeUpdated</event-label>
+    <descr>
+      &lt;p&gt;A currently provisioned node (%parm[nodelabel]%) was updated by
+      OpenNMS.&lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>
+      A provisioned node (%parm[nodelabel]%) was updated by OpenNMS.
+    </logmsg>
+    <severity>Warning</severity>
+  </event>
+  <event>
     <uei>uei.opennms.org/nodes/nodeCategoryMembershipChanged</uei>
     <event-label>OpenNMS-defined node event: nodeCategoryMembershipChanged</event-label>
     <descr>
@@ -1849,8 +1861,48 @@
     <severity>Major</severity>
     <alarm-data reduction-key="%uei%:%host%:%parm[reason]%" alarm-type="3" auto-clean="false"/>
   </event> 
-
-  <event-file>events/ia.events.xml</event-file>
+  
+  <event>
+    <uei>uei.opennms.org/ackd/acknowledge</uei>
+    <event-label>OpenNMS-defined Acknowledgment request</event-label>
+    <descr>
+      A message received requesting an Acknowledgable be acknowledged.
+      &lt;p&gt;Acknowledgement Request:%parm[refId] of type:%parm[ackType]% was received with the action:%parm[ackAction]% was received for User: %parm[ackUser]%&lt;/p&gt;
+      Typically received from an external source or as a choice of an AckReader implementation.
+    </descr>
+    <logmsg dest='logndisplay' >
+      &lt;p&gt;Acknowledgement Request:%parm[refId] of type:%parm[ackType]% was received with the action:%parm[ackAction]% was received for User: %parm[ackUser]%.&lt;/p&gt;
+     </logmsg>
+     <severity>Normal</severity>
+  </event>
+  <event>
+    <uei>uei.opennms.org/ackd/acknowledgment</uei>
+    <event-label>OpenNMS-defined Acknowledgment message</event-label>
+    <descr>
+      A message from the acknowledgment service that an acknowledgment has been processed:
+      &lt;p&gt;Acknowledgable:%parm[refId] of type:%parm[ackType]% was processed with the action:%parm[ackAction]%&lt;/p&gt;
+      Typically the result of a request via an AckReader or a generated acknowledge request event.
+    </descr>
+    <logmsg dest='logndisplay' >
+      &lt;p&gt;Acknowledgable:%parm[refId] of type:%parm[ackType]% was processed with the action:%parm[ackAction]%; Acknowledgment:%parm[ackId]%.&lt;/p&gt;
+     </logmsg>
+     <severity>Normal</severity>
+  </event>
+  <event>
+    <uei>uei.opennms.org/internal/provisiond/nodeScanCompleted</uei>
+    <event-label>OpenNMS-defined Provisiond Event</event-label>
+    <descr>
+      A message from the Provisiond NodeScan lifecycle that a NodeScan has completed:
+      &lt;p&gt;The Node with Id: %nodeid%; ForeignSource: %parm[foreignSource]%; ForeignId:%parm[foreignId]% has completed.&lt;/p&gt;
+      Typically the result of a request of an import request or a scheduled/user forced rescan.
+    </descr>
+    <logmsg dest='logndisplay' >
+      &lt;p&gt;The Node with Id: %nodeid%; ForeignSource: %parm[foreignSource]%; ForeignId:%parm[foreignId]% has completed.&lt;/p&gt;
+     </logmsg>
+     <severity>Normal</severity>
+  </event>
+  
+  <event-file>events/Rancid.events.xml</event-file>
   <event-file>events/3Com.events.xml</event-file>
   <event-file>events/AdaptecRaid.events.xml</event-file>
   <event-file>events/ADIC-v2.events.xml</event-file>
@@ -1873,8 +1925,10 @@
   <event-file>events/BlackBerryServer.events.xml</event-file>
   <event-file>events/Brocade.events.xml</event-file>
   <event-file>events/CA.ArcServe.events.xml</event-file>
+  <event-file>events/Cisco.CIDS.events.xml</event-file>
   <event-file>events/Cisco2.events.xml</event-file>
   <event-file>events/Cisco.5300dchan.events.xml</event-file>
+  <event-file>events/Cisco.mcast.events.xml</event-file>
   <event-file>events/Cisco.events.xml</event-file>
   <event-file>events/Cisco.airespace.xml</event-file>
   <event-file>events/Colubris.events.xml</event-file>
@@ -1918,6 +1972,7 @@
   <event-file>events/ISS.events.xml</event-file>
   <event-file>events/IPUnity-SES-MIB.events.xml</event-file>
   <event-file>events/IPV6.events.xml</event-file>
+  <event-file>events/Juniper.mcast.events.xml</event-file>
   <event-file>events/Juniper.events.xml</event-file>
   <event-file>events/Junos.events.xml</event-file>
   <event-file>events/JunosV1.events.xml</event-file>
@@ -1932,6 +1987,7 @@
   <event-file>events/Multicast.standard.events.xml</event-file>
   <event-file>events/MPLS.events.xml</event-file>
   <event-file>events/MRV.events.xml</event-file>
+  <event-file>events/MSDP.events.xml</event-file>
   <event-file>events/Mylex.events.xml</event-file>
   <event-file>events/NetApp.events.xml</event-file>
   <event-file>events/Netbotz.events.xml</event-file>
@@ -1967,6 +2023,7 @@
   <event-file>events/Symbol.events.xml</event-file>
   <event-file>events/Syslogd.events.xml</event-file>
   <event-file>events/SystemEdge.events.xml</event-file>
+  <event-file>events/SwissQual.events.xml</event-file>
   <event-file>events/TransPath.events.xml</event-file>
   <event-file>events/TrippLite.events.xml</event-file>
   <event-file>events/TUT.events.xml</event-file>
