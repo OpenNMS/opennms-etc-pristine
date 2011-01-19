@@ -50,7 +50,6 @@
 			<parameter key="timeout" value="5000"/>
 			<parameter key="port" value="53"/>
 			<parameter key="lookup" value="localhost"/>
-			<parameter key="fatal-response-codes" value="2,3,5" /><!-- ServFail, NXDomain, Refused -->
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
 			<parameter key="ds-name" value="dns"/>
 		</service>
@@ -283,7 +282,6 @@
              		<parameter key="protocol" value="tcp"/><!-- UDP also supported -->
              		<parameter key="port" value="37"/>
              		<parameter key="allowed-skew" value="300"/><!-- Seconds, i.e. 5 minutes -->
-             		<parameter key="persist-skew" value="true"/><!-- If true, return a multi-valued PollStatus with skew included -->
 		</service>
 		<!--
 		Use this monitor when testing.  Set the is-supported parm to control "Up/Down" status during the poll.
@@ -456,7 +454,7 @@
 		<filter>IPADDR != '0.0.0.0'</filter>
 		<specific>0.0.0.0</specific>
 		<include-range begin="1.1.1.1" end="254.254.254.254"/>
-		<include-url>file:/opt/opennms/etc/include</include-url>
+		<include-url>file:@install.etc.dir@/include</include-url>
                 <rrd step = "300">
                         <rra>RRA:AVERAGE:0.5:1:2016</rra>
                         <rra>RRA:AVERAGE:0.5:12:4464</rra>

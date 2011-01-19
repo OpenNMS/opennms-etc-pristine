@@ -120,7 +120,7 @@
       %interface%.&lt;/p&gt;
     </logmsg>
     <severity>Minor</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="true"/>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="3" auto-clean="true"/>
   </event>
   <event>
     <uei>uei.opennms.org/internal/capsd/updateServer</uei>
@@ -450,6 +450,18 @@
       </logmsg>
       <severity>Minor</severity>
     </event>
+    <event>
+      <uei>uei.opennms.org/internal/reloadSnmpPollerConfig</uei>
+      <event-label>OpenNMS-defined internal event: reloadSnmpPollerConfig</event-label>
+      <descr>
+        &lt;p&gt;The administrator has changed the SnmpPoller
+        configuration. SnmpPoller will load the new configuration.&lt;/p&gt;
+      </descr>
+      <logmsg dest='logndisplay'>
+        &lt;p&gt;The SnmpPoller configuration files have changed.&lt;/p&gt;
+      </logmsg>
+      <severity>Minor</severity>
+    </event>
   <event>
     <uei>uei.opennms.org/internal/configureSNMP</uei>
     <event-label>OpenNMS-defined internal event: configureSNMP</event-label>
@@ -551,7 +563,7 @@
       failed.&lt;/p&gt;
     </descr>
     <logmsg dest='logndisplay'>
-      %service% data collection on interface %interface% failed.
+      %service% data collection on interface %interface% failed with '%reason%'.
     </logmsg>
     <severity>Minor</severity>
         <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="true" />
@@ -646,6 +658,34 @@
         <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="1" auto-clean="false"/>
   </event>
   <event>
+    <uei>uei.opennms.org/nodes/snmp/interfaceOperDown</uei>
+    <event-label>OpenNMS-defined node event: snmp interface Oper Status Down</event-label>
+    <descr>
+      &lt;p&gt;The operational status of interface is down
+      &lt;/p&gt; &lt;p&gt;This event is generated when an snmp poll on interface find the operational status down.
+      &lt;/p&gt;
+      &lt;p&gt;Params %parm[all]% &lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>Operational status Down: interface: ifname=%parm[snmpifname]% ifindex=%parm[snmpifindex]% ifdescr=%parm[snmpifdescr]%
+    </logmsg>
+    <severity>Minor</severity>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[snmpifindex]%" alarm-type="1" auto-clean="false"/>
+  </event>
+  <event>
+    <uei>uei.opennms.org/nodes/snmp/interfaceAdminDown</uei>
+    <event-label>OpenNMS-defined node event: snmp interface Admin Status Down</event-label>
+    <descr>
+      &lt;p&gt;The administration status of interface is down
+      &lt;/p&gt; &lt;p&gt;This event is generated when an snmp poll on interface find the administration status down.
+      &lt;/p&gt;
+      &lt;p&gt;Params %parm[all]% &lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>Administration status Down: interface: ifname=%parm[snmpifname]% ifindex=%parm[snmpifindex]% ifdescr=%parm[snmpifdescr]%
+    </logmsg>
+    <severity>Minor</severity>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[snmpifindex]%" alarm-type="1" auto-clean="false"/>
+  </event>
+  <event>
     <uei>uei.opennms.org/nodes/interfaceIPHostNameChanged</uei>
     <event-label>OpenNMS-defined node event: interfaceIPHostNameChanged</event-label>
     <descr>
@@ -713,6 +753,34 @@
     </logmsg>
     <severity>Normal</severity>
         <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="2" clear-uei="uei.opennms.org/nodes/interfaceDown" clear-key="uei.opennms.org/nodes/interfaceDown:%dpname%:%nodeid%:%interface%" auto-clean="false"/>
+  </event>
+  <event>
+    <uei>uei.opennms.org/nodes/snmp/interfaceOperUp</uei>
+    <event-label>OpenNMS-defined node event: snmp interface Oper Status Up</event-label>
+    <descr>
+      &lt;p&gt;The operational status of interface is up
+      &lt;/p&gt; &lt;p&gt;This event is generated when an snmp poll on interface find the operational status up.
+      &lt;/p&gt;
+      &lt;p&gt;Params %parm[all]% &lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>Operational status Up: interface: ifname=%parm[snmpifname]% ifindex=%parm[snmpifindex]% ifdescr=%parm[snmpifdescr]%
+    </logmsg>
+    <severity>Normal</severity>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[snmpifindex]%" alarm-type="2" clear-key="uei.opennms.org/nodes/snmp/interfaceOperDown:%dpname%:%nodeid%:%interface%:%parm[snmpifindex]%" auto-clean="false"/>
+  </event>
+  <event>
+    <uei>uei.opennms.org/nodes/snmp/interfaceAdminUp</uei>
+    <event-label>OpenNMS-defined node event: snmp interface Admin Status Up</event-label>
+    <descr>
+      &lt;p&gt;The administration status of interface is down
+      &lt;/p&gt; &lt;p&gt;This event is generated when an snmp poll on interface find the administration status up.
+      &lt;/p&gt;
+      &lt;p&gt;Params %parm[all]% &lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>Administration status Up: interface: ifname=%parm[snmpifname]% ifindex=%parm[snmpifindex]% ifdescr=%parm[snmpifdescr]%
+    </logmsg>
+    <severity>Normal</severity>
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[snmpifindex]%" alarm-type="2" clear-key="uei.opennms.org/nodes/snmp/interfaceAdminDown:%dpname%:%nodeid%:%interface%:%parm[snmpifindex]%" auto-clean="false"/>
   </event>
   <event>
     <uei>uei.opennms.org/nodes/nodeAdded</uei>
@@ -793,7 +861,7 @@
                         %parm[criticalPathIp]% %parm[criticalPathServiceName]%
                 </logmsg>
                 <severity>Major</severity>
-        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="false" />
+        <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="3" auto-clean="false" />
   </event>
   <event>
     <uei>uei.opennms.org/nodes/nodeGainedInterface</uei>
@@ -1204,7 +1272,7 @@
     </logmsg>
     <severity>Normal</severity>
 <!--    
-    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="3" auto-clean="false" />
 -->
   </event>
   <event>
@@ -1510,7 +1578,7 @@
       A wide spread outage of the service: %service% has been resolved.
     </logmsg>
     <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" auto-clean="false" />
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="2" clear-key="uei.opennms.org/correlation/remote/wideSpreadOutage:%dpname%:%nodeid%:%interface%:%service%" auto-clean="false" />
   </event> 
 
   <event>
@@ -1523,7 +1591,7 @@
       The service: %service% has been correlated to indicate a flapping state.
     </logmsg>
     <severity>Minor</severity>
-    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false" />
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="3" auto-clean="false" />
   </event>
 
   <event>
@@ -1665,7 +1733,7 @@
       &lt;p&gt;&lt;a href=&quot;%parm[alert.url]%" &gt; Hyperic Alert: %parm[action.longReason]% &lt;/a&gt;&lt;/p&gt;
     </logmsg>
     <severity>Minor</severity>
-    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%:%parm[resource.name]%:%parm[alertDef.name]%" alarm-type="1" auto-clean="false" />
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%:%parm[resource.name]%:%parm[alertDef.name]%" alarm-type="3" auto-clean="false" />
   </event>
   
   <event>
@@ -1680,6 +1748,18 @@
     <severity>Normal</severity>
   </event> 
   
+  <event>
+    <uei>uei.opennms.org/internal/discoveryConfigChange</uei>
+    <event-label>OpenNMS-defined internal event: discovery configuration changed</event-label>
+    <descr>
+      This event is sent by the WebUI or the user when discovery configuration has changed and should be reloaded
+    </descr>
+    <logmsg dest='logndisplay'>
+      The discovery configuration has been changed and should be reloaded
+    </logmsg>
+    <severity>Normal</severity>
+  </event> 
+
   <event> 
     <uei>uei.opennms.org/internal/authentication/successfulLogin</uei>
     <event-label>OpenNMS-defined internal event: a user has successfully authentication to the WebUI</event-label>
@@ -1690,7 +1770,7 @@
       OpenNMS user %parm[user]% has logged in from %parm[ip]%.
     </logmsg>
     <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="1" auto-clean="true"/>
+    <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="3" auto-clean="true"/>
   </event> 
 
   <event> 
@@ -1705,7 +1785,7 @@
       the message '%parm[exceptionMessage]%'.
     </logmsg>
     <severity>Minor</severity>
-    <alarm-data reduction-key="%uei%:%parm[exceptionName]%:%parm[user]%" alarm-type="1" auto-clean="true"/>
+    <alarm-data reduction-key="%uei%:%parm[exceptionName]%:%parm[user]%" alarm-type="3" auto-clean="true"/>
   </event>
   
   <event> 
@@ -1718,7 +1798,7 @@
       OpenNMS user '%parm[user]%' logged out of the WebUI.
     </logmsg>
     <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="1" auto-clean="true"/>
+    <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="3" auto-clean="true"/>
   </event> 
   
   <event> 
@@ -1734,7 +1814,7 @@
       due to a session timeout.
     </logmsg>
     <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="1" auto-clean="true"/>
+    <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="3" auto-clean="true"/>
   </event> 
   
   <event> 
@@ -1753,9 +1833,23 @@
       &lt;p&gt; %host%:%parm[verb]%:%parm[autoblock]% &lt;/p&gt;
     </logmsg>
     <severity>Warning</severity>
-    <alarm-data reduction-key="%uei%:%host%:%parm[aid]%" alarm-type="1" auto-clean="false"/>
+    <alarm-data reduction-key="%uei%:%host%:%parm[aid]%" alarm-type="3" auto-clean="false"/>
   </event> 
   
+  <event> 
+    <uei>uei.opennms.org/provisioner/provisioningAdapterFailed</uei>
+    <event-label>OpenNMS-defined Provisioning Adapter Failed message</event-label>
+    <descr>
+      A provisioning adapter failed for host: %host%.&lt;p&gt;
+      &lt;p&gt;Message: %parm[reason]% &lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>
+      &lt;p&gt; %host%:%parm[host]%:%parm[reason]% &lt;/p&gt;
+    </logmsg>
+    <severity>Major</severity>
+    <alarm-data reduction-key="%uei%:%host%:%parm[reason]%" alarm-type="3" auto-clean="false"/>
+  </event> 
+
   <event-file>events/ia.events.xml</event-file>
   <event-file>events/3Com.events.xml</event-file>
   <event-file>events/AdaptecRaid.events.xml</event-file>
@@ -1765,54 +1859,31 @@
   <event-file>events/Aedilis.events.xml</event-file>
   <event-file>events/AirDefense.events.xml</event-file>
   <event-file>events/AIX.events.xml</event-file>
-  <event-file>events/AlcatelLucent.OmniSwitch.events.xml</event-file>
-  <event-file>events/AlcatelLucent.SMSBrick.events.xml</event-file>
-  <event-file>events/Allot.NetXplorer.events.xml</event-file>
-  <event-file>events/Allot.SM.events.xml</event-file>
   <event-file>events/Alteon.events.xml</event-file>
   <event-file>events/Altiga.events.xml</event-file>
   <event-file>events/APC.events.xml</event-file>
   <event-file>events/APC.Best.events.xml</event-file>
   <event-file>events/APC.Exide.events.xml</event-file>
-  <event-file>events/Aruba.AP.events.xml</event-file>
-  <event-file>events/Aruba.Switch.events.xml</event-file>
-  <event-file>events/Aruba.events.xml</event-file>
   <event-file>events/Ascend.events.xml</event-file>
-  <event-file>events/Avocent.ACS.events.xml</event-file>
-  <event-file>events/Avocent.ACS5000.events.xml</event-file>
-  <event-file>events/Avocent.AMX5000.events.xml</event-file>
-  <event-file>events/Avocent.AMX5010.events.xml</event-file>
-  <event-file>events/Avocent.AMX5020.events.xml</event-file>
-  <event-file>events/Avocent.AMX5030.events.xml</event-file>
-  <event-file>events/Avocent.CCM.events.xml</event-file>
-  <event-file>events/Avocent.DSR.events.xml</event-file>
-  <event-file>events/Avocent.DSR1021.events.xml</event-file>
-  <event-file>events/Avocent.DSR2010.events.xml</event-file>
-  <event-file>events/Avocent.Mergepoint.events.xml</event-file>
-  <event-file>events/Avocent.PMTrap.events.xml</event-file>
   <event-file>events/Audiocodes.events.xml</event-file>
+  <event-file>events/ATMForum.events.xml</event-file>
   <event-file>events/BackupExec.events.xml</event-file>
   <event-file>events/BEA.events.xml</event-file>
   <event-file>events/BGP4.events.xml</event-file>
-  <event-file>events/BlackBerryServer-SMIv2.events.xml</event-file>
   <event-file>events/BlackBerryServer.events.xml</event-file>
-  <event-file>events/Bluecat.events.xml</event-file>
-  <event-file>events/BlueCoat.events.xml</event-file>
   <event-file>events/Brocade.events.xml</event-file>
   <event-file>events/CA.ArcServe.events.xml</event-file>
-  <event-file>events/Cisco.airespace.xml</event-file>
-  <event-file>events/Cisco.CIDS.events.xml</event-file>
-  <event-file>events/Cisco.5300dchan.events.xml</event-file>
-  <event-file>events/Cisco.mcast.events.xml</event-file>
-  <event-file>events/Cisco.SCE.events.xml</event-file>
   <event-file>events/Cisco2.events.xml</event-file>
+  <event-file>events/Cisco.5300dchan.events.xml</event-file>
   <event-file>events/Cisco.events.xml</event-file>
+  <event-file>events/Cisco.airespace.xml</event-file>
   <event-file>events/Colubris.events.xml</event-file>
   <event-file>events/Covergence.events.xml</event-file>
   <event-file>events/CPQHPIM.events.xml</event-file>
   <event-file>events/Clarent.events.xml</event-file>
   <event-file>events/Clarinet.events.xml</event-file>
   <event-file>events/Cricket.events.xml</event-file>
+  <event-file>events/CRITAPP.events.xml</event-file>
   <event-file>events/Crossbeam.events.xml</event-file>
   <event-file>events/Dell.events.xml</event-file>
   <event-file>events/DellArrayManager.events.xml</event-file>
@@ -1820,13 +1891,21 @@
   <event-file>events/DellOpenManage.events.xml</event-file>
   <event-file>events/DellRacHost.events.xml</event-file>
   <event-file>events/DellStorageManagement.events.xml</event-file>
-  <event-file>events/DISMAN.events.xml</event-file>
+  <event-file>events/DISMAN-PING.events.xml</event-file>
+  <event-file>events/DMTF.events.xml</event-file>
   <event-file>events/DPS.events.xml</event-file>
+  <event-file>events/DS1.events.xml</event-file>
+  <event-file>events/EMC.events.xml</event-file>
+  <event-file>events/EMC-Celerra.events.xml</event-file>
+  <event-file>events/EMC-Clariion.events.xml</event-file>
+  <event-file>events/Extreme.events.xml</event-file>
   <event-file>events/F5.events.xml</event-file>
+  <event-file>events/fcmgmt.events.xml</event-file>
   <event-file>events/Fore.events.xml</event-file>
   <event-file>events/Fortinet.events.xml</event-file>
   <event-file>events/FoundryNetworks.events.xml</event-file>
   <event-file>events/FujitsuSiemens.events.xml</event-file>
+  <event-file>events/GGSN.events.xml</event-file>
   <event-file>events/Groupwise.events.xml</event-file>
   <event-file>events/HP.events.xml</event-file>
   <event-file>events/Hyperic.events.xml</event-file>
@@ -1835,23 +1914,24 @@
   <event-file>events/IBMRSA2.events.xml</event-file>
   <event-file>events/IEEE802dot11.events.xml</event-file>
   <event-file>events/Intel.events.xml</event-file>
-  <event-file>events/InteractiveIntelligence.events.xml</event-file>
   <event-file>events/IronPort.events.xml</event-file>
   <event-file>events/ISS.events.xml</event-file>
   <event-file>events/IPUnity-SES-MIB.events.xml</event-file>
-  <event-file>events/Juniper.mcast.events.xml</event-file>
+  <event-file>events/IPV6.events.xml</event-file>
   <event-file>events/Juniper.events.xml</event-file>
+  <event-file>events/Junos.events.xml</event-file>
+  <event-file>events/JunosV1.events.xml</event-file>
   <event-file>events/K5Systems.events.xml</event-file>
   <event-file>events/Liebert.events.xml</event-file>
   <event-file>events/Liebert.600SM.events.xml</event-file>
   <event-file>events/Linksys.events.xml</event-file>
-  <event-file>events/Lucent.events.xml</event-file>
+  <event-file>events/MadgeNetworks.events.xml</event-file>
   <event-file>events/McAfee.events.xml</event-file>
   <event-file>events/MGE-UPS.events.xml</event-file>
   <event-file>events/Microsoft.events.xml</event-file>
+  <event-file>events/Multicast.standard.events.xml</event-file>
   <event-file>events/MPLS.events.xml</event-file>
   <event-file>events/MRV.events.xml</event-file>
-  <event-file>events/MSDP.events.xml</event-file>
   <event-file>events/Mylex.events.xml</event-file>
   <event-file>events/NetApp.events.xml</event-file>
   <event-file>events/Netbotz.events.xml</event-file>
@@ -1865,27 +1945,29 @@
   <event-file>events/Oracle.events.xml</event-file>
   <event-file>events/OSPF.events.xml</event-file>
   <event-file>events/Overland.events.xml</event-file>
-  <event-file>events/Overture.events.xml</event-file>
-  <event-file>events/Packeteer.events.xml</event-file>
   <event-file>events/Patrol.events.xml</event-file>
+  <event-file>events/PCube.events.xml</event-file>
   <event-file>events/Pixelmetrix.events.xml</event-file>
   <event-file>events/Polycom.events.xml</event-file>
-  <event-file>events/Powerware.events.xml</event-file>
   <event-file>events/Primecluster.events.xml</event-file>
   <event-file>events/Quintum.events.xml</event-file>
   <event-file>events/RADLAN-MIB.events.xml</event-file>
+  <event-file>events/RAPID-CITY.events.xml</event-file>
   <event-file>events/Redline.events.xml</event-file>
+  <event-file>events/RFC1382.events.xml</event-file>
   <event-file>events/RFC1628.events.xml</event-file>
   <event-file>events/Rightfax.events.xml</event-file>
-  <event-file>events/RiverbedSteelhead.events.xml</event-file>
+  <event-file>events/RMON.events.xml</event-file>
   <event-file>events/Sensaphone.events.xml</event-file>
-  <event-file>events/Sentry.events.xml</event-file>
+  <event-file>events/SNA-NAU.events.xml</event-file>
+  <event-file>events/SNMP-REPEATER.events.xml</event-file>
   <event-file>events/Snort.events.xml</event-file>
   <event-file>events/SonicWall.events.xml</event-file>
   <event-file>events/Sonus.events.xml</event-file>
   <event-file>events/Symbol.events.xml</event-file>
   <event-file>events/Syslogd.events.xml</event-file>
   <event-file>events/SystemEdge.events.xml</event-file>
+  <event-file>events/TransPath.events.xml</event-file>
   <event-file>events/TrippLite.events.xml</event-file>
   <event-file>events/TUT.events.xml</event-file>
   <event-file>events/UPS-MIB.events.xml</event-file>
