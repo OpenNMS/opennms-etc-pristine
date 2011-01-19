@@ -607,10 +607,8 @@
     <uei>uei.opennms.org/nodes/duplicateNodeDeleted</uei>
     <event-label>OpenNMS-defined node event: duplicateNodeDeleted</event-label>
     <descr>
-      &lt;p&gt;Node #&lt;a
-      href="element/node.jsp?node=%nodeid%"&gt;%nodeid%&lt;/a&gt;
-      was determined to be a duplicate node and is being flagged
-      for deletion.&lt;/p&gt;
+      &lt;p&gt;Node :%nodeid% labled: %nodelabel%; was determined to be a 
+      duplicate node and is has been deleted.&lt;/p&gt;
     </descr>
     <logmsg dest='logndisplay'>
       &lt;p&gt;Node #&lt;a
@@ -1651,7 +1649,7 @@
       The discovery configuration has been changed and should be reloaded
     </logmsg>
     <severity>Normal</severity>
-  </event> 
+  </event>
   
   <event>
     <uei>uei.opennms.org/troubleTicket/create</uei>
@@ -1760,18 +1758,6 @@
     <severity>Normal</severity>
   </event> 
   
-  <event>
-    <uei>uei.opennms.org/internal/discoveryConfigChange</uei>
-    <event-label>OpenNMS-defined internal event: discovery configuration changed</event-label>
-    <descr>
-      This event is sent by the WebUI or the user when discovery configuration has changed and should be reloaded
-    </descr>
-    <logmsg dest='logndisplay'>
-      The discovery configuration has been changed and should be reloaded
-    </logmsg>
-    <severity>Normal</severity>
-  </event> 
-
   <event> 
     <uei>uei.opennms.org/internal/authentication/successfulLogin</uei>
     <event-label>OpenNMS-defined internal event: a user has successfully authentication to the WebUI</event-label>
@@ -1901,7 +1887,19 @@
      </logmsg>
      <severity>Normal</severity>
   </event>
-  
+  <event>
+    <uei>DISCARD-MATCHING-MESSAGES</uei>
+    <event-label>OpenNMS-defined DISCARD-MATCHING-MESSAGES</event-label>
+    <descr>
+		DISCARD-MATCHING-MESSAGES is used in the syslogd to generate events that 
+		have no matching events. This event is not persisted by default.
+    </descr>
+    <logmsg dest='donotpersist' >
+      &lt;p&gt;DISCARD-MATCHING-MESSAGES.&lt;/p&gt;
+     </logmsg>
+     <severity>Normal</severity>
+  </event>
+
   <event-file>events/Rancid.events.xml</event-file>
   <event-file>events/3Com.events.xml</event-file>
   <event-file>events/AdaptecRaid.events.xml</event-file>
