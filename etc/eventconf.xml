@@ -1680,18 +1680,6 @@
     <severity>Normal</severity>
   </event> 
   
-  <event>
-    <uei>uei.opennms.org/internal/discoveryConfigChange</uei>
-    <event-label>OpenNMS-defined internal event: discovery configuration changed</event-label>
-    <descr>
-      This event is sent by the WebUI or the user when discovery configuration has changed and should be reloaded
-    </descr>
-    <logmsg dest='logndisplay'>
-      The discovery configuration has been changed and should be reloaded
-    </logmsg>
-    <severity>Normal</severity>
-  </event> 
-
   <event> 
     <uei>uei.opennms.org/internal/authentication/successfulLogin</uei>
     <event-label>OpenNMS-defined internal event: a user has successfully authentication to the WebUI</event-label>
@@ -1806,6 +1794,7 @@
   <event-file>events/BackupExec.events.xml</event-file>
   <event-file>events/BEA.events.xml</event-file>
   <event-file>events/BGP4.events.xml</event-file>
+  <event-file>events/BlackBerryServer-SMIv2.events.xml</event-file>
   <event-file>events/BlackBerryServer.events.xml</event-file>
   <event-file>events/Bluecat.events.xml</event-file>
   <event-file>events/BlueCoat.events.xml</event-file>
@@ -1845,6 +1834,7 @@
   <event-file>events/IBMRSA2.events.xml</event-file>
   <event-file>events/IEEE802dot11.events.xml</event-file>
   <event-file>events/Intel.events.xml</event-file>
+  <event-file>events/InteractiveIntelligence.events.xml</event-file>
   <event-file>events/IronPort.events.xml</event-file>
   <event-file>events/ISS.events.xml</event-file>
   <event-file>events/IPUnity-SES-MIB.events.xml</event-file>
