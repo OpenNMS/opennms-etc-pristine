@@ -10,12 +10,10 @@
                     user-name="opennms"
                     password="opennms" />
 
-  <!-- NOTE: This must be postgres, not template1, since template1 gets locked and
-       then can't be copied to create the opennms database if none exists. -->
   <jdbc-data-source name="opennms-admin" 
-                    database-name="postgres" 
+                    database-name="template1" 
                     class-name="org.postgresql.Driver" 
-                    url="jdbc:postgresql://localhost:5432/postgres"
+                    url="jdbc:postgresql://localhost:5432/template1"
                     user-name="postgres"
                     password="" />
 </datasource-configuration>
