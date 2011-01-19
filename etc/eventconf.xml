@@ -1880,7 +1880,7 @@
     <descr>
       This event is sent by the WebUI when a user has successfully authenticated
     </descr>
-    <logmsg dest='logndisplay'>
+    <logmsg dest='donotpersist'>
       OpenNMS user %parm[user]% has logged in from %parm[ip]%.
     </logmsg>
     <severity>Normal</severity>
@@ -2168,8 +2168,10 @@
   <event-file>events/RFC1382.events.xml</event-file>
   <event-file>events/RFC1628.events.xml</event-file>
   <event-file>events/Rightfax.events.xml</event-file>
+  <event-file>events/RiverbedSteelhead.events.xml</event-file>
   <event-file>events/RMON.events.xml</event-file>
   <event-file>events/Sensaphone.events.xml</event-file>
+  <event-file>events/Sentry.events.xml</event-file>
   <event-file>events/SNA-NAU.events.xml</event-file>
   <event-file>events/SNMP-REPEATER.events.xml</event-file>
   <event-file>events/Snort.events.xml</event-file>
