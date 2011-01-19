@@ -1776,6 +1776,7 @@
   <event-file>events/Adtran.Atlas.events.xml</event-file>
   <event-file>events/Aedilis.events.xml</event-file>
   <event-file>events/AirDefense.events.xml</event-file>
+  <event-file>events/AIX.events.xml</event-file>
   <event-file>events/Alteon.events.xml</event-file>
   <event-file>events/Altiga.events.xml</event-file>
   <event-file>events/APC.events.xml</event-file>
@@ -1871,6 +1872,6 @@
   <event-file>events/Xerox.events.xml</event-file>
 
   <event-file>events/Standard.events.xml</event-file>
-
+  <event-file>events/Translator.default.events.xml</event-file>
   <event-file>events/default.events.xml</event-file>
 </events>
