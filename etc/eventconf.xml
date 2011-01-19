@@ -1033,6 +1033,7 @@
       %interface%, parms: %parm[all]%
     </logmsg>
     <severity>Warning</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
   </event>
   <event>
     <uei>uei.opennms.org/threshold/lowThresholdExceeded</uei>
@@ -1056,6 +1057,7 @@
       %interface%, parms: %parm[all]%
     </logmsg>
     <severity>Warning</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
   </event>
         <event>
                 <uei>uei.opennms.org/threshold/highThresholdRearmed</uei>
@@ -1080,6 +1082,7 @@
                         %interface%, parms: %parm[all]%
                 </logmsg>
                 <severity>Normal</severity>
+                <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/threshold/highThresholdExceeded:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
         </event>
         <event>
                 <uei>uei.opennms.org/threshold/lowThresholdRearmed</uei>
@@ -1103,6 +1106,7 @@
                         %interface%, parms: %parm[all]%
                 </logmsg>
                 <severity>Normal</severity>
+                <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/threshold/lowThresholdExceeded:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
         </event>
   <event>
     <uei>uei.opennms.org/nodes/thresholdingFailed</uei>
@@ -1141,25 +1145,14 @@
     </logmsg>
     <severity>Warning</severity>
   </event>
-  <event>
-    <uei>uei.opennms.org/threshold/highThresholdRearmed</uei>
-    <event-label>OpenNMS-defined threshold event: highThresholdRearmed</event-label>
-    <descr>
-      &lt;p&gt;High threshold has been rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p&gt; &lt;p&gt;By default, OpenNMS watches some key parameters on devices in your network and will alert you with an event if
-      certain conditions arise. For example, if the CPU utilization on your Cisco router maintains an inordinately high percentage of utilization for an extended period, an event will be generated. These thresholds are determined and configured based on vendor
-      recommendations, tempered with real-world experience in working deployments.&lt;/p&gt; &lt;p&gt;This specific event indicates that a high threshold was exceeded but then dropped below the rearm threshold..&lt;/p&gt;
-    </descr>
-    <logmsg dest='logndisplay'>High threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
-    <severity>Normal</severity>
-  </event>
     <event>
-      <uei>uei.opennms.org/threshold/relativeChangeExceeded</uei>
-      <event-label>OpenNMS-defined threshold event: relativeChangeExceeded</event-label>
+      <uei>uei.opennms.org/threshold/absoluteChangeExceeded</uei>
+      <event-label>OpenNMS-defined threshold event: absoluteChangeExceeded</event-label>
       <descr>
-        &lt;p&gt;Relative change exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p&gt;
+        &lt;p&gt;Absolute change exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p&gt;
       </descr>
       <logmsg dest='logndisplay'>
-        Relative change exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%
+        Absolute change exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%
       </logmsg>
       <severity>Warning</severity>
     </event>
@@ -1251,6 +1244,99 @@
       &lt;p&gt;An OpenNMS Event has been received as an SNMP Trap
       with UEI: %parm[#5]%.&lt;/p&gt;
     </logmsg>
+    <severity>Normal</severity>
+  </event>
+  <event>
+    <mask>
+      <maskelement>
+        <mename>id</mename>
+        <mevalue>.1.3.6.1.4.1.5813.1</mevalue>
+      </maskelement>
+      <maskelement>
+        <mename>generic</mename>
+        <mevalue>6</mevalue>
+      </maskelement>
+      <maskelement>
+        <mename>specific</mename>
+        <mevalue>2</mevalue>
+      </maskelement>
+    </mask>
+    <uei>uei.opennms.org/traps/tl1AutonomousMessageTrap</uei>
+    <event-label>OpenNMS-defined trap event: tl1AutonomousMessageTrap</event-label>
+    <descr>
+  &lt;p&gt;This trap is used to convey the contents of a TL1 autonomous message
+  received from a TL1 NE or a north-bound TL1 EMS. Managers receiving
+  this trap may need to perform additional analysis of its varbinds in
+  order to realize value from this trap.&lt;/p&gt;&lt;table&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    openNMS-event-nodeid&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#1]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    openNMS-event-time&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#2]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    openNMS-event-host&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#3]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    openNMS-event-interface&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#4]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    openNMS-event-service&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#5]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    openNMS-event-severity&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#6]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amRawMessage&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#7]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amAlarmCode&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#8]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amAutonomousTag&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#9]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amVerb&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#10]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amAutoBlock&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#11]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amAID&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#12]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;b&gt;
+
+    tl1amAdditionalParams&lt;/b&gt;&lt;/td&gt;&lt;td&gt;
+    %parm[#13]%&lt;/td&gt;&lt;td&gt;&lt;p&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+    </descr>
+      <logmsg dest='logndisplay'>&lt;p&gt;
+        openNMS-tl1AutonomousMessageTrap trap received 
+        openNMS-event-nodeid=%parm[#1]% 
+        openNMS-event-time=%parm[#2]% 
+        openNMS-event-host=%parm[#3]% 
+        openNMS-event-interface=%parm[#4]% 
+        openNMS-event-service=%parm[#5]% 
+        openNMS-event-severity=%parm[#6]% 
+        tl1amRawMessage=%parm[#7]% 
+        tl1amAlarmCode=%parm[#8]% 
+        tl1amAutonomousTag=%parm[#9]% 
+        tl1amVerb=%parm[#10]% 
+        tl1amAutoBlock=%parm[#11]% 
+        tl1amAID=%parm[#12]% 
+        tl1amAdditionalParams=%parm[#13]%&lt;/p&gt;
+      </logmsg>
     <severity>Normal</severity>
   </event>
 
@@ -1390,7 +1476,7 @@
 
   <event>
     <uei>uei.opennms.org/correlation/remote/wideSpreadOutage</uei>
-    <event-label>OpenNMS defined corellator event: A widespread outage has been detected</event-label>
+    <event-label>OpenNMS defined correlator event: A widespread outage has been detected</event-label>
     <descr>
       This event is sent when a widespread outage is detected.  Typically used in correlation rules
       that detected a threshold # of monitors have detected the same outage.
@@ -1404,7 +1490,7 @@
 
   <event>
     <uei>uei.opennms.org/correlation/remote/wideSpreadOutageResolved</uei>
-    <event-label>OpenNMS defined corellator event: A widespread outage has been resolved</event-label>
+    <event-label>OpenNMS defined correlator event: A widespread outage has been resolved</event-label>
     <descr>
       This event is sent when a widespread outage has been cleared.  Typically used in correlation rules
       that have detected that a wide spread outage has been cleared.
@@ -1418,7 +1504,7 @@
 
   <event>
     <uei>uei.opennms.org/correlation/serviceFlapping</uei>
-    <event-label>OpenNMS defined corellator event: A service has been detected to be in a flapping state</event-label>
+    <event-label>OpenNMS defined correlator event: A service has been detected to be in a flapping state</event-label>
     <descr>
       This event is sent when a correlation rule has detected that a service is flapping.
     </descr>
@@ -1526,6 +1612,20 @@
       A request has been generated to cancel a trouble ticket.
     </logmsg>
     <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <uei>uei.opennms.org/troubleTicket/communicationError</uei>
+    <event-label>OpenNMS defined trouble ticket event: A communication error occurred</event-label>
+    <descr>
+      This event is generated when OpenNMS is unable to retrive, save or update a ticket
+      via the Trouble Ticket API.
+    </descr>
+    <logmsg dest='logndisplay'>
+      A communication error occurred between OpenNMS and the Trouble Ticket system.
+      Communications failed with reason: %parm[reason]%.
+    </logmsg>
+    <severity>Warning</severity>
   </event>
   
   <event>
@@ -1638,12 +1738,32 @@
     <alarm-data reduction-key="%uei%:%parm[user]%" alarm-type="1" auto-clean="true"/>
   </event> 
   
+  <event> 
+    <uei>uei.opennms.org/api/tl1d/message/autonomous</uei>
+    <event-label>OpenNMS-defined Autonomous TL1 message</event-label>
+    <descr>
+      This is a TL1 autonomous message delivered for host: %host%.&lt;p&gt;
+
+      &lt;p&gt;Message: %parm[raw-message]% &lt;/p&gt;
+      &lt;p&gt;Alarm Code: %parm[alarm-code]% &lt;/p&gt;
+      &lt;p&gt;ATAG: %parm[atag]% &lt;/p&gt;
+      &lt;p&gt;Verb: %parm[verb]% &lt;/p&gt;
+      &lt;p&gt;Auto Block: %parm[autoblock]% &lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>
+      &lt;p&gt; %host%:%parm[verb]%:%parm[autoblock]% &lt;/p&gt;
+    </logmsg>
+    <severity>Warning</severity>
+    <alarm-data reduction-key="%uei%:%host%:%parm[aid]%" alarm-type="1" auto-clean="false"/>
+  </event> 
+  
   <event-file>events/ia.events.xml</event-file>
   <event-file>events/3Com.events.xml</event-file>
   <event-file>events/AdaptecRaid.events.xml</event-file>
   <event-file>events/ADIC-v2.events.xml</event-file>
   <event-file>events/Adtran.events.xml</event-file>
   <event-file>events/Adtran.Atlas.events.xml</event-file>
+  <event-file>events/Aedilis.events.xml</event-file>
   <event-file>events/AirDefense.events.xml</event-file>
   <event-file>events/Alteon.events.xml</event-file>
   <event-file>events/Altiga.events.xml</event-file>
@@ -1695,6 +1815,7 @@
   <event-file>events/Liebert.events.xml</event-file>
   <event-file>events/Liebert.600SM.events.xml</event-file>
   <event-file>events/Linksys.events.xml</event-file>
+  <event-file>events/McAfee.events.xml</event-file>
   <event-file>events/MGE-UPS.events.xml</event-file>
   <event-file>events/Microsoft.events.xml</event-file>
   <event-file>events/MRV.events.xml</event-file>
@@ -1702,6 +1823,7 @@
   <event-file>events/NetApp.events.xml</event-file>
   <event-file>events/Netbotz.events.xml</event-file>
   <event-file>events/Netgear.events.xml</event-file>
+  <event-file>events/Netscalar.events.xml</event-file>
   <event-file>events/Netscreen.events.xml</event-file>
   <event-file>events/NetSNMP.events.xml</event-file>
   <event-file>events/Nokia.events.xml</event-file>
@@ -1712,8 +1834,10 @@
   <event-file>events/Overland.events.xml</event-file>
   <event-file>events/Patrol.events.xml</event-file>
   <event-file>events/Pixelmetrix.events.xml</event-file>
+  <event-file>events/Polycom.events.xml</event-file>
   <event-file>events/Primecluster.events.xml</event-file>
   <event-file>events/Quintum.events.xml</event-file>
+  <event-file>events/RADLAN-MIB.events.xml</event-file>
   <event-file>events/Redline.events.xml</event-file>
   <event-file>events/RFC1628.events.xml</event-file>
   <event-file>events/Rightfax.events.xml</event-file>

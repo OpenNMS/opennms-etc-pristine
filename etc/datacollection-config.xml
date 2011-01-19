@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <datacollection-config rrdRepository="/opt/opennms/share/rrd/snmp/">
-  <snmp-collection name="default" maxVarsPerPdu="10" snmpStorageFlag="select">
+  <snmp-collection name="default" snmpStorageFlag="select">
     <rrd step="300">
       <rra>RRA:AVERAGE:0.5:1:2016</rra>
       <rra>RRA:AVERAGE:0.5:12:1488</rra>
@@ -145,6 +145,46 @@
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
 
+    <!-- Dell OpenManage Resource Types -->
+    <resourceType name="coolingDeviceIndex" label="Cooling Device" resourceLabel="${coolingDeviceLocationName}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <resourceType name="temperatureProbeIndex" label="Temperature Probe" resourceLabel="${temperatureProbeLocationName}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <resourceType name="powerUsageIndex" label="Power Usage" resourceLabel="${powerUsageEntityName}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <!-- PRINTER-MIB Resource Types -->
+    <resourceType name="prtMarkerSuppliesIndex" label="Printer Marker Supply" resourceLabel="${prtMarkerSuppliesDescription}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <!-- HP-UX fileSystemTable resource type -->
+    <resourceType name="hpuxFSTable" label="HP-UX Filesystem" resourceLabel="${hpuxFSName} on ${hpuxFSDir}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <!-- Netware Resource Types -->
+    <resourceType name="netwareDisk" label="Netware Disk Information" resourceLabel="${nwLabel}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
+    <!-- Brocade Resource Types -->
+    <resourceType name="swFCPortIndex" label="Brocade Fibre Channel">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
+
 
     <groups>
       <!-- data from standard (mib-2) sources -->
@@ -244,6 +284,11 @@
         <mibObj oid=".1.3.6.1.2.1.43.10.2.1.4.1" instance="1" alias="lifeCount" type="Gauge" />
         <mibObj oid=".1.3.6.1.2.1.43.10.2.1.5.1" instance="1" alias="powerOnCount" type="Gauge" />
       </group>
+      <group name="printer-mib-supplies" ifType="ignore">
+        <mibObj oid=".1.3.6.1.2.1.43.11.1.1.6" instance="prtMarkerSuppliesIndex" alias="prtMarkerSuppliesDescription" type="string" />
+        <mibObj oid=".1.3.6.1.2.1.43.11.1.1.8" instance="prtMarkerSuppliesIndex" alias="prtMSMaxCapacity" type="integer" />
+        <mibObj oid=".1.3.6.1.2.1.43.11.1.1.9" instance="prtMarkerSuppliesIndex" alias="prtMSLevel" type="integer" />
+      </group>
       <group name="windows-host" ifType="ignore">
         <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="1" alias="cpuPercentBusy" type="integer" />
         <!-- Memory in KBytes -->
@@ -342,6 +387,15 @@
         <mibObj oid=".1.3.6.1.4.1.3076.2.1.2.22.1.45" instance="0" alias="alHWFan3Rpm" type="gauge" />
         <mibObj oid=".1.3.6.1.4.1.3076.2.1.2.22.1.61" instance="0" alias="alHWCpuVoltageNom" type="gauge" />
       </group>
+
+      <group name="brocade-switch-fctable" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.11" instance="swFCPortIndex" alias="swFCPortTxWords" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.12" instance="swFCPortIndex" alias="swFCPortRxWords" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.13" instance="swFCPortIndex" alias="swFCPortTxFrames" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.14" instance="swFCPortIndex" alias="swFCPortRxFrames" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.1588.2.1.1.1.6.2.1.36" instance="swFCPortIndex" alias="swFCPortName" type="string" />
+      </group>
+
       <group name="cisco-cike" ifType="ignore">
         <mibObj oid=".1.3.6.1.4.1.9.9.171.1.2.1.1" instance="0" alias="cikeActiveTunnels" type="Gauge32" />
         <mibObj oid=".1.3.6.1.4.1.9.9.171.1.2.1.2" instance="0" alias="cikePreviousTunnels" type="Counter32" />
@@ -790,6 +844,28 @@
         <mibObj oid=".1.3.6.1.4.1.5134.2.3.1.7" instance="0" alias="confTUILoginsFail" type="counter" />
       </group>
 
+      <!-- Dell OpenManage MIBs -->
+      <group name="openmanage-coolingdevices" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.12.1.6" instance="coolingDeviceIndex" alias="coolingDevReading" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.12.1.8" instance="coolingDeviceIndex" alias="coolingDeviceLocationName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.12.1.13" instance="coolingDeviceIndex" alias="coolDevLowCritThres" type="integer" />
+      </group>
+
+      <group name="openmanage-temperatureprobe" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.20.1.6" instance="temperatureProbeIndex" alias="tempProbeReading" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.20.1.8" instance="temperatureProbeIndex" alias="temperatureProbeLocationName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.20.1.10" instance="temperatureProbeIndex" alias="tempProbeUpCrit" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.20.1.11" instance="temperatureProbeIndex" alias="tempProbeUpNonCrit" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.20.1.12" instance="temperatureProbeIndex" alias="tempProbeLowNonCrit" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.700.20.1.13" instance="temperatureProbeIndex" alias="tempProbeLowCrit" type="integer" />
+      </group>
+
+      <group name="openmanage-powerusage" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.600.60.1.6" instance="powerUsageIndex" alias="powerUsageEntityName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.600.60.1.7" instance="powerUsageIndex" alias="powerUsageWattage" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.674.10892.1.600.60.1.9" instance="powerUsageIndex" alias="powerUsagePeakWatts" type="integer" />
+      </group>
+
       <!-- Netapp MIBS -->
       <group name="netapp-cpu" ifType="ignore">
         <mibObj oid=".1.3.6.1.4.1.789.1.2.1.3" instance="0" alias="cpuBusyTimePct" type="INTEGER" />
@@ -918,6 +994,18 @@
         <mibObj oid=".1.3.6.1.4.1.11.2.3.1.1.16" instance="0" alias="hpuxCpuNice" type="counter" />
         <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.1" instance="0" alias="hpuxTotalFsMounted" type="gauge" />
         <mibObj oid=".1.3.6.1.4.1.11.2.3.1.4.1" instance="0" alias="hpuxTotalProcesses" type="gauge" />
+      </group>
+      <group name="hpux-filesystem" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.1" instance="hpuxFSTable" alias="hpuxFSID1" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.2" instance="hpuxFSTable" alias="hpuxFSID2" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.3" instance="hpuxFSTable" alias="hpuxFSName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.4" instance="hpuxFSTable" alias="hpuxFSBlock" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.5" instance="hpuxFSTable" alias="hpuxFSBfree" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.6" instance="hpuxFSTable" alias="hpuxFSBavail" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.7" instance="hpuxFSTable" alias="hpuxFSBsize" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.8" instance="hpuxFSTable" alias="hpuxFSFiles" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.9" instance="hpuxFSTable" alias="hpuxFSFfree" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.11.2.3.1.2.2.1.10" instance="hpuxFSTable" alias="hpuxFSDir" type="string" />
       </group>
 
       <!-- IBM MIBs -->
@@ -1090,6 +1178,13 @@
         <mibObj oid=".1.3.6.1.4.1.2021.13.15.1.1.6" instance="diskIOIndex" alias="diskIOWrites" type="counter" />
       </group>
 
+      <!-- Netscaler MIBs -->
+      <group name="NetScaler-General" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.5951.4.1.1.41.1" instance="0" alias="NSresCpuUsage" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.5951.4.1.1.41.2" instance="0" alias="NSresMemUsage" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.5951.4.1.1.41.4" instance="0" alias="NSmemSizeMB" type="Integer32" />
+      </group>
+
       <!-- Netbotz MIBs -->
       <group name="netbotz" ifType="ignore">
         <mibObj oid=".1.3.6.1.4.1.5528.30.10.1" instance="0" alias="netBotz-temp" type="INTEGER" />
@@ -1123,10 +1218,27 @@
         <mibObj oid=".1.3.6.1.2.1.25.2.3.1.6" instance="6" alias="codeDataMemoryUsed" type="integer" />
         <mibObj oid=".1.3.6.1.4.1.23.2.28.2.7" instance="0" alias="currentOpenFiles" type="integer" />
         <mibObj oid=".1.3.6.1.4.1.23.2.28.3.2" instance="0" alias="licensedConnections" type="integer" />
-        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.4" instance="1" alias="freeSpaceOnSys" type="integer" />
-        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.5" instance="1" alias="freeableSpaceOnSys" type="integer" />
-        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.4" instance="3" alias="freeSpaceOnVol2" type="integer" />
-        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.5" instance="3" alias="freeableSpaceOnVol2" type="integer" />
+      </group>
+
+      <group name="netware-disk" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.2" instance="netwareDisk" alias="nwLabel" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.3" instance="netwareDisk" alias="nwVolSize" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.4" instance="netwareDisk" alias="nwFreeSpace" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.14.1.5" instance="netwareDisk" alias="nwFreeableSpace" type="integer" />
+      </group>
+
+      <group name="netware-fs-scalars" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.1" instance="0" alias="nwFSReads" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.2" instance="0" alias="nwFSWrites" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.3" instance="0" alias="nwFSReadKB" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.4" instance="0" alias="nwFSWrittenKB" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.5" instance="0" alias="nwFSCacheChecks" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.6" instance="0" alias="nwFSCacheHits" type="counter" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.7" instance="0" alias="nwFSOpenFiles" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.8" instance="0" alias="nwFSMaxOpenFiles" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.9" instance="0" alias="nwFSRecordLocks" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.10" instance="0" alias="nwFSMaxRecordLocks" type="integer" />
+        <mibObj oid=".1.3.6.1.4.1.23.2.28.2.13" instance="0" alias="nwFSVolCount" type="gauge" />
       </group>
 
       <!-- Sun MIBs -->
@@ -1487,6 +1599,13 @@
         <mibObj oid=".1.3.6.1.4.1.9600.1.1.3.1.14" instance="sinfNetInstance" alias="netPktsPerSec" type="Gauge32" />
       </group>
 
+      <!-- This group requires the pay-for SNMP Informant Advanced agent -->
+      <group name="snmpinformant-adv-termsvc-scalars" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.9600.1.2.81.1" instance="0" alias="sinfTsActiveSess" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.9600.1.2.81.2" instance="0" alias="sinfTsInactiveSess" type="gauge" />
+        <mibObj oid=".1.3.6.1.4.1.9600.1.2.81.3" instance="0" alias="sinfTsTotalSess" type="gauge" />
+      </group>
+
       <!-- 3Com MIBs -->
       <group name="3com-router-perf" ifType="ignore">
         <mibObj oid=".1.3.6.1.4.1.43.2.33.1.1.2.1.4" instance="0" alias="a3perfBufMemAvail" type="integer" />
@@ -1534,7 +1653,12 @@
         <mibObj oid=".1.3.6.1.4.1.3375.2.1.1.2.9.6" instance="0" alias="TotNConns" type="Counter" />
         <mibObj oid=".1.3.6.1.4.1.3375.2.1.1.2.9.9" instance="0" alias="TotCConns" type="Counter" />
       </group>
-      
+      <group name="fortinet-sys-stat" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.12356.1.8" instance="0" alias="fnSysCpuUsage" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.12356.1.9" instance="0" alias="fnSysMemUsage" type="Gauge32" />
+        <mibObj oid=".1.3.6.1.4.1.12356.1.10" instance="0" alias="fnSysSesCount" type="Gauge32" />
+      </group>
+
     </groups>
 
     <systems>
@@ -1643,6 +1767,13 @@
 	  <includeGroup>asterisk-scalars</includeGroup>
 	  <includeGroup>asterisk-chantype</includeGroup>
 	</collect>
+      </systemDef>
+
+      <systemDef name="Brocade FC Switches">
+        <sysoidMask>.1.3.6.1.4.1.1588.</sysoidMask>
+        <collect>
+          <includeGroup>brocade-switch-fctable</includeGroup>
+        </collect>
       </systemDef>
 
       <systemDef name="CheckPoint">
@@ -1766,6 +1897,7 @@
         <sysoidMask>.1.3.6.1.4.1.11.2.3.9.1</sysoidMask>
         <collect>
           <includeGroup>printer-usage</includeGroup>
+          <includeGroup>printer-mib-supplies</includeGroup>
         </collect>
       </systemDef>
 
@@ -1780,6 +1912,7 @@
         <sysoidMask>.1.3.6.1.4.1.11.2.3.2.</sysoidMask>
         <collect>
           <includeGroup>hpux</includeGroup>
+          <includeGroup>hpux-filesystem</includeGroup>
         </collect>
       </systemDef>
 
@@ -1823,10 +1956,26 @@
         </collect>
       </systemDef>
 
+      <systemDef name="Kyocera Mita Network Printer">
+        <sysoidMask>.1.3.6.1.4.1.1347.4</sysoidMask>
+        <collect>
+          <includeGroup>printer-usage</includeGroup>
+          <includeGroup>printer-mib</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Liebert UPS">
+        <sysoidMask>.1.3.6.1.4.1.476.</sysoidMask>
+        <collect>
+          <includeGroup>mib2-ups-rfc1628</includeGroup>
+        </collect>
+      </systemDef>
+
       <systemDef name="Lexmark / Dell Printers">
         <sysoidMask>.1.3.6.1.4.1.641.</sysoidMask>
         <collect>
           <includeGroup>printer-usage</includeGroup>
+          <includeGroup>printer-mib-supplies</includeGroup>
         </collect>
       </systemDef>
 
@@ -1846,6 +1995,9 @@
           <includeGroup>compaq-insight-manager-stats</includeGroup>
           <includeGroup>domino-stats</includeGroup>
           <includeGroup>microsoft-http</includeGroup>
+          <includeGroup>openmanage-coolingdevices</includeGroup>
+          <includeGroup>openmanage-temperatureprobe</includeGroup>
+          <includeGroup>openmanage-powerusage</includeGroup>
           <includeGroup>snmpinformant-cpu</includeGroup>
           <includeGroup>snmpinformant-disk</includeGroup>
           <includeGroup>snmpinformant-exchange-mta</includeGroup>
@@ -1887,6 +2039,9 @@
           <includeGroup>mib2-host-resources-system</includeGroup>
           <includeGroup>mib2-host-resources-memory</includeGroup>
           <includeGroup>net-snmp-disk</includeGroup>
+          <includeGroup>openmanage-coolingdevices</includeGroup>
+          <includeGroup>openmanage-temperatureprobe</includeGroup>
+          <includeGroup>openmanage-powerusage</includeGroup>
           <includeGroup>ucd-loadavg</includeGroup>
           <includeGroup>ucd-memory</includeGroup>
           <includeGroup>ucd-sysstat</includeGroup>
@@ -1924,6 +2079,13 @@
         </collect>
       </systemDef>
 
+      <systemDef name="Netscaler">
+        <sysoidMask>.1.3.6.1.4.1.5951.1</sysoidMask>
+        <collect>
+          <includeGroup>NetScaler-General</includeGroup>
+        </collect>
+      </systemDef>
+
       <systemDef name="NORTEL Routers">
         <sysoidMask>.1.3.6.1.4.1.18.</sysoidMask>
         <collect>
@@ -1935,6 +2097,8 @@
         <sysoidMask>.1.3.6.1.4.1.23.</sysoidMask>
         <collect>
           <includeGroup>netware-host</includeGroup>
+          <includeGroup>netware-disk</includeGroup>
+          <includeGroup>netware-fs-scalars</includeGroup>
         </collect>
       </systemDef>
 
@@ -1958,6 +2122,13 @@
         <collect>
           <includeGroup>3com-router-sys</includeGroup>
           <includeGroup>3com-router-perf</includeGroup>
+        </collect>
+      </systemDef>
+
+      <systemDef name="Fortinet Fortigate">
+        <sysoidMask>.1.3.6.1.4.1.12356</sysoidMask>
+        <collect>
+          <includeGroup>fortinet-sys-stat</includeGroup>
         </collect>
       </systemDef>
 
