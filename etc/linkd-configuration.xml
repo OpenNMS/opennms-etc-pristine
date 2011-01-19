@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<linkd-configuration auto-discovery="false" enable-vlan-discovery="true" threads="30" initial_sleep_time="600000"
-                     snmp_poll_interval="1800000" discovery_link_interval="300000">
+<linkd-configuration threads="30" initial_sleep_time="3600000"
+                     snmp_poll_interval="18000000" discovery_link_interval="300000" 
+					 auto-discovery="false" 
+					 enable-discovery-download="false"
+					 enable-vlan-discovery="true"
+                     use-cdp-discovery="true" 
+                     use-ip-route-discovery="true"
+                     use-bridge-discovery="true"
+                     save-route-table="true" 
+                     save-stp-node-table="true"
+                     save-stp-interface-table="true">
+    
+    <!--
+    It's possible in packages to overwrite all properties - (thread and initial_sleep_time) 
+    in the linkd-configuration
+    -->
+    
+    <package name="example1">
+		<filter>IPADDR != '0.0.0.0'</filter>
+		<include-range begin="1.1.1.1" end="254.254.254.254"/>
+    </package>
+    
+    <!-- Use more packages with huge network-->
+	<!--
+    <package name="LAN" use-ip-route-discovery="false">
+		<filter>IPADDR != '0.0.0.0'</filter>
+		<include-range begin="10.1.1.1" end="10.1.1.254"/>
+    </package>
+
+    <package name="WAN" use-bridge-discovery="false">
+		<filter>IPADDR != '0.0.0.0'</filter>
+		<include-range begin="10.1.1.1" end="10.1.1.254"/>
+    </package>
+
+	-->    
+    
+    <!--
+    
+    Here is a list of sys oids and corresponding classes to get 
+    SNMP vlan info from nodes.  
+    Verify that your switch devices sys oids are in the following lists
+    if you want to get informations on Vlans!
+    Otherwise:
+    Put your own sys oids in the proper vendor tag and specify sys oid
+    using <specific> and <include-range> tags 
+    
+    -->
+    
     <vlans>
 
         <vendor vendor_name="3Com" sysoidRootMask=".1.3.6.1.4.1.43"
@@ -42,10 +88,7 @@
             <specific>11.27</specific>
             <specific>11.23</specific>
             <specific>11.29</specific>
-            <include-range>
-                <begin>11.6</begin>
-                <end>11.11</end>
-            </include-range>
+            <include-range begin="11.6" end="11.11"/>
         </vendor>
 
         <vendor vendor_name="cisco" sysoidRootMask=".1.3.6.1.4.1.9"

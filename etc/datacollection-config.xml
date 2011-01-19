@@ -320,6 +320,8 @@
         <mibObj oid=".1.3.6.1.4.1.9.9.13.1.3.1.3" instance="3" alias="tempout2" type="gauge32" />
         <mibObj oid=".1.3.6.1.4.1.9.9.13.1.3.1.3" instance="4" alias="tempout3" type="gauge32" />
         <mibObj oid=".1.3.6.1.4.1.9.9.109.1.1.1.1.5" instance="1" alias="cpmCPUTotal5min" type="integer" />
+      </group>
+      <group name="cisco-router-interface" ifType="all">
         <mibObj oid=".1.3.6.1.4.1.9.2.2.1.1.7" instance="ifIndex" alias="locIfInPktsSec" type="integer" />
         <mibObj oid=".1.3.6.1.4.1.9.2.2.1.1.9" instance="ifIndex" alias="locIfOutPktsSec" type="integer" />
         <mibObj oid=".1.3.6.1.4.1.9.2.2.1.1.26" instance="ifIndex" alias="locIfInQueueDrops" type="counter" />
@@ -1175,7 +1177,7 @@
 	  <includeGroup>ucd-loadavg</includeGroup>
 	  <includeGroup>ucd-memory</includeGroup>
 	  <includeGroup>ucd-sysstat</includeGroup>
-	  <!-- <includeGroup>ucd-diskio</includeGroup> not on by default, may create a lot of files -->
+	  <includeGroup>ucd-diskio</includeGroup>
 	  <includeGroup>asterisk-scalars</includeGroup>
 	</collect>
       </systemDef>
@@ -1228,6 +1230,7 @@
         <collect>
           <includeGroup>cisco-memory</includeGroup>
           <includeGroup>cisco-router</includeGroup>
+          <includeGroup>cisco-router-interface</includeGroup>
           <includeGroup>adsl-line</includeGroup>
           <includeGroup>cisco-rttmon-latest-jitter-stats</includeGroup>
           <includeGroup>cisco-rttmon-latest-rtp-stats</includeGroup>
@@ -1347,7 +1350,7 @@
           <includeGroup>ucd-loadavg</includeGroup>
           <includeGroup>ucd-memory</includeGroup>
           <includeGroup>ucd-sysstat</includeGroup>
-	  <!-- <includeGroup>ucd-diskio</includeGroup> not on by default, may create a lot of files -->
+          <includeGroup>ucd-diskio</includeGroup>
         </collect>
       </systemDef>
 
@@ -1360,7 +1363,7 @@
           <includeGroup>ucd-loadavg</includeGroup>
           <includeGroup>ucd-memory</includeGroup>
           <includeGroup>ucd-sysstat</includeGroup>
-	  <!-- <includeGroup>ucd-diskio</includeGroup> not on by default, may create a lot of files -->
+          <includeGroup>ucd-diskio</includeGroup>
         </collect>
       </systemDef>
 

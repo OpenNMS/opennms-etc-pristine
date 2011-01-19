@@ -18,11 +18,26 @@
       			<rra>RRA:MAX:0.5:288:366</rra>
       			<rra>RRA:MIN:0.5:288:366</rra>
     		</rrd>
-                <service name="ICMP" interval="300000" user-defined="false" status="on">
+		<service name="ICMP" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="2"/>
 			<parameter key="timeout" value="3000"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="icmp"/>
 			<parameter key="ds-name" value="icmp"/>
+		</service>
+		<service name="StrafePing" interval="300000" user-defined="false" status="on">
+			<parameter key="retry" value="0"/>
+			<parameter key="timeout" value="3000"/>
+
+			<!-- how many concurrent pings to send; if you modify this, you will have to modify response-graph.properties as well! -->
+			<parameter key="ping-count" value="20"/>
+			<!-- how many pings need to fail for the service to be considered down -->
+			<parameter key="failure-ping-count" value="20"/>
+			<!-- how long to wait (in milliseconds) between packets -->
+			<parameter key="wait-interval" value="50"/>
+
+			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="strafeping"/>
 		</service>
 		<service name="DNS" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="2"/>
@@ -30,6 +45,7 @@
 			<parameter key="port" value="53"/>
 			<parameter key="lookup" value="localhost"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="dns"/>
 			<parameter key="ds-name" value="dns"/>
 		</service>
 		<service name="SMTP" interval="300000" user-defined="false" status="on">
@@ -37,6 +53,7 @@
 			<parameter key="timeout" value="3000"/>
 			<parameter key="port" value="25"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="smtp"/>
 			<parameter key="ds-name" value="smtp"/>
 		</service>
 		<service name="FTP" interval="300000" user-defined="false" status="on">
@@ -58,6 +75,7 @@
                         <parameter key="port" value="80"/>
                         <parameter key="url" value="/"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="http"/>
 			<parameter key="ds-name" value="http"/>
                 </service>
                 <service name="HTTP-8080" interval="300000" user-defined="false" status="on">
@@ -66,6 +84,7 @@
                         <parameter key="port" value="8080"/>
                         <parameter key="url" value="/"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="http-8080"/>
 			<parameter key="ds-name" value="http-8080"/>
                 </service>
                 <service name="HTTP-8000" interval="300000" user-defined="false" status="on">
@@ -74,6 +93,7 @@
                         <parameter key="port" value="8000"/>
                         <parameter key="url" value="/"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="http-8000"/>
 			<parameter key="ds-name" value="http-8000"/>
                 </service>
                 <service name="HTTPS" interval="300000" user-defined="false" status="on">
@@ -112,12 +132,14 @@
 			<parameter key="port" value="22"/>
 			<parameter key="timeout" value="3000"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="ssh"/>
 			<parameter key="ds-name" value="ssh"/>
 		</service>
 		<service name="DHCP" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="2"/>
 			<parameter key="timeout" value="3000"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="dhcp"/>
 			<parameter key="ds-name" value="dhcp"/>
 		</service>
 		<service name="IMAP" interval="300000" user-defined="false" status="on">
@@ -130,11 +152,17 @@
 			<parameter key="port" value="110"/>
 			<parameter key="timeout" value="3000"/>
 			<parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+			<parameter key="rrd-base-name" value="pop3"/>
 			<parameter key="ds-name" value="pop3"/>
 		</service>
 		<service name="NSClient" interval="300000" user-defined="false" status="on">
 			<parameter key="retry" value="2"/>
 			<parameter key="port" value="1248"/>
+			<parameter key="timeout" value="3000"/>
+		</service>
+		<service name="NSClientpp" interval="300000" user-defined="false" status="on">
+			<parameter key="retry" value="2"/>
+			<parameter key="port" value="12489"/>
 			<parameter key="timeout" value="3000"/>
 		</service>
 
@@ -145,7 +173,8 @@
 
 	</package>
 
-        <monitor service="ICMP" 	class-name="org.opennms.netmgt.poller.monitors.IcmpMonitor"/>
+   <monitor service="ICMP" 	class-name="org.opennms.netmgt.poller.monitors.IcmpMonitor"/>
+   <monitor service="StrafePing" 	class-name="org.opennms.netmgt.poller.monitors.StrafePingMonitor"/>
 	<monitor service="HTTP" 	class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
 	<monitor service="HTTP-8080"    class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
 	<monitor service="HTTP-8000"    class-name="org.opennms.netmgt.poller.monitors.HttpMonitor"/>
@@ -163,4 +192,5 @@
 	<monitor service="IMAP" 	class-name="org.opennms.netmgt.poller.monitors.ImapMonitor"/>
 	<monitor service="POP3" 	class-name="org.opennms.netmgt.poller.monitors.Pop3Monitor"/>
 	<monitor service="NSClient" 	class-name="org.opennms.netmgt.poller.monitors.NsclientMonitor"/>
+	<monitor service="NSClientpp"	class-name="org.opennms.netmgt.poller.monitors.NsclientMonitor"/>
 </poller-configuration>

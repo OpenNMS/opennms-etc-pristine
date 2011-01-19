@@ -9,7 +9,7 @@
 			<doNotOverride>script</doNotOverride>
 		</security>
 	</global>
-		<event-file>/opt/opennms/etc/events/ia.events.xml</event-file>
+	<event-file>/opt/opennms/etc/events/ia.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/3Com.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/ADIC-v2.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Adtran.events.xml</event-file>
@@ -62,6 +62,7 @@
         <event-file>/opt/opennms/etc/events/NORTEL.Contivity.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Novell.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Oracle.events.xml</event-file>
+        <event-file>/opt/opennms/etc/events/OSPF.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Patrol.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Pixelmetrix.events.xml</event-file>
         <event-file>/opt/opennms/etc/events/Primecluster.events.xml</event-file>
@@ -1224,7 +1225,7 @@
       <severity>Warning</severity>
     </event>
     <event>
-      <uei>uei.opennms.org/alarms/alarmEscalated</uei>
+      <uei>uei.opennms.org/vacuumd/alarmEscalated</uei>
       <event-label>OpenNMS-defined internal event: alarmEscalated</event-label>
       <descr>
         &lt;p&gt;Alarm #&lt;a href="/opennms/alarm/detail.jsp?id=%parm[alarmId]%"&gt;%parm[alarmId]%&lt;/a&gt;
@@ -1500,7 +1501,7 @@
   </event>
     <event>
     <descr>
-      This event is sent by the WebUI or the user when threshold  configuration has changed and should be reloaded
+      This event is sent by the WebUI or the user when threshold configuration has changed and should be reloaded
     </descr>
     <uei>uei.opennms.org/internal/thresholdConfigChange</uei>
     <event-label>OpenNMS-defined internal event: threshold configuration changed</event-label>
@@ -1517,6 +1518,17 @@
     <event-label>OpenNMS-defined internal event: event configuration changed</event-label>
     <logmsg dest='logndisplay'>
       The events configuration has been changed and should be reloaded
+    </logmsg>
+    <severity>Normal</severity>
+  </event> 
+  <event>
+    <descr>
+      This event is sent by the WebUI or the user when discovery configuration has changed and should be reloaded
+    </descr>
+    <uei>uei.opennms.org/internal/discoveryConfigChange</uei>
+    <event-label>OpenNMS-defined internal event: discovery configuration changed</event-label>
+    <logmsg dest='logndisplay'>
+      The discovery configuration has been changed and should be reloaded
     </logmsg>
     <severity>Normal</severity>
   </event> 
@@ -1569,6 +1581,18 @@
     <event-label>A request has been made to cancel a trouble ticket</event-label>
     <logmsg dest='logndisplay'>
       A request has been generated to cancel a trouble ticket.
+    </logmsg>
+    <severity>Normal</severity>
+  </event>
+  
+  <event>
+    <descr>
+      This event is generated to invoke the promotion data of the Queueing RRD Strategy.
+    </descr>
+    <uei>uei.opennms.org/internal/promoteQueueData</uei>
+    <event-label>A request has been made promote data from the RRD Queue</event-label>
+    <logmsg dest='logndisplay'>
+      A request has been generated to promote data from the queue for the file(s): %parm[filesToPromote]%.
     </logmsg>
     <severity>Normal</severity>
   </event>

@@ -1321,7 +1321,7 @@ CREATE TABLE location_specific_status_changes (
     statusCode INTEGER NOT NULL,
     statusTime TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     statusReason VARCHAR(255),
-    responseTime INTEGER,
+    responseTime DOUBLE PRECISION,
 
     CONSTRAINT location_specific_status_changes_pkey PRIMARY KEY (id),
     CONSTRAINT location_monitor_fkey2 FOREIGN KEY (locationMonitorId) REFERENCES location_monitors (id) ON DELETE CASCADE,
