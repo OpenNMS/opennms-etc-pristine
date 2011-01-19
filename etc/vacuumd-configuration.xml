@@ -347,7 +347,7 @@
     </auto-event>
   </auto-events>
 
-  <!-- Note: action events that have MavenProject: org.opennms:opennms-daemon:1.5.98 @ /tmp/opennms-1.5.98/target/rpm/BUILD/opennms-1.5.98-1/source/opennms-daemon/pom.xml tokens require the for-each-result attribute to be set to true -->
+  <!-- Note: action events that have MavenProject: org.opennms:opennms-daemon:1.5.99 @ /tmp/opennms-1.5.99/target/rpm/BUILD/opennms-1.5.99-1/source/opennms-daemon/pom.xml tokens require the for-each-result attribute to be set to true -->
   <action-events>
   
     <action-event name="createTicket" for-each-result="true" >
