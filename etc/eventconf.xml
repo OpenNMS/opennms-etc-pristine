@@ -28,6 +28,7 @@
         <event-file>/opt/OpenNMS/etc/events/Clarent.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Clarinet.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Cricket.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Dell-DRAC2.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/DellOpenManage.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Fore.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/FoundryNetworks.events.xml</event-file>
@@ -35,8 +36,12 @@
         <event-file>/opt/OpenNMS/etc/events/Groupwise.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/HP.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/IBM.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/IBM-UMS.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/IBMRSA2.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/IEEE802dot11.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Intel.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Liebert.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Liebert.600SM.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Linksys.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/MGE-UPS.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Microsoft.events.xml</event-file>
@@ -50,11 +55,15 @@
         <event-file>/opt/OpenNMS/etc/events/Novell.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Oracle.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Patrol.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Pixelmetrix.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Quintum.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/RFC1628.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Redline.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Rightfax.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Sensaphone.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Snort.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/SonicWall.events.xml</event-file>
+        <event-file>/opt/OpenNMS/etc/events/Sourcefire.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Symbol.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/SystemEdge.events.xml</event-file>
         <event-file>/opt/OpenNMS/etc/events/Uptime.events.xml</event-file>
