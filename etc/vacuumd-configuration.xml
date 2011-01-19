@@ -168,7 +168,7 @@
     </auto-event>
   </auto-events>
 
-  <!-- Note: action events that have org.apache.maven.project.MavenProject@265b7e4f tokens require the for-each-result attribute to be set to true -->
+  <!-- Note: action events that have org.apache.maven.project.MavenProject@265b7e50 tokens require the for-each-result attribute to be set to true -->
   <action-events>
     <action-event name="eventEscalated" for-each-result="true" >
       <assignment type="field" name="uei" value="uei.opennms.org/vacuumd/alarmEscalated" />
