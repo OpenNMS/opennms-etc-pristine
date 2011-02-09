@@ -411,22 +411,6 @@ ORDER BY
 					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "AvailabilitySummaryChart_subreport.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
-			<band height="64">
-				<subreport>
-					<reportElement x="0" y="0" width="619" height="61"/>
-					<subreportParameter name="CATEGORY_NAME">
-						<subreportParameterExpression><![CDATA[$F{categoryname}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="TIME_RANGE">
-						<subreportParameterExpression><![CDATA[$P{TIME_RANGE}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="START_TIME">
-						<subreportParameterExpression><![CDATA[$P{START_TIME}]]></subreportParameterExpression>
-					</subreportParameter>
-					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "Top25PercentDown_subreport.jasper"]]></subreportExpression>
-				</subreport>
-			</band>
 		</groupFooter>
 	</group>
 	<pageHeader>
