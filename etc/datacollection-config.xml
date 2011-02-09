@@ -341,7 +341,7 @@
 
      <!-- Resource Type for WMI CPUs -->
      <resourceType name="wmiOSCpu" label="Windows Processor"
-                  resourceLabel="${wmiOSCpuName}">
+                  resourceLabel="CPU ${wmiOSCpuName}">
       <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
@@ -571,6 +571,11 @@
       <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
     </resourceType>
 
+     <!-- Resource Type for WMI Web Requests -->
+     <resourceType name="wmiW3" label="Windows Web Requests" resourceLabel="${wmiW3Name}">
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collectd.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.IndexStorageStrategy"/>
+    </resourceType>
 
     <groups>
       <group name="cisco-frame-relay" ifType="all">
@@ -4121,6 +4126,9 @@
           <includeGroup>ucd-sysstat</includeGroup>
 	  <includeGroup>ucd-sysstat-raw</includeGroup>
 	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
+          <includeGroup>zxtm</includeGroup>
+          <includeGroup>zxtmvs</includeGroup>
+          <includeGroup>zxtmpool</includeGroup>
         </collect>
       </systemDef>
 
@@ -4145,6 +4153,9 @@
           <includeGroup>ucd-sysstat</includeGroup>
 	  <includeGroup>ucd-sysstat-raw</includeGroup>
 	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
+          <includeGroup>zxtm</includeGroup>
+          <includeGroup>zxtmvs</includeGroup>
+          <includeGroup>zxtmpool</includeGroup>
         </collect>
       </systemDef>
 
@@ -4169,6 +4180,9 @@
           <includeGroup>ucd-sysstat</includeGroup>
 	  <includeGroup>ucd-sysstat-raw</includeGroup>
 	  <includeGroup>ucd-sysstat-raw-more</includeGroup>
+          <includeGroup>zxtm</includeGroup>
+          <includeGroup>zxtmvs</includeGroup>
+          <includeGroup>zxtmpool</includeGroup>
         </collect>
       </systemDef>
 
