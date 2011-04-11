@@ -83,7 +83,7 @@ new GregorianCalendar(new GregorianCalendar().get(Calendar.YEAR), new GregorianC
 )]]></defaultValueExpression>
 	</parameter>
 	<parameter name="rrdDir" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/opt/opennms/share/rrd"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/opennms/share/rrd/snmp"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["/opt/opennms/etc/report-templates/subreports/"]]></defaultValueExpression>
