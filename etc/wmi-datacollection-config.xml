@@ -206,7 +206,6 @@
                 <!-- PUT requests per second. -->
                 <attrib name="PutRequests" alias="wmiW3PutReq" wmiObject="TotalPutRequests" type="Counter" />
             </wpm>
-
         </wpms>
     </wmi-collection>
 </wmi-datacollection-config>
