@@ -70,7 +70,7 @@
 		<defaultValueExpression><![CDATA["/opt/opennms/etc/report-templates/opennms-logo.png"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SURVEILLANCE_CATEGORY" class="java.lang.String">
-		<defaultValueExpression><![CDATA["Routers"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["ReportCategory"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="startDate" class="java.util.Date">
 		<defaultValueExpression><![CDATA[new java.util.Date(
