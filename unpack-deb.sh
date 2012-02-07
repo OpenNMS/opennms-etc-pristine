@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MYDIR=`dirname $0`
 ME=`cd $MYDIR; pwd`
@@ -9,7 +9,7 @@ if [ -z "$1" ]; then
 fi
 
 mkdir -p $ME/work
-pushd $ME/work >/dev/null 2>&1
+pushd $ME/work >/dev/null 2>&1 || exit 1
 
 	rm -rf $ME/work/*
 	for file in "$@"; do
