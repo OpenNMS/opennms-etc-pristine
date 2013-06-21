@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of auto generated data from MIB: UPTIME-ROOT-MIB sh2.mib,v 1.10 2003/11/19 -->
 <event>
 	<mask>
