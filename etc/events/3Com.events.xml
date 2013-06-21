@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of 3Com Traps -->
 <!-- Start of 3Com MIB: A3COM-SWITCHING-SYSTEMS-FDDI-MIB -->
 <event>
