@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- event definitions for traps from Clarinet IRDA switch mib -->
 <event>
 	<mask>

@@ -3,21 +3,21 @@
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1001</mevalue>
+                <mename>specific</mename>
+                <mevalue>1001</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscTestTrapEvent</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscTestTrapEvent</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscTestTrapEvent</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscTestTrapEvent</event-label>
+        <descr>
 &lt;p&gt;The RAC generated a test trap event in response to a user request.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -67,26 +67,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Normal</severity>
+        <severity>Normal</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1002</mevalue>
+                <mename>specific</mename>
+                <mevalue>1002</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscAuthError</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscAuthError</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscAuthError</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscAuthError</event-label>
+        <descr>
 &lt;p&gt;The RAC Authentication Failures during a time period have Exceeded a Threshold.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -136,26 +136,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Minor</severity>
+        <severity>Minor</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1003</mevalue>
+                <mename>specific</mename>
+                <mevalue>1003</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscLostESM</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscLostESM</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscLostESM</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscLostESM</event-label>
+        <descr>
 &lt;p&gt;The RAC cannot communicate with the baseboard management controller (ESM).&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -205,26 +205,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Minor</severity>
+        <severity>Minor</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1004</mevalue>
+                <mename>specific</mename>
+                <mevalue>1004</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscFoundESM</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscFoundESM</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscFoundESM</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscFoundESM</event-label>
+        <descr>
 &lt;p&gt;The RAC is communicating normally with the baseboard management controller (ESM).&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -274,26 +274,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Normal</severity>
+        <severity>Normal</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1005</mevalue>
+                <mename>specific</mename>
+                <mevalue>1005</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscPowerOff</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscPowerOff</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscPowerOff</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscPowerOff</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected a System power state change to powered-off.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -343,26 +343,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1006</mevalue>
+                <mename>specific</mename>
+                <mevalue>1006</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscPowerOn</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscPowerOn</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscPowerOn</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscPowerOn</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected a system power state change to powered-on.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -412,26 +412,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Normal</severity>
+        <severity>Normal</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1007</mevalue>
+                <mename>specific</mename>
+                <mevalue>1007</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscWatchdogExpired</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscWatchdogExpired</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscWatchdogExpired</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscWatchdogExpired</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected that the system watchdog has expired indicating a system hang.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -481,26 +481,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1008</mevalue>
+                <mename>specific</mename>
+                <mevalue>1008</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscBattLow</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscBattLow</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscBattLow</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscBattLow</event-label>
+        <descr>
 &lt;p&gt;The RAC Battery charge is below 25% indicating that the battery may only be able to power the DRSC for 8-10 minutes.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -550,26 +550,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Minor</severity>
+        <severity>Minor</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1009</mevalue>
+                <mename>specific</mename>
+                <mevalue>1009</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscTempNormal</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscTempNormal</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscTempNormal</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscTempNormal</event-label>
+        <descr>
 &lt;p&gt;The RAC Temperature probe has retured to a normal value.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -619,26 +619,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Normal</severity>
+        <severity>Normal</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1010</mevalue>
+                <mename>specific</mename>
+                <mevalue>1010</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscTempWarning</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscTempWarning</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscTempWarning</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscTempWarning</event-label>
+        <descr>
 &lt;p&gt;The RAC Temperature probe has detected a Warning value.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -688,26 +688,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Minor</severity>
+        <severity>Minor</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1011</mevalue>
+                <mename>specific</mename>
+                <mevalue>1011</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscTempCritical</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscTempCritical</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscTempCritical</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscTempCritical</event-label>
+        <descr>
 &lt;p&gt;The RAC Temperature probe has detected a failure (or critical) value.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -757,26 +757,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1012</mevalue>
+                <mename>specific</mename>
+                <mevalue>1012</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscVoltNormal</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscVoltNormal</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscVoltNormal</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscVoltNormal</event-label>
+        <descr>
 &lt;p&gt;The RAC voltage has returned to a normal value.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -826,26 +826,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Normal</severity>
+        <severity>Normal</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1013</mevalue>
+                <mename>specific</mename>
+                <mevalue>1013</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscVoltWarning</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscVoltWarning</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscVoltWarning</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscVoltWarning</event-label>
+        <descr>
 &lt;p&gt;The RAC voltage probe has detected a warning value.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -895,26 +895,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Minor</severity>
+        <severity>Minor</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1014</mevalue>
+                <mename>specific</mename>
+                <mevalue>1014</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscVoltCritical</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscVoltCritical</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscVoltCritical</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscVoltCritical</event-label>
+        <descr>
 &lt;p&gt;The RAC voltage probe has detected a failure (or critical) value.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -964,26 +964,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1015</mevalue>
+                <mename>specific</mename>
+                <mevalue>1015</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscSELWarning</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscSELWarning</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscSELWarning</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscSELWarning</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected a new event in the System Event Log with Severity: Warning.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -1033,26 +1033,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1016</mevalue>
+                <mename>specific</mename>
+                <mevalue>1016</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscSELCritical</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscSELCritical</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscSELCritical</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscSELCritical</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected a new event in the System Event Log with Severity: Critical.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -1102,26 +1102,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1017</mevalue>
+                <mename>specific</mename>
+                <mevalue>1017</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscSEL80percentFull</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscSEL80percentFull</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscSEL80percentFull</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscSEL80percentFull</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected that the System Event Log is 80% full.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -1171,26 +1171,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1018</mevalue>
+                <mename>specific</mename>
+                <mevalue>1018</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscSEL90percentFull</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscSEL90percentFull</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscSEL90percentFull</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscSEL90percentFull</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected that the System Event Log is 90% full.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -1240,26 +1240,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1019</mevalue>
+                <mename>specific</mename>
+                <mevalue>1019</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscSEL100percentFull</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscSEL100percentFull</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscSEL100percentFull</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscSEL100percentFull</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected that the System Event Log is 100% full.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -1309,26 +1309,26 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Major</severity>
+        <severity>Major</severity>
     </event>
     <event>
         <mask>
             <maskelement>
-                <mename xmlns="">id</mename>
-                <mevalue xmlns="">.1.3.6.1.4.1.674.10892.2</mevalue>
+                <mename>id</mename>
+                <mevalue>.1.3.6.1.4.1.674.10892.2</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">generic</mename>
-                <mevalue xmlns="">6</mevalue>
+                <mename>generic</mename>
+                <mevalue>6</mevalue>
             </maskelement>
             <maskelement>
-                <mename xmlns="">specific</mename>
-                <mevalue xmlns="">1020</mevalue>
+                <mename>specific</mename>
+                <mevalue>1020</mevalue>
             </maskelement>
         </mask>
-        <uei xmlns="">uei.opennms.org/vendor/Dell/traps/alertDrscSELNormal</uei>
-        <event-label xmlns="">DELL-RAC-MIB defined trap event: alertDrscSELNormal</event-label>
-        <descr xmlns="">
+        <uei>uei.opennms.org/vendor/Dell/traps/alertDrscSELNormal</uei>
+        <event-label>DELL-RAC-MIB defined trap event: alertDrscSELNormal</event-label>
+        <descr>
 &lt;p&gt;The RAC has detected a new event in the System Event Log with Severity: Normal.&lt;/p&gt;&lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;&lt;b&gt;
 
@@ -1378,6 +1378,6 @@
 			drsAlertPreviousStatus=%parm[#5]% 
 			drsAlertData=%parm[#6]%&lt;/p&gt;
 		</logmsg>
-        <severity xmlns="">Normal</severity>
+        <severity>Normal</severity>
     </event>
 </events>
