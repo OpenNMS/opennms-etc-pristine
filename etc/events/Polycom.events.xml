@@ -1,5 +1,5 @@
 <!-- Start of auto generated data from MIB: POLYCOM-VIDEO-MIB -->
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Viewstation Traps -->
 <event>
 	<mask>
