@@ -11,7 +11,7 @@ BEGIN
   -- ifServices must have an IP address that is *not* 0.0.0.0
   IF NEW.ipAddr IS NOT NULL AND NEW.ipAddr = ''0.0.0.0''
   THEN
-    RAISE EXCEPTION ''IfServices Trigger Exception, Condition 0: ipAddr of 0.0.0.0 is not allowed in ifServices table'' USING ERRCODE = ''22NMS'';
+    RAISE EXCEPTION ''IfServices Trigger Exception, Condition 0: ipAddr of 0.0.0.0 is not allowed in ifServices table'';
   END IF;
 
   --
@@ -27,7 +27,7 @@ BEGIN
        WHERE (ipif.nodeid = NEW.nodeid AND ipif.ipAddr = NEW.ipAddr AND ipif.ipAddr != ''0.0.0.0'');
        
      IF NOT FOUND THEN
-        RAISE EXCEPTION ''IfServices Trigger Exception, Condition 3: No IpInterface found for... nodeid: %  ipaddr: % '', NEW.nodeid, NEW.ipAddr USING ERRCODE = ''23NMS'';
+        RAISE EXCEPTION ''IfServices Trigger Exception, Condition 3: No IpInterface found for... nodeid: %  ipaddr: % '', NEW.nodeid, NEW.ipAddr;
      END IF;
      
   --
@@ -43,12 +43,12 @@ BEGIN
       WHERE (ipif.id = NEW.ipInterfaceId);
       
       IF NOT FOUND THEN
-         RAISE EXCEPTION ''IfServices Trigger Exception, Condition 4: No IpInterface found for ipInterfaceId: %'', NEW.ipInterfaceId USING ERRCODE = ''23NMS'';
+         RAISE EXCEPTION ''IfServices Trigger Exception, Condition 4: No IpInterface found for ipInterfaceId: %'', NEW.ipInterfaceId;
       END IF;
       
       IF NEW.ipAddr = ''0.0.0.0''
       THEN
-         RAISE EXCEPTION ''IfServices Trigger Exception, Condition 5: IpInterface found for ipInterfaceId: % has 0.0.0.0 ipAddr'', NEW.ipInterfaceId USING ERRCODE = ''22NMS'';
+         RAISE EXCEPTION ''IfServices Trigger Exception, Condition 5: IpInterface found for ipInterfaceId: % has 0.0.0.0 ipAddr'', NEW.ipInterfaceId;
       END IF;
   END IF;
 

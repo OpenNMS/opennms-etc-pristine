@@ -1,7 +1,7 @@
 <!-- Generated from MIB: I3IC-MIB version 1.1 (ININ Interaction Center servers version 2.0 and higher) -->
 <!-- additional information is available, it can be found at http://www.inin.com/Support/EventLogs/FindEntry.asp -->
 
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <event>
 	<mask>
 		<maskelement>

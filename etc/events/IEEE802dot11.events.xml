@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!--  event definitions for traps from IEEE802.11 MIB -->
 <event>
 	<mask>

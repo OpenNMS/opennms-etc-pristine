@@ -126,9 +126,6 @@
 		<column name="city"/>
 		<column name="state"/>
 		<column name="zip"/>
-		<column name="country"/>
-		<column name="longitude"/>
-		<column name="latitude"/>
 		<column name="building"/>
 		<column name="floor"/>
 		<column name="room"/>

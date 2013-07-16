@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- End of IETF Standard MIB: BGP4-MIB -->
 <!-- Start of IETF Standard MIB: BRIDGE-MIB -->
 <event>

@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- Custom Net-SNMP Distributed Management Events -->
 <event>
         <mask>

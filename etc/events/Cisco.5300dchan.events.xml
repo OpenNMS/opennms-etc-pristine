@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!--
 Cisco SNMP V2 Cisco AS5300 PRI Status Events for OpenNMS
 Created 09-01-2004

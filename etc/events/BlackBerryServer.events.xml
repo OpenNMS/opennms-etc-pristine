@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- This file contains event definitions for traps originating from RIM BlackBerry Enterprise Server -->
 <event>
 	<mask>

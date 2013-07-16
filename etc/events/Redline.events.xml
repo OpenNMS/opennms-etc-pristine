@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- Event definitions for traps from Redline Networks TX Web I/O Processor -->
 
 <event>

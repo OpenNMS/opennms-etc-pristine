@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- Start of HP Traps -->
 <!-- Start of HP MIB: HPNSAECC-MIB -->
 <event>

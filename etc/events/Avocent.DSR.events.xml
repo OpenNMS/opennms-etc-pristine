@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- vendor/avocent/traps version 0.2.2 -->
 <!-- Start of auto generated data from MIB: IF-MIB -->
 <!-- End of auto generated data from MIB: IF-MIB -->

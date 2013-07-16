@@ -34,7 +34,7 @@ XEROX-SIMPLE-JOB-MGMT-TC
 
 
 <!-- Start of Xerox Traps -->
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 
 <event>
 	<mask>

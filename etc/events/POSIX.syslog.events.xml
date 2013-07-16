@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
     <!-- Begin syslog event definitions for POSIX utilities  -->
     <event>
         <uei>uei.opennms.org/vendor/posix/syslog/su/authenFailure</uei>

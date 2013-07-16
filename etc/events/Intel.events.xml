@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- Start of INTEL Events -->
 <!-- Start of auto generated data from MIB: INTEL-GEN-MIB -->
 <event>

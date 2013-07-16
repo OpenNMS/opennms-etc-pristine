@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
     <!-- Begin syslog event definitions for OpenSSH  -->
     <event>
         <uei>uei.opennms.org/vendor/openssh/syslog/sshd/invalidUser</uei>

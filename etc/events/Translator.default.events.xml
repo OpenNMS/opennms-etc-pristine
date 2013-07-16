@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
   <!-- Default events that are now passed through the Translator for enrichment-->
   <event>
     <uei>uei.opennms.org/translator/traps/SNMP_Link_Down</uei>

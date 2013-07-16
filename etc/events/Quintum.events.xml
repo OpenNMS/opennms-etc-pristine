@@ -5,7 +5,7 @@ mlwilson@acegroup.cc
 mikew@isphone.net
 -->
 
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- Start of Quintum Traps -->
 <!-- Start of Quintum MIB: Critical Alert -->
 <event>

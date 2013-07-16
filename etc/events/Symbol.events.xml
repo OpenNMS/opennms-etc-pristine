@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- Start of auto generated data from MIB: SYMBOL-CC-WS2000-MIB -->
 <event>
 	<mask>

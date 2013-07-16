@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!--
 Cisco SNMP V2 Detailed Trap Events for OpenNMS
 Revised 09-13-2004

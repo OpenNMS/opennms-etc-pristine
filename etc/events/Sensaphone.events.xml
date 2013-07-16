@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <!-- event definitions for traps from Sensaphone IMS-4000 environmental monitors -->
 <event>
 	<mask>

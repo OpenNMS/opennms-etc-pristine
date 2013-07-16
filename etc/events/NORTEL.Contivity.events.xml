@@ -1,7 +1,7 @@
 <!-- Start of auto generated data from MIB: NEWOAK-MIB -->
 <!-- End of auto generated data from MIB: NEWOAK-MIB -->
 <!-- Start of auto generated data from MIB: CONTIVITY-TRAPS-V1-MIB -->
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
 <event>
 	<mask>
 		<maskelement>

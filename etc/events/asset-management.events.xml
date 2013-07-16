@@ -1,4 +1,4 @@
-<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<events>
     <event>
         <uei>uei.opennms.org/asset/maintenance/expirationWarning</uei>
         <event-label>Maintenance contract will expire in less then %parm[#4]% days</event-label>
