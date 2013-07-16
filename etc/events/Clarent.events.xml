@@ -4,7 +4,7 @@ Created 09-01-2004
 mlwilson@acegroup.cc
 mikew@isphone.net
 -->
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 
 <!-- Start of auto generated data from MIB: CLARENT-MIB -->
 <event>
