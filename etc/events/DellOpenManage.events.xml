@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of auto generated data from MIB: MIB-Dell-10892 -->
 <event>
 	<mask>
