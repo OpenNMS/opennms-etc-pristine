@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of auto generated data from MIB: CDM-625 -->
   <event>
     <mask>
