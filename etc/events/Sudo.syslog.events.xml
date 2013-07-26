@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
     <!-- Begin syslog event definitions for sudo  -->
     <event>
         <uei>uei.opennms.org/vendor/toddcmiller/syslog/sudo/notAuthorizedOnHost</uei>

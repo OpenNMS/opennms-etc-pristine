@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of Cisco Traps -->
 <!-- Start of Cisco MIB: ACCOUNTING-CONTROL-MIB -->
 <event>

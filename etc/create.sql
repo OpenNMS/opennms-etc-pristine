@@ -33,6 +33,7 @@
 --#
 
 drop table accessLocks cascade;
+drop table accesspoints cascade;
 drop table category_node cascade;
 drop table categories cascade;
 drop table assets cascade;
@@ -500,11 +501,13 @@ create index ipinterface_snmpInterfaceId_idx on ipInterface (snmpInterfaceId);
 --########################################################################
 
 create table service (
-	serviceID		integer not null,
+	serviceID		integer default nextval('serviceNxtId') not null,
 	serviceName		varchar(255) not null,
 
 	constraint pk_serviceID primary key (serviceID)
 );
+
+create unique index service_servicename_key on service (serviceid);
 
 --########################################################################
 --# ifServices Table - Contains a mapping of interfaces to services available
@@ -1157,6 +1160,7 @@ create table assets (
         city            varchar(64),
         state           varchar(64),
         zip             varchar(64),
+        country         varchar(64),
         building        varchar(64),
         floor           varchar(64),
         room            varchar(64),
@@ -1198,6 +1202,13 @@ create table assets (
         admin		varchar(32),
         snmpcommunity		varchar(32),
         rackunitheight		varchar(2),
+        longitude		float,
+        latitude		float,
+        vmwaremanagedobjectid	varchar(70),
+        vmwaremanagedentitytype	varchar(70),
+        vmwaremanagementserver	varchar(70),
+        vmwaretopologyinfo	varchar(1023),
+        vmwarestate	varchar(255),
         
     constraint pk_assetID primary key (id),
 	constraint fk_nodeID5 foreign key (nodeID) references node ON DELETE CASCADE
@@ -1837,18 +1848,21 @@ create index iprouteinterface_rnh_idx on iprouteinterface(routenexthop);
 --#                      'X' - Admin Down
 --#  linkTypeId        : An Integer (corresponding at iftype for cables links) indicating the type  
 --#  lastPollTime      : The last time when this information was retrived
+--#  source            : The source of the data link.  Defaults to 'linkd', but can be different
+--#                      when created from the ReST interface.
 --#
 --########################################################################
 
 create table datalinkinterface (
     id               integer default nextval('opennmsNxtId') not null,
-    nodeid	         integer not null,
+    nodeid           integer not null,
     ifindex          integer not null,
     nodeparentid     integer not null,
-	parentIfIndex    integer not null,
-    status	         char(1) not null,
+    parentIfIndex    integer not null,
+    status           char(1) not null,
     linkTypeId       integer,
     lastPollTime     timestamp not null,
+    source           varchar(64) not null default 'linkd',
 
     constraint pk_datalinkinterface primary key (id),
     constraint fk_ia_nodeID5 foreign key (nodeid) references node on delete cascade,
@@ -2384,4 +2398,16 @@ insert into qrtz_locks values('STATE_ACCESS');
 insert into qrtz_locks values('MISFIRE_ACCESS');
 
 --# End Quartz persistence tables
+
+create table accesspoints (
+  physaddr varchar(32) NOT NULL UNIQUE,
+  nodeid integer NOT NULL,
+  pollingpackage varchar(256) NOT NULL,
+  status integer,
+  controlleripaddr varchar(40),
+
+  CONSTRAINT pk_physaddr primary key (physaddr)
+);
+
+create index accesspoint_package_idx on accesspoints(pollingpackage);
 
