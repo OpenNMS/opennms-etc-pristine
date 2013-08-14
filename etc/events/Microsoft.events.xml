@@ -1,4 +1,4 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of Microsoft Traps -->
 <!-- Start of Microsoft MIB: LanMgr-Alerts-II-MIB -->
 <event>

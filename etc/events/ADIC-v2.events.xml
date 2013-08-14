@@ -1,6 +1,6 @@
 <!-- Start of ADIC traps -->
 <!-- Start of auto generated data from MIB: ADICLIBMIB-v2 -->
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <event>
  <mask>
   <maskelement>
