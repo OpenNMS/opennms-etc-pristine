@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
 <!-- Start of auto generated data from MIB: RSASPPALT-MIB -->
   <event>
     <mask>
