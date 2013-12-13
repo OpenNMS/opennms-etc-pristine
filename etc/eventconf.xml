@@ -1534,6 +1534,19 @@
   </event> 
 
   <event>
+    <uei>uei.opennms.org/remote/locationMonitorConnectionAddressChanged</uei>
+    <event-label>OpenNMS defined remote poller event: A remote poller's connection IP address has changed</event-label>
+    <descr>
+      This event is sent when a remote poller's connection IP address has changed.
+    </descr>
+    <logmsg dest='logndisplay'>
+      The connection IP address for remote poller %parm[locationMonitorId]% in location %parm[location]% has changed
+      from %parm[oldConnectionHostAddress]% to %parm[newConnectionHostAddress]%.
+    </logmsg>
+    <severity>Warning</severity>
+  </event> 
+
+  <event>
     <uei>uei.opennms.org/correlation/remote/wideSpreadOutage</uei>
     <event-label>OpenNMS defined correlator event: A widespread outage has been detected</event-label>
     <descr>
@@ -1911,15 +1924,22 @@
      <uei>uei.opennms.org/internal/linkd/nodeLinkDiscoveryStarted</uei>
      <event-label>OpenNMS-defined Linkd Event: nodeLinkDiscoveryStarted</event-label>
      <descr>&lt;p&gt;The Linkd process has started its attempt to discover links for this node.&lt;/p&gt;</descr>
-     <logmsg dest="logndisplay">&lt;p&gt;Linkd link discovery started.&lt;/p&gt;</logmsg>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% started.&lt;/p&gt;</logmsg>
      <severity>Normal</severity>
   </event>
   <event>
      <uei>uei.opennms.org/internal/linkd/nodeLinkDiscoveryCompleted</uei>
      <event-label>OpenNMS-defined Linkd Event: nodeLinkDiscoveryCompleted</event-label>
      <descr>&lt;p&gt;The Linkd process has finished its attempt to discover links for this node.&lt;/p&gt;</descr>
-     <logmsg dest="logndisplay">&lt;p&gt;Linkd link discovery completed.&lt;/p&gt;</logmsg>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% completed.&lt;/p&gt;</logmsg>
      <severity>Normal</severity>
+  </event>
+  <event>
+     <uei>uei.opennms.org/internal/linkd/nodeLinkDiscoverySuspended</uei>
+     <event-label>OpenNMS-defined Linkd Event: nodeLinkDiscoverySuspended</event-label>
+     <descr>&lt;p&gt;The Linkd process suspended its attempt to discover links for this node.&lt;/p&gt;</descr>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% suspended.&lt;/p&gt;</logmsg>
+     <severity>Warning</severity>
   </event>
 
 
@@ -2000,6 +2020,7 @@
   <event-file>events/DellStorageManagement.events.xml</event-file>
   <event-file>events/DISMAN.events.xml</event-file>
   <event-file>events/DISMAN-PING.events.xml</event-file>
+  <event-file>events/Dlink.events.xml</event-file>
   <event-file>events/DMTF.events.xml</event-file>
   <event-file>events/DPS.events.xml</event-file>
   <event-file>events/DS1.events.xml</event-file>
@@ -2012,6 +2033,7 @@
   <event-file>events/Fore.events.xml</event-file>
   <event-file>events/Fortinet.events.xml</event-file>
   <event-file>events/FoundryNetworks.events.xml</event-file>
+  <event-file>events/FoundryNetworks2.events.xml</event-file>
   <event-file>events/FujitsuSiemens.events.xml</event-file>
   <event-file>events/GGSN.events.xml</event-file>
   <event-file>events/Groupwise.events.xml</event-file>
