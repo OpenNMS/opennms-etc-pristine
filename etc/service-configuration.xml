@@ -154,7 +154,7 @@ maintained
   </service>
   <service>
     <name>OpenNMS:Name=PollerBackEnd</name>
-    <class-name>org.opennms.netmgt.poller.jmx.RemotePollerBackEnd</class-name>
+    <class-name>org.opennms.netmgt.poller.remote.jmx.RemotePollerBackEnd</class-name>
     <invoke at="start" pass="0" method="init"/>
     <invoke at="start" pass="1" method="start"/>
     <invoke at="status" pass="0" method="status"/>
@@ -171,6 +171,14 @@ maintained
   </service>
 -->
   <service>
+    <name>OpenNMS:Name=EnhancedLinkd</name>
+    <class-name>org.opennms.netmgt.enlinkd.jmx.EnhancedLinkd</class-name>
+    <invoke at="start" pass="0" method="init"/>
+    <invoke at="start" pass="1" method="start"/>
+    <invoke at="status" pass="0" method="status"/>
+    <invoke at="stop" pass="0" method="stop"/>
+  </service>
+  <service>
     <name>OpenNMS:Name=Ticketer</name>
     <class-name>org.opennms.netmgt.ticketd.jmx.TroubleTicketer</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -186,16 +194,6 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <!--
-  <service>
-    <name>OpenNMS:Name=Threshd</name>
-    <class-name>org.opennms.netmgt.threshd.jmx.Threshd</class-name>
-    <invoke at="start" pass="0" method="init"/>
-    <invoke at="start" pass="1" method="start"/>
-    <invoke at="status" pass="0" method="status"/>
-    <invoke at="stop" pass="0" method="stop"/>
-  </service>
-  -->
   <service>
     <name>OpenNMS:Name=Discovery</name>
     <class-name>org.opennms.netmgt.discovery.jmx.Discovery</class-name>
@@ -241,7 +239,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Provisiond</value>
+      <value type="java.lang.String">provisiond</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -257,7 +255,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Reportd</value>
+      <value type="java.lang.String">reportd</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -274,7 +272,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Alarmd</value>
+      <value type="java.lang.String">alarmd</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -290,7 +288,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Ackd</value>
+      <value type="java.lang.String">ackd</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -313,14 +311,6 @@ maintained
   <service>
     <name>OpenNMS:Name=Linkd</name>
     <class-name>org.opennms.netmgt.linkd.jmx.Linkd</class-name>
-    <invoke at="start" pass="0" method="init"/>
-    <invoke at="start" pass="1" method="start"/>
-    <invoke at="status" pass="0" method="status"/>
-    <invoke at="stop" pass="0" method="stop"/>
-  </service>
-  <service>
-    <name>OpenNMS:Name=Importer</name>
-    <class-name>org.opennms.netmgt.importer.jmx.ImporterService</class-name>
     <invoke at="start" pass="0" method="init"/>
     <invoke at="start" pass="1" method="start"/>
     <invoke at="status" pass="0" method="status"/>
