@@ -5,7 +5,7 @@ After=postgresql.target
 [Service]
 Type=forking
 User=root
-PIDFile=/opt/opennms/logs/daemon/opennms.pid
+PIDFile=${install.daemonlogs.dir}/opennms.pid
 ExecStart=/opt/opennms/bin/opennms -Q start
 ExecStop=/opt/opennms/bin/opennms stop
 
