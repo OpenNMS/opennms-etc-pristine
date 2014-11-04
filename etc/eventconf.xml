@@ -392,6 +392,10 @@
       &lt;p&gt;The administrator has disabled notifications on
       OpenNMS. No pages or emails will be sent until notifications
       are reenabled.&lt;/p&gt;
+      &lt;p&gt;
+      Responsible user: &lt;em&gt;%parm[remoteUser]%&lt;/em&gt;
+      at &lt;em&gt;%parm[remoteHost]% (%parm[remoteAddr]%)&lt;/em&gt;
+      &lt;/p&gt;
     </descr>
     <logmsg dest='logndisplay'>
       &lt;p&gt;Notifications have been disabled.&lt;/p&gt;
@@ -406,6 +410,10 @@
       &lt;p&gt;The administrator has enabled notifications on
       OpenNMS. Pages and/or emails will be sent based upon receipt
       of important events.&lt;/p&gt;
+      &lt;p&gt;
+      Responsible user: &lt;em&gt;%parm[remoteUser]%&lt;/em&gt;
+      at &lt;em&gt;%parm[remoteHost]% (%parm[remoteAddr]%)&lt;/em&gt;
+      &lt;/p&gt;
     </descr>
     <logmsg dest='logndisplay'>
       &lt;p&gt;Notifications have been enabled.&lt;/p&gt;
@@ -1534,6 +1542,19 @@
   </event> 
 
   <event>
+    <uei>uei.opennms.org/remote/locationMonitorConnectionAddressChanged</uei>
+    <event-label>OpenNMS defined remote poller event: A remote poller's connection IP address has changed</event-label>
+    <descr>
+      This event is sent when a remote poller's connection IP address has changed.
+    </descr>
+    <logmsg dest='logndisplay'>
+      The connection IP address for remote poller %parm[locationMonitorId]% in location %parm[location]% has changed
+      from %parm[oldConnectionHostAddress]% to %parm[newConnectionHostAddress]%.
+    </logmsg>
+    <severity>Warning</severity>
+  </event> 
+
+  <event>
     <uei>uei.opennms.org/correlation/remote/wideSpreadOutage</uei>
     <event-label>OpenNMS defined correlator event: A widespread outage has been detected</event-label>
     <descr>
@@ -1911,17 +1932,84 @@
      <uei>uei.opennms.org/internal/linkd/nodeLinkDiscoveryStarted</uei>
      <event-label>OpenNMS-defined Linkd Event: nodeLinkDiscoveryStarted</event-label>
      <descr>&lt;p&gt;The Linkd process has started its attempt to discover links for this node.&lt;/p&gt;</descr>
-     <logmsg dest="logndisplay">&lt;p&gt;Linkd link discovery started.&lt;/p&gt;</logmsg>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% started.&lt;/p&gt;</logmsg>
      <severity>Normal</severity>
   </event>
   <event>
      <uei>uei.opennms.org/internal/linkd/nodeLinkDiscoveryCompleted</uei>
      <event-label>OpenNMS-defined Linkd Event: nodeLinkDiscoveryCompleted</event-label>
      <descr>&lt;p&gt;The Linkd process has finished its attempt to discover links for this node.&lt;/p&gt;</descr>
-     <logmsg dest="logndisplay">&lt;p&gt;Linkd link discovery completed.&lt;/p&gt;</logmsg>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% completed.&lt;/p&gt;</logmsg>
      <severity>Normal</severity>
   </event>
-
+  <event>
+     <uei>uei.opennms.org/internal/linkd/nodeLinkDiscoverySuspended</uei>
+     <event-label>OpenNMS-defined Linkd Event: nodeLinkDiscoverySuspended</event-label>
+     <descr>&lt;p&gt;The Linkd process suspended its attempt to discover links for this node.&lt;/p&gt;</descr>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% suspended.&lt;/p&gt;</logmsg>
+     <severity>Warning</severity>
+  </event>
+  <event>
+     <uei>uei.opennms.org/internal/linkd/linkDiscoveryStarted</uei>
+     <event-label>OpenNMS-defined Linkd Event: linkDiscoveryStarted</event-label>
+     <descr>&lt;p&gt;The Linkd process has started its attempt to discover links.&lt;/p&gt;</descr>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% started.&lt;/p&gt;</logmsg>
+     <severity>Normal</severity>
+  </event>
+  <event>
+     <uei>uei.opennms.org/internal/linkd/linkDiscoveryCompleted</uei>
+     <event-label>OpenNMS-defined Linkd Event: linkDiscoveryCompleted</event-label>
+     <descr>&lt;p&gt;The Linkd process has finished its attempt to discover links.&lt;/p&gt;</descr>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% completed.&lt;/p&gt;</logmsg>
+     <severity>Normal</severity>
+  </event>
+  <event>
+     <uei>uei.opennms.org/internal/linkd/linkDiscoverySuspended</uei>
+     <event-label>OpenNMS-defined Linkd Event: linkDiscoverySuspended</event-label>
+     <descr>&lt;p&gt;The Linkd process suspended its attempt to discover links.&lt;/p&gt;</descr>
+     <logmsg dest="logndisplay">&lt;p&gt;Linkd %parm[runnable]% suspended.&lt;/p&gt;</logmsg>
+     <severity>Warning</severity>
+  </event>
+  <event>
+    <uei>uei.opennms.org/internal/discovery/hardwareInventoryFailed</uei>
+    <event-label>OpenNMS-defined internal event: reload specified daemon configuration failed</event-label>
+    <descr>
+      &lt;p&gt;The hardware discovery on node %nodelabel% (IP address %interface%) has failed.&lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>
+      &lt;p&gt;The hardware discovery on node %nodelabel% (IP address %interface%) has failed.&lt;/p&gt;
+      &lt;p&gt;Reason: %parm[reason]%.&lt;/p&gt;
+    </logmsg>
+    <severity>Minor</severity>
+    <!--
+    If there are several equipments that don't support the ENTITY-MIB, this event could be very noisy
+    in terms of alarms, considering that it can be triggered every time the node is updated.
+    For this reason, the alarm-data should not be used.
+    -->
+    <!-- 
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="1" auto-clean="true" />
+    -->
+  </event>
+  <event>
+    <uei>uei.opennms.org/internal/discovery/hardwareInventorySuccessful</uei>
+    <event-label>OpenNMS-defined internal event: hardware discovery successful</event-label>
+    <descr>
+      &lt;p&gt;The hardware discovery on node %nodelabel% (IP address %interface%) has been completed successfuly.&lt;/p&gt;
+    </descr>
+    <logmsg dest='logndisplay'>
+      &lt;p&gt;The hardware discovery on node %nodelabel% (IP address %interface%) has been completed successfuly.&lt;/p&gt;
+    </logmsg>
+    <severity>Normal</severity>
+    <!--
+    If there are several equipments that don't support the ENTITY-MIB, this event could be very noisy
+    in terms of alarms, considering that it can be triggered every time the node is updated.
+    For this reason, the alarm-data should not be used.
+    -->
+    <!--
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%" alarm-type="2" auto-clean="false"
+                clear-key="uei.opennms.org/internal/discovery/hardwareInventoryFailed:%dpname%:%nodeid%:%interface%"/>
+    -->
+  </event>
 
   <event-file>events/Translator.default.events.xml</event-file>
   <event-file>events/Rancid.events.xml</event-file>
@@ -1972,6 +2060,7 @@
   <event-file>events/Bluecat.events.xml</event-file>
   <event-file>events/BlueCoat.events.xml</event-file>
   <event-file>events/Brocade.events.xml</event-file>
+  <event-file>events/Broadcom-BASPTrap.events.xml</event-file>
   <event-file>events/CA.ArcServe.events.xml</event-file>
   <event-file>events/Cisco.airespace.xml</event-file>
   <event-file>events/Cisco.CIDS.events.xml</event-file>
@@ -1987,18 +2076,21 @@
   <event-file>events/CPQHPIM.events.xml</event-file>
   <event-file>events/Clarent.events.xml</event-file>
   <event-file>events/Clarinet.events.xml</event-file>
+  <event-file>events/Clavister.events.xml</event-file>
   <event-file>events/Compuware.events.xml</event-file>
   <event-file>events/Cricket.events.xml</event-file>
   <event-file>events/CRITAPP.events.xml</event-file>
   <event-file>events/Crossbeam.events.xml</event-file>
-  <event-file>events/Dell.events.xml</event-file>
+  <event-file>events/Dell-Asf.events.xml</event-file>
   <event-file>events/DellArrayManager.events.xml</event-file>
   <event-file>events/Dell-DRAC2.events.xml</event-file>
+  <event-file>events/Dell-ITassist.events.xml</event-file>
   <event-file>events/DellOpenManage.events.xml</event-file>
   <event-file>events/DellRacHost.events.xml</event-file>
   <event-file>events/DellStorageManagement.events.xml</event-file>
   <event-file>events/DISMAN.events.xml</event-file>
   <event-file>events/DISMAN-PING.events.xml</event-file>
+  <event-file>events/Dlink.events.xml</event-file>
   <event-file>events/DMTF.events.xml</event-file>
   <event-file>events/DPS.events.xml</event-file>
   <event-file>events/DS1.events.xml</event-file>
@@ -2009,18 +2101,28 @@
   <event-file>events/F5.events.xml</event-file>
   <event-file>events/fcmgmt.events.xml</event-file>
   <event-file>events/Fore.events.xml</event-file>
-  <event-file>events/Fortinet.events.xml</event-file>
+  <event-file>events/Fortinet-FortiCore-v52.events.xml</event-file>
+  <event-file>events/Fortinet-FortiGate-v52.events.xml</event-file>
+  <event-file>events/Fortinet-FortiMail.events.xml</event-file>
+  <event-file>events/Fortinet-FortiManager-Analyzer.events.xml</event-file>
+  <event-file>events/Fortinet-FortiRecorder.events.xml</event-file>
+  <event-file>events/Fortinet-FortiVoice.events.xml</event-file>
+  <event-file>events/Fortinet-FortiCore-v4.events.xml</event-file>
+  <event-file>events/Fortinet-FortiGate-v4.events.xml</event-file>
   <event-file>events/FoundryNetworks.events.xml</event-file>
+  <event-file>events/FoundryNetworks2.events.xml</event-file>
   <event-file>events/FujitsuSiemens.events.xml</event-file>
   <event-file>events/GGSN.events.xml</event-file>
   <event-file>events/Groupwise.events.xml</event-file>
   <event-file>events/HP.events.xml</event-file>
+  <event-file>events/HWg.Poseidon.events.xml</event-file>
   <event-file>events/Hyperic.events.xml</event-file>
   <event-file>events/IBM.events.xml</event-file>
   <event-file>events/IBM-UMS.events.xml</event-file>
   <event-file>events/IBMRSA2.events.xml</event-file>
   <event-file>events/IEEE802dot11.events.xml</event-file>
   <event-file>events/Intel.events.xml</event-file>
+  <event-file>events/INTEL-LAN-ADAPTERS-MIB.events.xml</event-file>
   <event-file>events/InteractiveIntelligence.events.xml</event-file>
   <event-file>events/IronPort.events.xml</event-file>
   <event-file>events/ISS.events.xml</event-file>
@@ -2031,6 +2133,7 @@
   <event-file>events/Junos.events.xml</event-file>
   <event-file>events/JunosV1.events.xml</event-file>
   <event-file>events/K5Systems.events.xml</event-file>
+  <event-file>events/Konica.events.xml</event-file>
   <event-file>events/LLDP.events.xml</event-file>
   <event-file>events/Liebert.events.xml</event-file>
   <event-file>events/Liebert.600SM.events.xml</event-file>
@@ -2093,6 +2196,7 @@
   <event-file>events/SystemEdge.events.xml</event-file>
   <event-file>events/SwissQual.events.xml</event-file>
   <event-file>events/TransPath.events.xml</event-file>
+  <event-file>events/Trendmicro.events.xml</event-file>
   <event-file>events/TrippLite.events.xml</event-file>
   <event-file>events/TUT.events.xml</event-file>
   <event-file>events/UPS-MIB.events.xml</event-file>
@@ -2108,6 +2212,7 @@
   <event-file>events/Xerox-V2.events.xml</event-file>
   <event-file>events/Xerox.events.xml</event-file>
 
+  <event-file>events/topology-status.events.xml</event-file>
   <event-file>events/ncs-component.events.xml</event-file>
 
   <event-file>events/asset-management.events.xml</event-file>
