@@ -6,7 +6,7 @@ will need to come up last so that none of the event topic subcribers loose any e
 When splitting services to run on mutiple VMs, the order of the services should be
 maintained
 -->
-<service-configuration>
+<service-configuration xmlns="http://xmlns.opennms.org/xsd/config/vmmgr">
   <service>
     <name>:Name=XSLTProcessor</name>
     <class-name>mx4j.tools.adaptor.http.XSLTProcessor</class-name>
@@ -93,16 +93,14 @@ maintained
   </service>
   <!--  Dhcpd is now distributed separately. You will need to ensure
         it is installed before you enable it here. -->
-  <!-- 
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Dhcpd</name>
     <class-name>org.opennms.netmgt.dhcpd.jmx.Dhcpd</class-name>
     <invoke at="start" pass="1" method="start"/>
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
- -->
-   <service>
+  <service>
     <name>OpenNMS:Name=Actiond</name>
     <class-name>org.opennms.netmgt.actiond.jmx.Actiond</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -110,8 +108,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <!--
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Capsd</name>
     <class-name>org.opennms.netmgt.capsd.jmx.Capsd</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -119,7 +116,6 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  -->
   <service>
     <name>OpenNMS:Name=Notifd</name>
     <class-name>org.opennms.netmgt.notifd.jmx.Notifd</class-name>
@@ -154,14 +150,13 @@ maintained
   </service>
   <service>
     <name>OpenNMS:Name=PollerBackEnd</name>
-    <class-name>org.opennms.netmgt.poller.jmx.RemotePollerBackEnd</class-name>
+    <class-name>org.opennms.netmgt.poller.remote.jmx.RemotePollerBackEnd</class-name>
     <invoke at="start" pass="0" method="init"/>
     <invoke at="start" pass="1" method="start"/>
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-<!--
-  <service>
+  <service enabled="false">
      <name>OpenNMS:Name=SnmpPoller</name>
      <class-name>org.opennms.netmgt.snmpinterfacepoller.jmx.SnmpPollerd</class-name>
      <invoke at="start" pass="0" method="init"/>
@@ -169,7 +164,14 @@ maintained
      <invoke at="status" pass="0" method="status"/>
      <invoke at="stop" pass="0" method="stop"/>
   </service>
--->
+  <service>
+    <name>OpenNMS:Name=EnhancedLinkd</name>
+    <class-name>org.opennms.netmgt.enlinkd.jmx.EnhancedLinkd</class-name>
+    <invoke at="start" pass="0" method="init"/>
+    <invoke at="start" pass="1" method="start"/>
+    <invoke at="status" pass="0" method="status"/>
+    <invoke at="stop" pass="0" method="stop"/>
+  </service>
   <service>
     <name>OpenNMS:Name=Ticketer</name>
     <class-name>org.opennms.netmgt.ticketd.jmx.TroubleTicketer</class-name>
@@ -186,16 +188,6 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <!--
-  <service>
-    <name>OpenNMS:Name=Threshd</name>
-    <class-name>org.opennms.netmgt.threshd.jmx.Threshd</class-name>
-    <invoke at="start" pass="0" method="init"/>
-    <invoke at="start" pass="1" method="start"/>
-    <invoke at="status" pass="0" method="status"/>
-    <invoke at="stop" pass="0" method="stop"/>
-  </service>
-  -->
   <service>
     <name>OpenNMS:Name=Discovery</name>
     <class-name>org.opennms.netmgt.discovery.jmx.Discovery</class-name>
@@ -241,7 +233,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Provisiond</value>
+      <value type="java.lang.String">provisiond</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -257,7 +249,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Reportd</value>
+      <value type="java.lang.String">reportd</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -268,13 +260,12 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-
   <service>
     <name>OpenNMS:Name=Alarmd</name>
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Alarmd</value>
+      <value type="java.lang.String">alarmd</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -290,7 +281,7 @@ maintained
     <class-name>org.opennms.netmgt.daemon.SimpleSpringContextJmxServiceDaemon</class-name>
     <attribute>
       <name>LoggingPrefix</name>
-      <value type="java.lang.String">Ackd</value>
+      <value type="java.lang.String">ackd</value>
     </attribute>
     <attribute>
       <name>SpringContext</name>
@@ -309,8 +300,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-<!--
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Linkd</name>
     <class-name>org.opennms.netmgt.linkd.jmx.Linkd</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -318,15 +308,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
-    <name>OpenNMS:Name=Importer</name>
-    <class-name>org.opennms.netmgt.importer.jmx.ImporterService</class-name>
-    <invoke at="start" pass="0" method="init"/>
-    <invoke at="start" pass="1" method="start"/>
-    <invoke at="status" pass="0" method="status"/>
-    <invoke at="stop" pass="0" method="stop"/>
-  </service>
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Correlator</name>
     <class-name>org.opennms.netmgt.correlation.jmx.Correlator</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -334,7 +316,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Tl1d</name>
     <class-name>org.opennms.netmgt.tl1d.jmx.Tl1d</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -342,7 +324,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Syslogd</name>
     <class-name>org.opennms.netmgt.syslogd.jmx.Syslogd</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -350,7 +332,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=Xmlrpcd</name>
     <class-name>org.opennms.netmgt.xmlrpcd.jmx.Xmlrpcd</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -358,7 +340,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=XmlrpcProvisioner</name>
     <class-name>org.opennms.netmgt.xmlrpcd.jmx.Provisioner</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -366,7 +348,7 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
+  <service enabled="false">
     <name>OpenNMS:Name=AsteriskGateway</name>
     <class-name>org.opennms.netmgt.asterisk.agi.jmx.AsteriskGateway</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -374,7 +356,9 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
-  <service>
+  <!--  AccessPointMonitor is now distributed separately. You will need to ensure
+        it is installed before you enable it here. -->
+  <service enabled="false">
     <name>OpenNMS:Name=AccessPointMonitor</name>
     <class-name>org.opennms.netmgt.accesspointmonitor.jmx.AccessPointMonitor</class-name>
     <invoke at="start" pass="0" method="init"/>
@@ -382,5 +366,4 @@ maintained
     <invoke at="status" pass="0" method="status"/>
     <invoke at="stop" pass="0" method="stop"/>
   </service>
--->
 </service-configuration>
