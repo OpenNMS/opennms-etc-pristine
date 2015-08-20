@@ -108,6 +108,9 @@
     <logger name="org.apache.coyote" additivity="false" level="WARN">
       <appender-ref ref="RoutingAppender"/>
     </logger>
+    <logger name="org.apache.mina.filter.logging" additivity="false" level="WARN">
+      <appender-ref ref="RoutingAppender"/>
+    </logger>
     <logger name="org.asteriskjava" additivity="false" level="WARN">
       <appender-ref ref="RoutingAppender"/>
     </logger>
@@ -199,7 +202,6 @@
         <KeyValuePair key="trapd"                value="WARN" />
         <KeyValuePair key="vacuumd"              value="WARN" />
         <KeyValuePair key="web"                  value="WARN" />
-        <KeyValuePair key="xmlrpcd"              value="WARN" />
       </DynamicThresholdFilter>
 
       <appender-ref ref="RoutingAppender"/>
