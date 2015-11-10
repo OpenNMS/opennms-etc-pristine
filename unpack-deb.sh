@@ -14,7 +14,11 @@ pushd $ME/work >/dev/null 2>&1 || exit 1
 	rm -rf $ME/work/*
 	for file in "$@"; do
 		ar x "$file"
-		tar -xzf data.tar.gz
+		if [ -e data.tar.gz ]; then
+			tar -xzf data.tar.gz
+		elif [ -e data.tar.xz ]; then
+			tar -xJf data.tar.xz
+		fi
 	done
 	if [ -d "$ME/work/etc/opennms/" ]; then
 		rsync -avr --delete $ME/work/etc/opennms/ $ME/etc/
