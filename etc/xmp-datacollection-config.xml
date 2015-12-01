@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<xmp-datacollection-config rrdRepository="/var/lib/opennms/share/rrd/snmp/">
+<xmp-datacollection-config rrdRepository="/var/lib/opennms/rrd/snmp/">
 
  <xmp-collection name="default" xmpStorageFlag="select">
 
