@@ -146,7 +146,7 @@
     </logger>
 
     <!-- Allow any message to pass through the root logger -->
-    <root level="WARN">
+    <root level="DEBUG">
       <!-- 
         Each category/log can be set to one of TRACE, INFO, DEBUG, WARN, ERROR
 
