@@ -199,6 +199,7 @@
         <KeyValuePair key="scriptd"              value="WARN" />
         <KeyValuePair key="snmp-poller"          value="WARN" />
         <KeyValuePair key="syslogd"              value="WARN" />
+        <KeyValuePair key="telemetryd"           value="WARN" />
         <KeyValuePair key="threshd"              value="WARN" />
         <KeyValuePair key="tl1d"                 value="WARN" />
         <KeyValuePair key="trapd"                value="WARN" />
