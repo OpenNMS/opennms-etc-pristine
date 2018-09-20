@@ -188,6 +188,7 @@
         <KeyValuePair key="enlinkd"              value="WARN" />
         <KeyValuePair key="manager"              value="DEBUG" />
         <KeyValuePair key="map"                  value="WARN" />
+        <KeyValuePair key="minion"               value="WARN" />
         <KeyValuePair key="notifd"               value="WARN" />
         <KeyValuePair key="oss-qosd"             value="WARN" />
         <KeyValuePair key="oss-qosdrx"           value="WARN" />
