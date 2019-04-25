@@ -178,7 +178,6 @@
         <KeyValuePair key="bsmd"                 value="WARN" />
         <KeyValuePair key="collectd"             value="WARN" />
         <KeyValuePair key="correlator"           value="WARN" />
-        <KeyValuePair key="dhcpd"                value="WARN" />
         <KeyValuePair key="discovery"            value="WARN" />
         <KeyValuePair key="eventd"               value="WARN" />
         <KeyValuePair key="event-translator"     value="WARN" />
