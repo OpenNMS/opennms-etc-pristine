@@ -23,6 +23,10 @@
          </mbean>
          <mbean name="OpenNMS Pollerd" objectname="OpenNMS:Name=Pollerd">
             <attrib name="NumPolls" alias="ONMSPollCount" type="counter"/>
+            <attrib name="NumPoolThreads" alias="ONMSPollerPoolThrd" type="gauge"/>
+            <attrib name="CorePoolThreads" alias="ONMSPollerPoolCore" type="gauge"/>
+            <attrib name="MaxPoolThreads" alias="ONMSPollerPoolMax" type="gauge"/>
+            <attrib name="PeakPoolThreads" alias="ONMSPollerPoolPeak" type="gauge"/>
             <attrib name="ActiveThreads" alias="ONMSPollerThreadAct" type="gauge"/>
             <attrib name="TasksTotal" alias="ONMSPollerTasksTot" type="counter"/>
             <attrib name="TasksCompleted" alias="ONMSPollerTasksCpt" type="counter"/>
@@ -40,6 +44,7 @@
          <mbean name="OpenNMS Collectd" objectname="OpenNMS:Name=Collectd">
             <attrib name="ActiveThreads" alias="ONMSCollectThrdAct" type="gauge"/>
             <attrib name="NumPoolThreads" alias="ONMSCollectPoolThrd" type="gauge"/>
+            <attrib name="CorePoolThreads" alias="ONMSCollectPoolCore" type="gauge"/>
             <attrib name="MaxPoolThreads" alias="ONMSCollectPoolMax" type="gauge"/>
             <attrib name="PeakPoolThreads" alias="ONMSCollectPoolPeak" type="gauge"/>
             <attrib name="TasksTotal" alias="ONMSCollectTasksTot" type="counter"/>
@@ -362,7 +367,7 @@
             <attrib name="OneMinuteRate" alias="FlowLogPerst1m" type="gauge"/>
             <attrib name="FiveMinuteRate" alias="FlowLogPerst5m" type="gauge"/>
          </mbean>
-         <mbean name="org.opennms.netmgt.telemetry.adapters.netflow.packetsPerLog" objectname="org.opennms.netmgt.telemetry.adapters.netflow:name=packetsPerLog">
+         <mbean name="org.opennms.netmgt.telemetry.protocols.packetsPerLog" resource-type="netflow" objectname="org.opennms.netmgt.telemetry.protocols.*:name=packetsPerLog">
             <attrib name="50thPercentile" alias="FlowPktsPerLog50" type="gauge"/>
             <attrib name="75thPercentile" alias="FlowPktsPerLog75" type="gauge"/>
             <attrib name="95thPercentile" alias="FlowPktsPerLog95" type="gauge"/>
@@ -371,7 +376,7 @@
             <attrib name="999thPercentile" alias="FlowPktsPerLog999" type="gauge"/>
             <attrib name="Count" alias="FlowPktsPerLogCnt" type="counter"/>
          </mbean>
-         <mbean name="org.opennms.netmgt.telemetry.adapters.netflow.logParsing" objectname="org.opennms.netmgt.telemetry.adapters.netflow:name=logParsing">
+         <mbean name="org.opennms.netmgt.telemetry.protocols.logParsing" resource-type="netflow" objectname="org.opennms.netmgt.telemetry.protocols.*:name=logParsing">
             <attrib name="50thPercentile" alias="FlowLogParse50" type="gauge"/>
             <attrib name="75thPercentile" alias="FlowLogParse75" type="gauge"/>
             <attrib name="95thPercentile" alias="FlowLogParse95" type="gauge"/>
