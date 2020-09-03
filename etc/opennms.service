@@ -8,11 +8,11 @@ After=postgresql.service postgresql-10.service postgresql-11.service postgresql-
 User=root
 Environment="OPENNMS_HOME=/usr/share/opennms"
 
-Type=simple
+Type=forking
 PIDFile=/var/run/opennms.pid
 
-ExecStart=/etc/init.d/opennms -f start
-ExecStop=/etc/init.d/opennms stop
+ExecStart=/usr/share/opennms/bin/opennms -s start
+ExecStop=/usr/share/opennms/bin/opennms stop
 
 [Install]
 WantedBy=multi-user.target
