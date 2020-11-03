@@ -192,6 +192,7 @@
         <KeyValuePair key="oss-qosd"             value="WARN" />
         <KeyValuePair key="oss-qosdrx"           value="WARN" />
         <KeyValuePair key="passive"              value="WARN" />
+        <KeyValuePair key="perspectivepollerd"   value="WARN" />
         <KeyValuePair key="poller"               value="WARN" />
         <KeyValuePair key="provisiond"           value="WARN" />
         <KeyValuePair key="queued"               value="WARN" />

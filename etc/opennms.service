@@ -2,7 +2,7 @@
 Description=OpenNMS server
 Wants=postgresql.service
 Requires=network.target network-online.target
-After=postgresql.service postgresql-10.service postgresql-11.service postgresql-12.service network.target network-online.target
+After=postgresql.service postgresql-10.service postgresql-11.service postgresql-12.service postgresql-13.service network.target network-online.target
 
 [Service]
 User=root
