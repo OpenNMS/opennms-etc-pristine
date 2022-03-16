@@ -12,8 +12,8 @@ Type=forking
 RuntimeDirectory=opennms
 PIDFile=/opt/opennms/logs/opennms.pid
 
-ExecStart=/etc/init.d/opennms -s start
-ExecStop=/etc/init.d/opennms stop
+ExecStart=/opt/opennms/bin/opennms -s start
+ExecStop=/opt/opennms/bin/opennms stop
 
 [Install]
 WantedBy=multi-user.target
