@@ -10,10 +10,13 @@ Environment="OPENNMS_HOME=/usr/share/opennms"
 
 Type=forking
 RuntimeDirectory=opennms
-PIDFile=/run/opennms/opennms.pid
+RuntimeDirectoryMode=0775
+PIDFile=/var/run/opennms/opennms.pid
 
 ExecStart=/usr/share/opennms/bin/opennms -s start
-ExecStop=/usr/share/opennms/bin/opennms stop
+# cosmetic: sleep just long enough that Systemd doesn't complain about not seeing the PID file yet
+ExecStartPost=/bin/sleep 3
+ExecStop=/usr/share/opennms/bin/opennms -s stop
 
 [Install]
 WantedBy=multi-user.target
