@@ -1,4 +1,4 @@
-<xml-datacollection-config rrdRepository="/var/lib/opennms/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/xml-datacollection">
+<xml-datacollection-config rrdRepository="/opt/opennms/share/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/xml-datacollection">
 
     <!-- 
     The following package will collect all available 3GPP Data from a network element.

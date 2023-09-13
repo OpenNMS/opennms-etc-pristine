@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<tca-datacollection-config rrdRepository="/var/lib/opennms/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/tca-datacollection">
+<tca-datacollection-config rrdRepository="/opt/opennms/share/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/tca-datacollection">
 
     <!-- IMPORTANT: To enable this collector you should add a service definition inside any package on
                     collectd-configuration.xml, like this:

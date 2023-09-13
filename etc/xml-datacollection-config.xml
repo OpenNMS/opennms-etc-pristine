@@ -1,4 +1,4 @@
-<xml-datacollection-config rrdRepository="/var/lib/opennms/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/xml-datacollection">
+<xml-datacollection-config rrdRepository="/opt/opennms/share/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/xml-datacollection">
     <!--
     To understand how the XML Collector works, and how to configure it, please check the following link:
     http://www.opennms.org/wiki/XML_Collector

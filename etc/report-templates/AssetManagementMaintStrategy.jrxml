@@ -153,7 +153,7 @@ ORDER BY
 	</subDataset>
 	<parameter name="ONMS_REPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[The directory where all reports can be found]]></parameterDescription>
-		<defaultValueExpression><![CDATA["/usr/share/opennms/etc/report-templates"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/opennms/etc/report-templates"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="DATE_FORMAT" class="java.lang.String">
 		<parameterDescription><![CDATA[Your date format in maintenance contracts. Default is "YYYY-MM-DD"]]></parameterDescription>

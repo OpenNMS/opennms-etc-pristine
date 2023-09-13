@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<vmware-datacollection-config rrdRepository="/var/lib/opennms/rrd/snmp/">
+<vmware-datacollection-config rrdRepository="/opt/opennms/share/rrd/snmp/">
 
     <!--
     Configuration file generated for:
