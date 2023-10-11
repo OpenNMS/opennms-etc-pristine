@@ -23,5 +23,22 @@
                     class-name="org.postgresql.Driver" 
                     url="jdbc:postgresql://localhost:5432/template1"
                     user-name="postgres"
-                    password="" />
+                    password="">
+    <connection-pool idleTimeout="600"
+                     minPool="0"
+                     maxPool="10"
+                     maxSize="50" />
+  </jdbc-data-source>
+  
+  <jdbc-data-source name="opennms-monitor" 
+                    database-name="postgres" 
+                    class-name="org.postgresql.Driver" 
+                    url="jdbc:postgresql://localhost:5432/postgres"
+                    user-name="postgres"
+                    password="">
+    <connection-pool idleTimeout="600"
+                     minPool="0"
+                     maxPool="10"
+                     maxSize="50" />
+  </jdbc-data-source>
 </datasource-configuration>
