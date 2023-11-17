@@ -23,7 +23,7 @@
          <parameter key="factory" value="PASSWORD_CLEAR"/>
          <parameter key="username" value="cassandra-username"/>
          <parameter key="password" value="cassandra-password"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="beans.storage" value="org.apache.cassandra.db:type=StorageService"/>
          <parameter key="tests.operational" value="storage.OperationMode == 'NORMAL'"/>
          <parameter key="tests.joined" value="storage.Joined"/>
@@ -40,7 +40,7 @@
          <parameter key="factory" value="PASSWORD_CLEAR"/>
          <parameter key="username" value="cassandra-username"/>
          <parameter key="password" value="cassandra-password"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="beans.samples" value="org.apache.cassandra.db:type=ColumnFamilies,keyspace=newts,columnfamily=samples"/>
          <parameter key="tests.samples" value="samples.ColumnFamilyName == 'samples'"/>
          <parameter key="beans.terms" value="org.apache.cassandra.db:type=ColumnFamilies,keyspace=newts,columnfamily=terms"/>
@@ -69,7 +69,7 @@
       <service name="ICMP" interval="300000" user-defined="false" status="on">
          <parameter key="retry" value="2"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="icmp"/>
          <parameter key="ds-name" value="icmp"/>
       </service>
@@ -79,7 +79,7 @@
          <parameter key="port" value="53"/>
          <parameter key="lookup" value="localhost"/>
          <parameter key="fatal-response-codes" value="2,3,5"/><!-- ServFail, NXDomain, Refused -->
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="dns"/>
          <parameter key="ds-name" value="dns"/>
       </service>
@@ -95,7 +95,7 @@
          <parameter key="retry" value="1"/>
          <parameter key="timeout" value="3000"/>
          <parameter key="port" value="25"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="smtp"/>
          <parameter key="ds-name" value="smtp"/>
       </service>
@@ -114,7 +114,7 @@
          <parameter key="timeout" value="3000"/>
          <parameter key="port" value="80"/>
          <parameter key="url" value="/"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="http"/>
          <parameter key="ds-name" value="http"/>
       </service>
@@ -123,7 +123,7 @@
          <parameter key="timeout" value="3000"/>
          <parameter key="port" value="8080"/>
          <parameter key="url" value="/"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="http-8080"/>
          <parameter key="ds-name" value="http-8080"/>
       </service>
@@ -132,7 +132,7 @@
          <parameter key="timeout" value="3000"/>
          <parameter key="port" value="8000"/>
          <parameter key="url" value="/"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="http-8000"/>
          <parameter key="ds-name" value="http-8000"/>
       </service>
@@ -141,7 +141,7 @@
          <parameter key="timeout" value="5000"/>
          <parameter key="port" value="443"/>
          <parameter key="url" value="/"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="https"/>
          <parameter key="ds-name" value="https"/>
       </service>
@@ -153,7 +153,7 @@
       <service name="HypericHQ" interval="300000" user-defined="false" status="on">
          <parameter key="retry" value="1"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="hyperic-hq"/>
          <parameter key="ds-name" value="hyperic-hq"/>
          <parameter key="page-sequence">
@@ -196,7 +196,7 @@
          <parameter key="banner" value="SSH"/>
          <parameter key="port" value="22"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="ssh"/>
          <parameter key="ds-name" value="ssh"/>
       </service>
@@ -209,7 +209,7 @@
          <parameter key="retry" value="1"/>
          <parameter key="port" value="110"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="pop3"/>
          <parameter key="ds-name" value="pop3"/>
       </service>
@@ -219,7 +219,7 @@
          <parameter key="port" value="5666"/>
          <parameter key="command" value="_NRPE_CHECK"/>
          <parameter key="padding" value="2"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="ds-name" value="nrpe"/>
       </service>
       <service name="NRPE-NoSSL" interval="300000" user-defined="false" status="on">
@@ -229,7 +229,7 @@
          <parameter key="command" value="_NRPE_CHECK"/>
          <parameter key="usessl" value="false"/>
          <parameter key="padding" value="2"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="ds-name" value="nrpe"/>
       </service>
       <service name="Windows-Task-Scheduler" interval="300000" user-defined="false" status="on">
@@ -239,7 +239,7 @@
          <parameter key="port" value="18980"/>
          <parameter key="retry" value="2"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
       </service>
       <service name="JMX-Kafka" interval="300000" user-defined="false" status="on">
          <parameter key="port" value="9999"/>
@@ -248,7 +248,7 @@
          <parameter key="factory" value="PASSWORD_CLEAR"/>
          <parameter key="username" value="admin"/>
          <parameter key="password" value="admin"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
       </service>
       <service name="VMwareCim-HostSystem" interval="300000" user-defined="false" status="on">
          <parameter key="retry" value="2"/>
@@ -276,7 +276,7 @@
          <parameter key="retry" value="1"/>
          <parameter key="port" value="22"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="minassh"/>
          <parameter key="ds-name" value="minassh"/>
          <parameter key="username" value="admin"/>
@@ -305,14 +305,14 @@
       </service>
       <service name="Minion-RPC" interval="30000" user-defined="false" status="on">
          <parameter key="ttl" value="30000"/><!-- TTL should be same as period -->
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="ds-name" value="minion-rpc"/>
       </service>
       <service name="JMX-Minion" interval="30000" user-defined="false" status="on">
          <parameter key="port" value="18980"/>
          <parameter key="retry" value="2"/>
          <parameter key="timeout" value="3000"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="ds-name" value="jmx-minion"/>
          <parameter key="use-foreign-id-as-system-id" value="true"/>
       </service>
@@ -345,7 +345,7 @@
          <parameter key="ping-count" value="20"/>
          <parameter key="failure-ping-count" value="20"/>
          <parameter key="wait-interval" value="50"/>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="strafeping"/>
       </service>
       <downtime begin="0" end="432000000" interval="300000"/><!-- 5m, 0, 5d -->
@@ -363,7 +363,7 @@
       </rrd>
       <service name="DeviceConfig" interval="300000" user-defined="false" status="on">
          <pattern><![CDATA[^DeviceConfig-(?<configType>.+)$]]></pattern>
-         <parameter key="rrd-repository" value="/opt/opennms/share/rrd/response"/>
+         <parameter key="rrd-repository" value="/var/lib/opennms/rrd/response"/>
          <parameter key="rrd-base-name" value="device-config"/>
          <!-- match service name suffix with config-type -->
          <parameter key="config-type" value="${pattern:configType|requisition:dcb:config-type|default}"/>

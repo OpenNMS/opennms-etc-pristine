@@ -1,4 +1,4 @@
-<jmx-datacollection-config xmlns="http://xmlns.opennms.org/xsd/config/jmx-datacollection" rrdRepository="/opt/opennms/share/rrd/snmp/">
+<jmx-datacollection-config xmlns="http://xmlns.opennms.org/xsd/config/jmx-datacollection" rrdRepository="/var/lib/opennms/rrd/snmp/">
    <jmx-collection name="jsr160">
       <rrd step="300">
          <rra>RRA:AVERAGE:0.5:1:2016</rra>

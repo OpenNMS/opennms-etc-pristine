@@ -22,7 +22,7 @@
 
   <properties>
     <property name="prefix">uncategorized</property>
-    <property name="logdir">/opt/opennms/logs</property>
+    <property name="logdir">/var/log/opennms</property>
   </properties>
 
   <!--

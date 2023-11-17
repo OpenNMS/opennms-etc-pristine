@@ -56,7 +56,7 @@
 	</style>
 	<parameter name="ONMS_REPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[The directory where all reports can be found]]></parameterDescription>
-		<defaultValueExpression><![CDATA["/opt/opennms/etc/report-templates"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/usr/share/opennms/etc/report-templates"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[$P{ONMS_REPORT_DIR} + "/subreports/"]]></defaultValueExpression>

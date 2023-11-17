@@ -10,7 +10,7 @@
 
     <queue name="JTI">
         <adapter name="JTI-GPB" class-name="org.opennms.netmgt.telemetry.protocols.jti.adapter.JtiGpbAdapter" enabled="false">
-            <parameter key="script" value="/opt/opennms/etc/telemetryd-adapters/junos-telemetry-interface.groovy"/>
+            <parameter key="script" value="/usr/share/opennms/etc/telemetryd-adapters/junos-telemetry-interface.groovy"/>
 
             <package name="JTI-Default">
                 <rrd step="300">
@@ -40,7 +40,7 @@
 
     <queue name="OpenConfig">
         <adapter name="OpenConfig-Adapter" class-name="org.opennms.netmgt.telemetry.protocols.openconfig.adapter.OpenConfigAdapter" enabled="false">
-            <parameter key="script" value="/opt/opennms/etc/telemetryd-adapters/openconfig-jti-telemetry.groovy"/>
+            <parameter key="script" value="/usr/share/opennms/etc/telemetryd-adapters/openconfig-jti-telemetry.groovy"/>
             <parameter key="mode" value="jti"/>
             <package name="OpenConfig-Default">
                 <rrd step="300">
@@ -152,7 +152,7 @@
         </adapter>
 
         <adapter name="SFlow-Telemetry" class-name="org.opennms.netmgt.telemetry.protocols.sflow.adapter.SFlowTelemetryAdapter" enabled="true">
-            <parameter key="script" value="/opt/opennms/etc/telemetryd-adapters/sflow-host.groovy"/>
+            <parameter key="script" value="/usr/share/opennms/etc/telemetryd-adapters/sflow-host.groovy"/>
 
             <package name="SFlow-Default">
                 <rrd step="300">
@@ -185,7 +185,7 @@
 
     <queue name="NXOS">
         <adapter name="NXOS-GPB" class-name="org.opennms.netmgt.telemetry.protocols.nxos.adapter.NxosGpbAdapter" enabled="false">
-            <parameter key="script" value="/opt/opennms/etc/telemetryd-adapters/cisco-nxos-telemetry-interface.groovy"/>
+            <parameter key="script" value="/usr/share/opennms/etc/telemetryd-adapters/cisco-nxos-telemetry-interface.groovy"/>
 
             <package name="NXOS-Default">
                 <rrd step="300">
@@ -237,7 +237,7 @@
 
     <queue name="Graphite">
         <adapter name="Graphite" class-name="org.opennms.netmgt.telemetry.protocols.graphite.adapter.GraphiteAdapter" enabled="false">
-            <parameter key="script" value="/opt/opennms/etc/telemetryd-adapters/graphite-telemetry-interface.groovy"/>
+            <parameter key="script" value="/usr/share/opennms/etc/telemetryd-adapters/graphite-telemetry-interface.groovy"/>
              <package name="Graphite-Default">
                 <rrd step="300">
                     <rra>RRA:AVERAGE:0.5:1:2016</rra>

@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
-<prometheus-datacollection-config rrd-repository="/opt/opennms/share/rrd/snmp/">
+<prometheus-datacollection-config rrd-repository="/var/lib/opennms/rrd/snmp/">
    <!-- See prometheus-datacollection.d -->
 </prometheus-datacollection-config>

@@ -18,7 +18,9 @@ pushd $ME/work >/dev/null 2>&1 || exit 1
 			tar -xzf data.tar.gz
 		elif [ -e data.tar.xz ]; then
 			tar -xJf data.tar.xz
-		fi
+                elif [ -e data.tar.zst ]; then
+                        tar --use-compress-program=unzstd -xvf data.tar.zst
+                fi
 	done
 	if [ -d "$ME/work/etc/opennms/" ]; then
 		rsync -avr --delete $ME/work/etc/opennms/ $ME/etc/

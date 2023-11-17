@@ -1,4 +1,4 @@
-<vmware-cim-datacollection-config xmlns="http://xmlns.opennms.org/xsd/config/vmware-cim-datacollection" rrdRepository="/opt/opennms/share/rrd/snmp/">
+<vmware-cim-datacollection-config xmlns="http://xmlns.opennms.org/xsd/config/vmware-cim-datacollection" rrdRepository="/var/lib/opennms/rrd/snmp/">
    <vmware-cim-collection name="default-ESX-HostSystem">
       <rrd step="300">
          <rra>RRA:AVERAGE:0.5:1:2016</rra>
