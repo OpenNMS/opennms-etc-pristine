@@ -21,6 +21,6 @@
 # This file contains the general platform information required by the itests to find out
 # about the current versions.
 #
-karafVersion=4.3.6
+karafVersion=4.3.10
 name=Apache Karaf
 
