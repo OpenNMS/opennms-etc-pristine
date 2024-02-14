@@ -8,6 +8,8 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+set -e
+
 mkdir -p $ME/work
 pushd $ME/work >/dev/null 2>&1
 
@@ -17,6 +19,9 @@ pushd $ME/work >/dev/null 2>&1
 	done
 	if [ -d "$ME/work/opt/opennms/etc/" ]; then
 		rsync -avr --delete $ME/work/opt/opennms/etc/ $ME/etc/
+	fi
+	if [ -d "$ME/work/opt/OpenNMS/etc/" ]; then
+		rsync -avr --delete $ME/work/opt/OpenNMS/etc/ $ME/etc/
 	fi
 
 popd >/dev/null 2>&1

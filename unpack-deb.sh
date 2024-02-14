@@ -8,6 +8,8 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+set -e
+
 mkdir -p $ME/work
 pushd $ME/work >/dev/null 2>&1 || exit 1
 
