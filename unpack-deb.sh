@@ -27,7 +27,7 @@ pushd $ME/work >/dev/null 2>&1 || exit 1
 	done
 	if [ -d "$ME/work/etc/opennms/" ]; then
 		rsync -avr --delete $ME/work/etc/opennms/ $ME/etc/
-	elif [ -d "$ME/work/etc/opennms/" ]; then
+	elif [ -d "$ME/work/opt/opennms/etc/" ]; then
 		if [ "$MAJOR" -ge 35 ]; then
 			rsync -avr --delete $ME/work/opt/opennms/etc/ $ME/etc/
 		fi

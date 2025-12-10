@@ -10,7 +10,7 @@
        Change the status to be "on" on to enable the scheduling.
 
        To reload the configuration, use the following command:
-       /usr/share/opennms/bin/send-event.pl \
+       /opt/opennms/bin/send-event.pl \
          uei.opennms.org/internal/reloadDaemonConfig \
          -p 'daemonName Statsd'
   -->

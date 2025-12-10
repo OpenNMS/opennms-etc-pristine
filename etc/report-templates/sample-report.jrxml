@@ -20,7 +20,7 @@
 	<style name="Detail" fontName="SansSerif" fontSize="12"/>
 	<parameter name="ONMS_REPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[The directory where all reports can be found]]></parameterDescription>
-		<defaultValueExpression><![CDATA["/usr/share/opennms/etc/report-templates"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/opennms/etc/report-templates"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM node]]>

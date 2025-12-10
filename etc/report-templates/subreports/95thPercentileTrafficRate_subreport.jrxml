@@ -9,7 +9,7 @@
 	<template><![CDATA[$P{ONMS_REPORT_DIR} + "/assets/styles/defaultStyles.jrtx"]]></template>
 	<parameter name="ONMS_REPORT_DIR" class="java.lang.String">
 		<parameterDescription><![CDATA[The directory where all reports can be found]]></parameterDescription>
-		<defaultValueExpression><![CDATA["/usr/share/opennms/etc/report-templates"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/opennms/etc/report-templates"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="nodeid" class="java.lang.Integer"/>
 	<parameter name="foreignsource" class="java.lang.String"/>
