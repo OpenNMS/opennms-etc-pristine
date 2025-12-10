@@ -2,6 +2,7 @@
 
 MYDIR=`dirname $0`
 ME=`cd $MYDIR; pwd`
+MAJOR="${VERSION%%.*}"
 
 if [ -z "$1" ]; then
 	echo "usage: $0 [debs]"
@@ -26,6 +27,10 @@ pushd $ME/work >/dev/null 2>&1 || exit 1
 	done
 	if [ -d "$ME/work/etc/opennms/" ]; then
 		rsync -avr --delete $ME/work/etc/opennms/ $ME/etc/
+	elif [ -d "$ME/work/etc/opennms/" ]; then
+		if [ "$MAJOR" -ge 35 ]; then
+			rsync -avr --delete $ME/work/opt/opennms/etc/ $ME/etc/
+		fi
 	fi
 
 popd >/dev/null 2>&1
