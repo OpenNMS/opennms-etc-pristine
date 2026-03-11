@@ -112,7 +112,7 @@
         <KeyValuePair key="instance" value="${env:OPENNMS_INSTANCE_ID:-OpenNMS}"/>
         <KeyValuePair key="hostname" value="${env:HOSTNAME:-localhost}"/>
         <KeyValuePair key="timestamp" value="${date:yyyy-MM-dd'T'HH:mm:ss.SSSXXX}"/>
-        <KeyValuePair key="version" value="35.0.3"/>
+        <KeyValuePair key="version" value="35.0.4"/>
       </JsonLayout>
     </Console>
 
