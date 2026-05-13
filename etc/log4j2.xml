@@ -112,7 +112,7 @@
         <KeyValuePair key="instance" value="${env:OPENNMS_INSTANCE_ID:-OpenNMS}"/>
         <KeyValuePair key="hostname" value="${env:HOSTNAME:-localhost}"/>
         <KeyValuePair key="timestamp" value="${date:yyyy-MM-dd'T'HH:mm:ss.SSSXXX}"/>
-        <KeyValuePair key="version" value="35.0.5"/>
+        <KeyValuePair key="version" value="36.0.0"/>
       </JsonLayout>
     </Console>
 
@@ -260,6 +260,10 @@
       <appender-ref ref="${console.daemon.output}"/>
     </logger>
     <logger name="com.zaxxer.hikari.pool.ProxyConnection" additivity="false" level="ERROR">
+      <appender-ref ref="RoutingAppender"/>
+      <appender-ref ref="${console.daemon.output}"/>
+    </logger>
+    <logger name="org.snmp4j.security.UsmUserTable" additivity="false" level="INFO">
       <appender-ref ref="RoutingAppender"/>
       <appender-ref ref="${console.daemon.output}"/>
     </logger>
