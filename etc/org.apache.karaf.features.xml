@@ -6,7 +6,7 @@
 
   <featureReplacements>
     <replacement mode="replace">
-      <feature name="activemq-client" description="ActiveMQ client libraries" version="5.19.6">
+      <feature name="activemq-client" description="ActiveMQ client libraries" version="5.19.7">
         <f:feature version="[4,6)">spring</f:feature>
         <f:feature>aries-blueprint</f:feature>
         <f:feature>activemq-combined-jms-spec</f:feature>
@@ -15,7 +15,7 @@
         <f:bundle dependency="true">mvn:org.jvnet.jaxb2_commons/jaxb2-basics-runtime/0.12.0</f:bundle>
         <f:bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jaxb-runtime/2.3.2_1</f:bundle>
         <f:bundle>mvn:org.apache.commons/commons-pool2/2.13.1</f:bundle>
-        <f:bundle>mvn:org.apache.activemq/activemq-osgi/5.19.6</f:bundle>
+        <f:bundle>mvn:org.apache.activemq/activemq-osgi/5.19.7</f:bundle>
       </feature>
     </replacement>
   </featureReplacements>
